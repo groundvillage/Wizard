@@ -8,23 +8,22 @@ import java.util.Random;
  */
 public class CardDeck {
 
-    private Card cards[];
+    public Card cards[];
 
     public CardDeck(final int numberCards) {
         cards = new Card[numberCards];
-        System.out.printf("Size of cards: %d\n", cards.length);
+        for (int i = 0; i < cards.length; i++) {
+            cards[i] = this.getRandomCard();
+        }
 
     }
 
     private Card getRandomCard() {
         int randomNumber = new Random().nextInt(10);
-        System.out.printf("randomNumber: %d\n", randomNumber);
-        if (randomNumber <= 9) {
+        if (randomNumber > 8) {
             return new SpecialCard();
-
         } else
             return new NormalCard();
-
     }
 
 }
