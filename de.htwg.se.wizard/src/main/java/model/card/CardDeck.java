@@ -8,7 +8,7 @@ import java.util.Random;
  */
 public class CardDeck {
 
-    public Card cards[];
+    private Card[] cards;
 
     public CardDeck(final int numberCards) {
         cards = new Card[numberCards];

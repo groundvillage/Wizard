@@ -5,7 +5,10 @@ package model.card;
  */
 public class SpecialCard extends AbstractCard {
 
-    public enum cardType {WIZARD, FOOL}
+    public enum cardType {
+        WIZARD,
+        FOOL
+    }
 
     private cardType type;
 
