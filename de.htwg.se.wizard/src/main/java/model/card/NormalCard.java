@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Jan on 23.10.2015.
  */
-public class NormalCard extends model.card.AbstractCard {
+public class NormalCard extends AbstractCard {
 
     public enum CardColor {
         HEARTH,
