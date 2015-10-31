@@ -14,10 +14,10 @@ public class NormalCard extends AbstractCard{
     private CardColor color;
 
     public NormalCard() {
-        this.value = value;
-        this.color = color;
+        NormalCardParameter cardParameter = this.getRandomValues();
 
-        this.getRandomValues();
+        this.value = cardParameter.valueParameter;
+        this.color = cardParameter.colorParameter;
     }
 
     public int getValue() {
@@ -28,14 +28,27 @@ public class NormalCard extends AbstractCard{
         return this.color;
     }
 
-   // private
     private NormalCardParameter getRandomValues() {
-        CardColor[] blubber = CardColor.values();
 
-        int randomColorNumber = new Random().nextInt(blubber.length);
-        CardColor randomColor = blubber[randomColorNumber];
+        CardColor[] CardColorValues = CardColor.values();
+        Random rmd = new Random();
 
-        return new NormalCardParameter(5, randomColor);
+        int randomColorNumber = rmd.nextInt(CardColorValues.length);
+        CardColor randomColor = CardColorValues[randomColorNumber];
+
+        int randomValue = rmd.nextInt(12) + 2;
+
+        return new NormalCardParameter(randomValue, randomColor);
+    }
+
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder("NormalCard: ");
+        sb.append(this.color);
+        sb.append(" - ");
+        sb.append(this.value);
+
+        return sb.toString();
     }
 
     private class NormalCardParameter {
