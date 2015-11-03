@@ -1,4 +1,4 @@
-package model.player;
+package java.model.player;
 
 /**
  * Created by Jan on 23.10.2015.
