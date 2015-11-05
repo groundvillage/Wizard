@@ -10,22 +10,19 @@ public class Player {
 
     public Player(String n) {
         this.name = n;
+        this.score = 0;
     }
 
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return this.name;
     }
 
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void increaseScore(int score) {
+        this.score += score;
     }
 
 
