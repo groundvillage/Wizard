@@ -7,11 +7,4 @@ package model.card;
  */
 public abstract class AbstractCard implements Card {
 
-    //private String imagePath;
-
-    /*public String getImagePath(){
-        return imagePath;
-    }*/
-
-    //public class CardParameter { }
 }

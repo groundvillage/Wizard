@@ -22,13 +22,7 @@ public class CardDeck {
         if (randomNumber > 8) {
             return new SpecialCard();
         } else {
-            //return new SpecialCard();
             return new NormalCard();
         }
     }
-
-    /*public Card getCard() {
-
-    }*/
-
 }

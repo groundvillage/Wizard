@@ -11,6 +11,7 @@ public class SpecialCard extends AbstractCard {
         WIZARD,
         FOOL
     }
+    private CardType type;
 
     public SpecialCard() {
         SpecialCardParameter cardParameter = this.getRandomCardParameter();
@@ -22,8 +23,6 @@ public class SpecialCard extends AbstractCard {
     public SpecialCard(final SpecialCardParameter cardParameter) {
         this.type = cardParameter.getTypeParameter();
     }
-
-    private CardType type;
 
     public CardType getType() {
         return this.type;
