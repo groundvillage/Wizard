@@ -48,10 +48,13 @@ public class SpecialCard extends AbstractCard {
             typeParameter = type;
         }
 
-        public CardType getTypeParameter() { return typeParameter; }
+        public CardType getTypeParameter() {
+            return typeParameter;
+        }
 
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("SpecialCard : ");
         sb.append(this.getType());
