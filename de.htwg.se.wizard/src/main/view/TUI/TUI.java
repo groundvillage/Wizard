@@ -41,26 +41,24 @@ public class TUI implements IObserver {
         return false;
     }
 
-    public int processInputLineNumberOfPlayers(int max) {
+    public int processInputLineNumberOfPlayers(int max, String line) {
         /* Number of players */
-        String input = scanner.next();
         int players = 0;
-        if (input.matches("q")) {
+        if (line.matches("q")) {
             return -1;
-        } else if (input.matches("[2-" + max + "]")) {
-            players = Integer.parseInt(input);
+        } else if (line.matches("[2-" + max + "]")) {
+            players = Integer.parseInt(line);
             return players;
         }
 
         return 0;
     }
 
-    public boolean processInputLineNames() {
-        String input = scanner.next();
-        if (input.matches("q")) {
+    public boolean processInputLineNames(String line) {
+        if (line.matches("q")) {
             return true;
         }
-        controller.addPlayer(input);
+        controller.addPlayer(line);
 
         return false;
     }

@@ -25,7 +25,7 @@ public class Wizard {
         out.println("Welcome to a new round of Wizard!");
         while (!quit) {
             out.println("How many are playing? (2-" + maxPlayers + ") or q to quit");
-            players = tui.processInputLineNumberOfPlayers(maxPlayers);
+            players = tui.processInputLineNumberOfPlayers(maxPlayers, scanner.next());
             if (players == -1) {
                 quit = true;
             } else if (players != 0) {
@@ -34,7 +34,7 @@ public class Wizard {
         }
         for (int i = 1; i <= players; i++) {
             out.println("Name of player " + i + ": (q to quit)");
-            quit = tui.processInputLineNames();
+            quit = tui.processInputLineNames(scanner.next());
             if (quit) {
                 break;
             }
