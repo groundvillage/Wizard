@@ -61,6 +61,7 @@ public class NormalCard extends AbstractCard{
         return new NormalCardParameter(this.getRandomValue(), this.getRandomColor());
     }
 
+    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder("NormalCard: ");
