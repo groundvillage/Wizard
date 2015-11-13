@@ -29,14 +29,39 @@ public class TUI implements IObserver {
         printTUI();
     }
 
-    private void printTUI() {
-        if (controller.getStatus() == gameStatus.START) {
-            startGame();
+    public void printTUI() {
+        if (controller.getStatus() == gameStatus.PREDICTION) {
+            //print prediction TUI
+        } else if (controller.getStatus() == gameStatus.MATCH) {
+            //print match TUI
         }
     }
 
-    private void startGame() {
-        //get no players, names
+    public boolean processInputLine(String line) {
+        return false;
+    }
 
+    public int processInputLineNumberOfPlayers(int max) {
+        /* Number of players */
+        String input = scanner.next();
+        int players = 0;
+        if (input.matches("q")) {
+            return -1;
+        } else if (input.matches("[2-" + max + "]")) {
+            players = Integer.parseInt(input);
+            return players;
+        }
+
+        return 0;
+    }
+
+    public boolean processInputLineNames() {
+        String input = scanner.next();
+        if (input.matches("q")) {
+            return true;
+        }
+        controller.addPlayer(input);
+
+        return false;
     }
 }

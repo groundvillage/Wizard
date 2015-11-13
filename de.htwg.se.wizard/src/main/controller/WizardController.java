@@ -19,15 +19,14 @@ public class WizardController extends Observable {
     private List<Player> players;
     private CardDeck deck;
     private boolean quit;
-    private static int maxPlayers = 6;
 
     public WizardController() {
         this.status = gameStatus.START;
         this.players = new LinkedList<>();
     }
 
-    public static int getMaxPlayers() {
-        return maxPlayers;
+    public void addPlayer(String name) {
+        this.players.add(new Player(name));
     }
 
     public String getStatusMessage() {
@@ -40,10 +39,6 @@ public class WizardController extends Observable {
 
     public gameStatus getStatus() {
         return this.status;
-    }
-
-    public void quitGame() {
-        System.exit(0);
     }
 
 }
