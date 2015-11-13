@@ -8,6 +8,11 @@
     <artifactId>Wizard</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <build>
         <directory>de.htwg.se.wizard/bin</directory>
         <sourceDirectory>de.htwg.se.wizard/src/main</sourceDirectory>
