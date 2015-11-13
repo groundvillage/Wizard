@@ -10,7 +10,7 @@ public class NormalCard extends AbstractCard{
     public static final int MIN_CARD_VALUE = 2;
 
     public enum CardColor {
-        HEARTH,
+        HEART,
         TILE,
         CLOVER,
         PIKE

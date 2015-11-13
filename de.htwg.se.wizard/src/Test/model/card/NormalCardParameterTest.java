@@ -16,7 +16,7 @@ public class NormalCardParameterTest {
 
     @Before
     public void setUp() throws Exception {
-        cardParameter = new NormalCard.NormalCardParameter(2, CardColor.HEARTH);
+        cardParameter = new NormalCard.NormalCardParameter(2, CardColor.HEART);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -32,7 +32,7 @@ public class NormalCardParameterTest {
 
     @Test
     public void testGetColorParameter() throws Exception {
-        assertEquals(CardColor.HEARTH, cardParameter.getColorParameter());
+        assertEquals(CardColor.HEART, cardParameter.getColorParameter());
 
     }
 }

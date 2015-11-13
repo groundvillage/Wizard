@@ -17,7 +17,7 @@ public class NormalCardTest{
 
     @Before
     public void setUp() throws Exception {
-        NormalCard.NormalCardParameter cardParameter = new NormalCard.NormalCardParameter(2, NormalCard.CardColor.HEARTH);
+        NormalCard.NormalCardParameter cardParameter = new NormalCard.NormalCardParameter(2, CardColor.HEART);
         normalCard = new NormalCard(cardParameter);
     }
 
@@ -28,12 +28,12 @@ public class NormalCardTest{
 
     @Test
     public void testGetColor() throws Exception {
-        assertEquals(CardColor.HEARTH, normalCard.getColor());
+        assertEquals(CardColor.HEART, normalCard.getColor());
     }
 
     @Test
     public void testToString() throws Exception {
-        String originalString = "NormalCard: HEARTH - 2";
+        String originalString = "NormalCard: HEART - 2";
         assertEquals(originalString, normalCard.toString());
     }
 

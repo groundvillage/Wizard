@@ -15,7 +15,6 @@ public class Wizard {
 
     public static void main(String[] args) {
         TUI tui = new TUI(new WizardController());
-        tui.printTUI();
         // continue until the user decides to quit
         boolean quit = false;
         int players = 0;
