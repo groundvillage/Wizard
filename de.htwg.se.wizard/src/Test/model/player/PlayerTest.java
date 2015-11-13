@@ -1,6 +1,10 @@
-import org.junit.*;
-import java.model.player.Player;
-import static org.junit.Assert.*;
+package model.player;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Created by Tamara on 05.11.2015.
@@ -33,7 +37,8 @@ public class PlayerTest {
     public void testGetScore() {
         assertEquals(0, player.getScore());
         player.increaseScore(1);
-        assertEquals(0, player.getScore());
+        assertEquals(1, player.getScore());
+        assertNotEquals(0, player.getScore());
     }
 
 

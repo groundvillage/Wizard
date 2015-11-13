@@ -1,13 +1,17 @@
 package model.card;
 
+
+
 /**
  * Created by Jan on 23.10.2015.
  */
 public abstract class AbstractCard implements Card {
 
-    private String imagePath;
+    //private String imagePath;
 
-    public String getImagePath(){
+    /*public String getImagePath(){
         return imagePath;
-    }
+    }*/
+
+    //public class CardParameter { }
 }

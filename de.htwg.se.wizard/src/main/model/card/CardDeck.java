@@ -15,15 +15,20 @@ public class CardDeck {
         for (int i = 0; i < cards.length; i++) {
             cards[i] = this.getRandomCard();
         }
-
     }
 
     private Card getRandomCard() {
         int randomNumber = new Random().nextInt(10);
         if (randomNumber > 8) {
             return new SpecialCard();
-        } else
+        } else {
+            //return new SpecialCard();
             return new NormalCard();
+        }
     }
+
+    /*public Card getCard() {
+
+    }*/
 
 }
