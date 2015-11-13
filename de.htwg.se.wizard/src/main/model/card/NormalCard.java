@@ -42,11 +42,11 @@ public class NormalCard extends AbstractCard{
     }
 
     private CardColor getRandomColor() {
-        CardColor[] CardColorValues = CardColor.values();
+        CardColor[] cardColor = CardColor.values();
 
-        int randomColorNumber = new Random().nextInt(CardColorValues.length);
+        int randomColorNumber = new Random().nextInt(cardColor.length);
 
-        return CardColorValues[randomColorNumber];
+        return cardColor[randomColorNumber];
 
     }
 
