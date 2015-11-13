@@ -3,8 +3,7 @@ package model.player;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 /**
  * Created by Tamara on 05.11.2015.
@@ -38,7 +37,7 @@ public class PlayerTest {
         assertEquals(0, player.getScore());
         player.increaseScore(1);
         assertEquals(1, player.getScore());
-        assertNotEquals(0, player.getScore());
+        assertTrue(0 != player.getScore());
     }
 
 
