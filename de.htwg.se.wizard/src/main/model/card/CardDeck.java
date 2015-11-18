@@ -1,6 +1,8 @@
 package model.card;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,21 +10,46 @@ import java.util.Random;
  */
 public class CardDeck {
 
-    private Card[] cards;
+    private final Card[] basicCards;
+    private List<Card> usedCards;
+    private Random rmd = new Random();
 
     public CardDeck(final int numberCards) {
-        cards = new Card[numberCards];
-        for (int i = 0; i < cards.length; i++) {
-            cards[i] = this.getRandomCard();
+        basicCards = new Card[numberCards];
+        for (int i = 0; i < basicCards.length; i++) {
+            basicCards[i] = this.getRandomCard();
         }
+
+        setCardDeck();
     }
 
     private Card getRandomCard() {
-        int randomNumber = new Random().nextInt(10);
-        if (randomNumber > 8) {
+        int randomNumber = rmd.nextInt(100);
+        if (randomNumber > 80) {
             return new SpecialCard();
         } else {
             return new NormalCard();
         }
+    }
+
+    public void setCardDeck() {
+        usedCards = new ArrayList<>();
+
+        for  (Card c : basicCards) {
+            usedCards.add(c);
+        }
+    }
+
+    public Card drawCard() {
+        if (usedCards.size() == 0) {
+            return null;
+        }
+        int cardNumber = rmd.nextInt(usedCards.size());
+
+        Card randomCard = usedCards.get(cardNumber);
+
+        usedCards.remove(cardNumber);
+
+        return randomCard;
     }
 }

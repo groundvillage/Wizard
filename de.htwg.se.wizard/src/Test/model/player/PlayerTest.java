@@ -3,13 +3,14 @@ package model.player;
 import model.card.Card;
 import model.card.NormalCard;
 import model.card.SpecialCard;
-import model.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Tamara on 05.11.2015.
@@ -55,11 +56,8 @@ public class PlayerTest {
         hand.add(c2);
         player.dealHand(hand);
 
-        hand = player.getHand();
-        for (Card c : hand) {
-            assertEquals(c1, c);
+        for (Card c : player.getHand()) {
+            assertTrue(c1.equals(c) || c2.equals(c));
         }
     }
-
-
 }
