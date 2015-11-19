@@ -48,7 +48,7 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>prpare-agent</goal>
+                            <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
