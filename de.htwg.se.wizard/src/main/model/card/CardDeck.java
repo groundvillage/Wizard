@@ -41,7 +41,7 @@ public class CardDeck {
     }
 
     public Card drawCard() {
-        if (usedCards.size() == 0) {
+        if (usedCards.isEmpty()) {
             return null;
         }
         int cardNumber = rmd.nextInt(usedCards.size());
