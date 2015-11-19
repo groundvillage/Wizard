@@ -35,11 +35,12 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+
             </plugin>
             <plugin>
-                <groupId>ofg.codehous.mojo</groupId>
+                <groupId>org.codehous.mojo</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>2.2.1</version>
+                <version>2.7.1</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
