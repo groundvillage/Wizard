@@ -10,15 +10,26 @@ public class Player {
     private String name;
     private List<Card> hand;
     private int score;
+    private int prediction;
+    private int tricks;
 
     public Player(String n) {
         this.name = n;
         this.score = 0;
+        this.tricks = 0;
         this.hand = new LinkedList<>();
     }
 
     public String getName() {
         return this.name;
+    }
+
+    public int getPrediction() {
+        return prediction;
+    }
+
+    public void setPrediction(int prediction) {
+        this.prediction = prediction;
     }
 
     public int getScore() {
@@ -27,6 +38,13 @@ public class Player {
 
     public void increaseScore(int score) {
         this.score += score;
+    }
+
+    public int getTricks() {
+        return tricks;
+    }
+    public void addTrick() {
+        this.tricks++;
     }
 
     public void dealHand(List<Card> hand) {
@@ -41,5 +59,10 @@ public class Player {
         Card tmp = this.hand.get(number);
         this.hand.remove(number);
         return tmp;
+    }
+
+    public void reset() {
+        this.tricks = 0;
+        this.prediction = 0;
     }
 }
