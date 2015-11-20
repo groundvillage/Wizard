@@ -27,7 +27,7 @@ public class Wizard {
             players = tui.processInputLineNumberOfPlayers(maxPlayers, scanner.next());
             if (players == -1) {
                 quit = true;
-            } else if (players != 0) {
+            } else if (players >= 2 || players <= maxPlayers) {
                 break;
             }
         }
@@ -39,7 +39,7 @@ public class Wizard {
             }
         }
         while (!quit) {
-            quit = tui.processInputLine(scanner.next());
+            tui.processInputLine(scanner.next());
         }
     }
 
