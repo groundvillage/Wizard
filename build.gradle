@@ -30,8 +30,8 @@ dependencies {
 }
 
 sourceSets {
-    main.java.srcDir "src/main"
-    test.java.srcDir "src/test"
+    main.java.srcDir "de.htwg.se.wizard/src/main"
+    test.java.srcDir "de.htwg.se.wizard/src/test"
 }
 
 jar {
@@ -44,7 +44,7 @@ sonarqube {
         property "sonar.projectName", "SE2015WS-18-Wizard"
         property "sonar.projectKey", "de.htwg.se.wizard"
         property "sonar.projectVersion", "1.0"
-        property "sonar.binaries", "bin"
+        property "sonar.binaries", "de.htwg.se.wizard/bin"
         property "sonar.java.coveragePlugin", "jacoco"
     }
 }
