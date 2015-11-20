@@ -3,7 +3,6 @@ package model.player;
 import model.card.Card;
 import model.card.NormalCard;
 import model.card.SpecialCard;
-import model.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 

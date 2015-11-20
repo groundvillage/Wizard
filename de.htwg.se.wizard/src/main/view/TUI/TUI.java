@@ -4,7 +4,6 @@ package view.TUI;
  * Created by Tamara on 13.11.2015.
  */
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import controller.WizardController;
 import controller.gameStatus;
@@ -16,12 +15,10 @@ import java.util.regex.Pattern;
 public class TUI implements IObserver {
 
     private WizardController controller;
-    private Scanner scanner;
 
     public TUI(WizardController controller) {
         this.controller = controller;
         controller.addObserver(this);
-        this.scanner = new Scanner(System.in);
     }
 
     @Override
@@ -43,11 +40,10 @@ public class TUI implements IObserver {
 
     public int processInputLineNumberOfPlayers(int max, String line) {
         /* Number of players */
-        int players = 0;
         if (line.matches("q")) {
             return -1;
         } else if (line.matches("[2-" + max + "]")) {
-            players = Integer.parseInt(line);
+            int players = Integer.parseInt(line);
             return players;
         }
 
