@@ -36,19 +36,6 @@ jar {
     manifest.attributes "Main-Class":"de.htwg.se.wizard"
 }
 
-task pom << {
-    pom {
-        project {
-            groupId 'de.htwg.se'
-            artifactId 'de.htwg.se.wizard'
-            version '2.0'
-        }
-    }.withXml {
-        asNode().appendNode('build').with {
-            appendNode('sourceDirectory', 'de.htwg.se.src').parent().appendNode('testSourceDirectory', 'de.htwg.se.test')
-        }
-    }.writeTo("pom.xml")
-}
 
 sonarqube {
     properties {
