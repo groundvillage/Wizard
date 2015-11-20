@@ -45,7 +45,7 @@ task pom << {
         }
     }.withXml {
         asNode().appendNode('build').with {
-            appendNode('sourceDirectory', 'src').parent().appendNode('testSourceDirectory', 'test')
+            appendNode('sourceDirectory', 'de.htwg.se.src').parent().appendNode('testSourceDirectory', 'de.htwg.se.test')
         }
     }.writeTo("pom.xml")
 }
