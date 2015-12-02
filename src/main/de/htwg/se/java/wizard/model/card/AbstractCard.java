@@ -1,4 +1,4 @@
-package model.card;
+package de.htwg.se.java.wizard.model.card;
 
 
 

@@ -1,13 +1,13 @@
-package controller;
+package java.de.htwg.se.wizard.model.control;
 
-import model.player.Player;
+import java.de.htwg.se.wizard.model.card.Card;
+import java.de.htwg.se.wizard.model.card.CardDeck;
+import java.de.htwg.se.wizard.model.player.Player;
 import model.card.*;
 import util.observer.Observable;
 
-import java.util.Dictionary;
 import java.util.List;
 import java.util.LinkedList;
-import util.observer.Observable;
 
 
 /**

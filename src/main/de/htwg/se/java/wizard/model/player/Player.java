@@ -1,5 +1,6 @@
-package model.player;
-import model.card.*;
+package de.htwg.se.java.wizard.model.player;
+
+import de.htwg.se.java.wizard.model.card.Card;
 import java.util.List;
 import java.util.LinkedList;
 /**
