@@ -60,4 +60,9 @@ public class PlayerTest {
             assertTrue(c1.equals(c) || c2.equals(c));
         }
     }
+
+    @Test
+    public void playCard() {
+
+    }
 }

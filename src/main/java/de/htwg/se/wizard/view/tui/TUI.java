@@ -31,13 +31,12 @@ public class TUI implements IObserver {
         List<Card> cardsCurPlayer = controller.getCardsOfCurrentPlayer();
         List<Card> playedCards = controller.getPlayedCards();
         int curPlayer = controller.getCurPlayer();
-        int score = controller.getScores().get(curPlayer);
 
         out.printf("ROUND %d +++++++++++++++++++++++++++++++++++++++++\n", controller.getCurRound());
         for (Card c : playedCards) {
             out.printf("%s ", c.toString());
         }
-        //leere Slots einf�gen
+        //leere Slots einfügen
         for (int i = 0; i < controller.getNumberOfPlayers() - playedCards.size(); i++) {
             out.printf("[      ] ");
         }
@@ -56,15 +55,13 @@ public class TUI implements IObserver {
         out.println();
 
         if (controller.getStatus() == gameStatus.PREDICTION) {
-            out.printf("Total: %d\n", score);
+            out.printf("Total: %d\n", controller.getScore(curPlayer));
             out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
             out.println("Please type in your prediction: (q to quit)");
         } else {
-            int trick = controller.getTricks().get(curPlayer);
-            int prediction = controller.getPredictions().get(curPlayer);
-            out.printf("Prediction for this round: %d tricks\t", prediction);
-            out.printf("Tricks made: %d\t", trick);
-            out.printf("Total: %d\n", score);
+            out.printf("Prediction for this round: %d tricks\t", controller.getPrediction(curPlayer));
+            out.printf("Tricks made: %d\t", controller.getTricks(curPlayer));
+            out.printf("Total: %d\n", controller.getScore(curPlayer));
             out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
             out.println("Please type in the number of the card you want to play: (q to quit)");
         }
@@ -97,14 +94,12 @@ public class TUI implements IObserver {
     }
 
     private void printScores() {
-        List<Integer> predictions = controller.getPredictions();
-        List<Integer> tricks = controller.getTricks();
-        List<Integer> scores = controller.getScores();
 
         out.printf("RESULTS ROUND %d +++++++++++++++++++++++++++++++++++++++++\n", controller.getCurRound());
         for (int i=0; i < controller.getNumberOfPlayers(); i++) {
             out.printf("Player %d:\n", i + 1);
-            //TODO: Stats ausgeben
+            out.printf("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d\n", controller.getPrediction(i),
+                    controller.getTricks(i), controller.getPoints(i), controller.getScore(i));
         }
     }
 
@@ -133,6 +128,4 @@ public class TUI implements IObserver {
 
         return false;
     }
-
-
 }

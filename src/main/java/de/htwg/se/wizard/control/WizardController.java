@@ -6,8 +6,10 @@ import de.htwg.se.util.observer.Observable;
 import de.htwg.se.wizard.model.card.Card;
 import de.htwg.se.wizard.model.card.CardDeck;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,15 +20,23 @@ public class WizardController extends Observable {
     private gameStatus status;
     private int curRound;
     private String statusMessage;
-    private List<Player> players;
-    private CardDeck deck;
-    private List<Card> playedCards;
     private int curPlayer;
     private int firstPlayer;
+
+    private List<Player> players;
+    private CardDeck deck;
+
+    private List<Card> playedCards;
+    private Map<Integer, Integer> points;
+    private Map<Integer, Integer> predictions;
+    private Map<Integer, Integer> tricks;
 
     public WizardController() {
         this.players = new LinkedList<>();
         this.playedCards = new LinkedList<>();
+        this.points = new HashMap<>();
+        this.predictions = new HashMap();
+        this.tricks = new HashMap();
         this.curPlayer = 0;
         this.curRound = 1;
         this.status = gameStatus.PREDICTION;
@@ -44,6 +54,7 @@ public class WizardController extends Observable {
     public int getNumberOfPlayers() {
         return this.players.size();
     }
+
     public void addPlayer(String name) {
         this.players.add(new Player(name));
     }
@@ -64,47 +75,68 @@ public class WizardController extends Observable {
         return this.playedCards;
     }
 
-    public List<Integer> getScores() {
-        List<Integer> scores = new LinkedList<>();
-        for (Player p : players) {
-            scores.add(p.getScore());
-        }
-        return scores;
+    public int getScore(int player) {
+        return players.get(player).getScore();
     }
 
-    public List<Integer> getTricks() {
-        List<Integer> tricks = new LinkedList<>();
-        for (Player p : players) {
-            tricks.add(p.getScore());
-        }
-        return tricks;
+    public int getTricks(int player) {
+        return tricks.get(player);
     }
 
-    public List<Integer> getPredictions() {
-        List<Integer> predictions = new LinkedList<>();
-        for (Player p : players) {
-            predictions.add(p.getPrediction());
-        }
-        return predictions;
+    public int getPrediction(int player) {
+        return predictions.get(player);
+    }
+
+    public int getPoints(int player) {
+        return points.get(player);
     }
 
     // return value indicates, if prediction is valid or not
     public void predict(int prediction) {
         //Prediction cannot be greater than number of cards
         if (prediction > cardsPerPlayer()) {
-            //return false;
+            statusMessage = "Invalid input! Prediction cannot be higher than the number of possible tricks. Moron.";
+            return;
         }
 
         if (curPlayer == players.size() - 1) {
             if (isEven(prediction)) {
-                //return false;
+                statusMessage = "Invalid input! Predictions cannot come out even!";
+                return;
             }
+            predictions.put(curPlayer, prediction);
+            curPlayer = nextPlayer();
+            statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
+            if (curPlayer == firstPlayer) {
+                this.status = gameStatus.MATCH;
+            }
+            notifyObservers();
         }
-        players.get(curPlayer).setPrediction(prediction);
     }
 
     public void playCard(int card) {
-        //TODO
+        int handOfPlayer = players.get(curPlayer).getHand().size();
+
+        if (card < 1 || card > handOfPlayer) {
+            statusMessage = "Invalid input! Number doesn't match a card. Moron.";
+            return;
+        }
+
+        Card played = players.get(curPlayer).playCard(card);
+        this.playedCards.add(played);
+        this.notifyObservers();
+/*        if (curPlayer == getLastPlayer()) {
+              sleep
+              calculate results --> liste points
+              reset playedCards
+              gamestatus = prediction
+              reset predictions
+              curRound++
+              firstplayer = nextPlayer()
+              update
+          }
+       */
+
     }
 
     public List<Card> getCardsOfCurrentPlayer() {
@@ -122,15 +154,12 @@ public class WizardController extends Observable {
     //Checks, if the number of tricks (Stiche) comes out -> invalid
     private boolean isEven(int lastPrediction) {
         int sumPredictions = 0;
-        for (Player p : players) {
-            //isEven() is called when the last player predicts
-            if (!p.equals(players.get(getLastPlayer()))) {
-                sumPredictions += p.getPrediction();
-            }
+        for (int i : predictions.keySet()) {
+            sumPredictions += predictions.get(i);
         }
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
-        if (sumPredictions == cardsPerPlayer()) {
+        if (sumPredictions + lastPrediction == cardsPerPlayer()) {
             return true;
         }
         return false;
@@ -142,5 +171,12 @@ public class WizardController extends Observable {
             return players.size() - 1;
         }
         return curPlayer - 1;
+    }
+
+    private int nextPlayer() {
+        if (curPlayer == players.size() - 1 ) {
+            return 0;
+        }
+        return curPlayer + 1;
     }
 }
