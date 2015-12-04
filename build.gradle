@@ -30,12 +30,12 @@ dependencies {
 }
 
 sourceSets {
-    main.java.srcDir "/src/main/java.java.de.htwg.se"
-    test.java.srcDir "/src/test/java.java.de.htwg.se"
+    main.java.srcDir "/src/main/java.de.htwg.se.wizard"
+    test.java.srcDir "/src/test/java.de.htwg.se.wizard"
 }
 
 jar {
-    manifest.attributes "Main-Class":"java.java.de.htwg.se"
+    manifest.attributes "Main-Class":"java.de.htwg.se.wizard"
 }
 
 
