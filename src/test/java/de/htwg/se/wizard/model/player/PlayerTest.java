@@ -62,7 +62,17 @@ public class PlayerTest {
     }
 
     @Test
-    public void playCard() {
+    public void playCard() throws Exception {
+        List<Card> testHand = new LinkedList<>();
+        Card testCard = new SpecialCard(new SpecialCard.SpecialCardParameter(SpecialCard.CardType.WIZARD));
+        testHand.add(testCard);
+
+        player.dealHand(testHand);
+
+        assertEquals(1, player.getHand().size());
+        assertEquals(testCard, player.playCard(0));
+        assertEquals(0, player.getHand().size());
+
 
     }
 }
