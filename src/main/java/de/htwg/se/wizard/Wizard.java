@@ -40,6 +40,8 @@ public class Wizard {
                 break;
             }
         }
+        tui.printTUI();
+
         while (!quit) {
             tui.processInputLine(scanner.next());
         }
