@@ -45,7 +45,6 @@ sonarqube {
         property "sonar.projectName", "SE2015WS-17-Wizard"
 
         property "sonar.projectVersion", "1.0"
-        property "sonar.binaries", "./bin"
         property "sonar.java.coveragePlugin", "jacoco"
     }
 }
