@@ -2,6 +2,7 @@ package de.htwg.se.wizard.model.card;
 
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -51,5 +52,15 @@ public class CardDeck {
         usedCards.remove(cardNumber);
 
         return randomCard;
+    }
+
+    public List<Card> drawCard(int count) {
+        List<Card> cardList = new LinkedList<Card>();
+
+        for (int i = 0; i < count; i++) {
+            cardList.add(this.drawCard());
+        }
+
+        return cardList;
     }
 }
