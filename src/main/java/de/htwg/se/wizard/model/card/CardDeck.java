@@ -12,7 +12,7 @@ import java.util.Random;
 public class CardDeck {
 
     private final Card[] basicCards;
-    private List<Card> usedCards;
+    private List<Card> usingCards;
     private Random rmd = new Random();
 
     public CardDeck(final int numberCards) {
@@ -21,7 +21,7 @@ public class CardDeck {
             basicCards[i] = this.getRandomCard();
         }
 
-        setCardDeck();
+        reset();
     }
 
     private Card getRandomCard() {
@@ -33,23 +33,23 @@ public class CardDeck {
         }
     }
 
-    public void setCardDeck() {
-        usedCards = new ArrayList<>();
+    public void reset() {
+        usingCards = new ArrayList<>();
 
         for  (Card c : basicCards) {
-            usedCards.add(c);
+            usingCards.add(c);
         }
     }
 
     public Card drawCard() {
-        if (usedCards.isEmpty()) {
+        if (usingCards.isEmpty()) {
             return null;
         }
-        int cardNumber = rmd.nextInt(usedCards.size());
+        int cardNumber = rmd.nextInt(usingCards.size());
 
-        Card randomCard = usedCards.get(cardNumber);
+        Card randomCard = usingCards.get(cardNumber);
 
-        usedCards.remove(cardNumber);
+        usingCards.remove(cardNumber);
 
         return randomCard;
     }

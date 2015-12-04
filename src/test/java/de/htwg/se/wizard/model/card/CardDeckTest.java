@@ -49,7 +49,7 @@ public class CardDeckTest {
     public void testGetRandomCard() throws Exception {
         Card randomCard = cardDeck.drawCard();
         assertEquals(null, cardDeck.drawCard());
-        cardDeck.setCardDeck();
+        cardDeck.reset();
         assertEquals(randomCard, cardDeck.drawCard());
     }
 
