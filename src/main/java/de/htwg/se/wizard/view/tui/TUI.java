@@ -116,7 +116,7 @@ public class TUI implements IObserver {
             out.println("Invalid input! Type in a number between 2-6, you moron");
             return - 1;
         }
-
+        controller.setNumberOfPlayers(players);
         return players;
     }
 

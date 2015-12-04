@@ -22,6 +22,7 @@ public class WizardController extends Observable {
     private String statusMessage;
     private int curPlayer;
     private int firstPlayer;
+    private int numberOfPlayers;
 
     private List<Player> players;
     private CardDeck deck;
@@ -47,6 +48,8 @@ public class WizardController extends Observable {
         return curPlayer;
     }
 
+    public void setNumberOfPlayers(int nr) { this.numberOfPlayers = nr; }
+
     public int getCurRound() {
         return curRound;
     }
@@ -56,15 +59,15 @@ public class WizardController extends Observable {
     }
 
     public void addPlayer(String name) {
+
         this.players.add(new Player(name));
+        if (players.size() == numberOfPlayers) {
+            dealCards();
+        }
     }
 
     public String getStatusMessage() {
         return statusMessage;
-    }
-
-    public void setStatusMessage(String statusMessage) {
-        this.statusMessage = statusMessage;
     }
 
     public gameStatus getStatus() {
@@ -137,6 +140,13 @@ public class WizardController extends Observable {
           }
        */
 
+    }
+
+    private void dealCards() {
+        for (Player player : this.players) {
+            List<Card> cards = this.deck.drawCard(cardsPerPlayer());
+            player.dealHand(cards);
+        }
     }
 
     public List<Card> getCardsOfCurrentPlayer() {
