@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Jan on 12.11.2015.
  */
-public class NormalCardParameterTest {
+public class NormalICardParameterTest {
 
     NormalCard.NormalCardParameter cardParameter;
 

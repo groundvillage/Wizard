@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Jan on 12.11.2015.
  */
-public class SpecialCardTest {
+public class SpecialICardTest {
 
     SpecialCard specialCard;
 

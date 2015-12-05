@@ -7,7 +7,7 @@ package de.htwg.se.wizard.view.tui;
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
 import de.htwg.se.wizard.control.gameStatus;
-import de.htwg.se.wizard.model.card.Card;
+import de.htwg.se.wizard.model.card.ICard;
 
 import java.util.List;
 
@@ -28,12 +28,12 @@ public class TUI implements IObserver {
     }
 
     public void printTUI() {
-        List<Card> cardsCurPlayer = controller.getCardsOfCurrentPlayer();
-        List<Card> playedCards = controller.getPlayedCards();
+        List<ICard> cardsCurPlayer = controller.getCardsOfCurrentPlayer();
+        List<ICard> playedCards = controller.getPlayedCards();
         int curPlayer = controller.getCurPlayer();
 
         out.printf("ROUND %d +++++++++++++++++++++++++++++++++++++++++\n", controller.getCurRound());
-        for (Card c : playedCards) {
+        for (ICard c : playedCards) {
             out.printf("%s ", c.toString());
         }
         //leere Slots einfügen
@@ -45,7 +45,7 @@ public class TUI implements IObserver {
         out.printf("Player %d:\n", controller.getCurPlayer() + 1);
         //Counter - only 6 cards per row
         int i = 0;
-        for (Card c : cardsCurPlayer) {
+        for (ICard c : cardsCurPlayer) {
             if (i++ == 6) {
                 i = 0;
                 out.println();

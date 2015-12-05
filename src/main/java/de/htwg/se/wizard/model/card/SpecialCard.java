@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Jan on 23.10.2015.
  */
-public class SpecialCard extends AbstractCard {
+public class SpecialCard implements ICard {
 
     public enum CardType {
         WIZARD,

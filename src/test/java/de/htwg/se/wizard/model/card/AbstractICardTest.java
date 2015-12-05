@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by Jan on 12.11.2015.
  */
-public class AbstractCardTest {
+public class AbstractICardTest {
 
     @Before
     public void setUp() throws Exception {

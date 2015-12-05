@@ -1,6 +1,6 @@
 package de.htwg.se.wizard.model.player;
 
-import de.htwg.se.wizard.model.card.Card;
+import de.htwg.se.wizard.model.card.ICard;
 import java.util.List;
 import java.util.LinkedList;
 /**
@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Player {
 
     private String name;
-    private List<Card> hand;
+    private List<ICard> hand;
     private int score;
 
     public Player(String n) {
@@ -30,16 +30,16 @@ public class Player {
         this.score += score;
     }
 
-    public void dealHand(List<Card> hand) {
+    public void dealHand(List<ICard> hand) {
         this.hand = hand;
     }
 
-    public List<Card> getHand() {
+    public List<ICard> getHand() {
         return this.hand;
     }
 
-    public Card playCard(int number) {
-        Card tmp = this.hand.get(number);
+    public ICard playCard(int number) {
+        ICard tmp = this.hand.get(number);
         this.hand.remove(number);
         return tmp;
     }

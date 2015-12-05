@@ -3,9 +3,11 @@ package de.htwg.se.wizard.model.player;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.htwg.se.wizard.model.card.Card;
+import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.NormalCard;
 import de.htwg.se.wizard.model.card.SpecialCard;
+import de.htwg.se.wizard.model.card.NormalCard.CardColor;
+import de.htwg.se.wizard.model.card.NormalCard.CardValue;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,22 +51,22 @@ public class PlayerTest {
 
     @Test
     public void testDealHand() {
-        NormalCard c1 = new NormalCard(new NormalCard.NormalCardParameter(3, NormalCard.CardColor.CLOVER));
+        NormalCard c1 = new NormalCard(CardColor.CLOVER, CardValue.ACE);
         SpecialCard c2 = new SpecialCard(new SpecialCard.SpecialCardParameter(SpecialCard.CardType.WIZARD));
-        List<Card> hand = new LinkedList<>();
+        List<ICard> hand = new LinkedList<>();
         hand.add(c1);
         hand.add(c2);
         player.dealHand(hand);
 
-        for (Card c : player.getHand()) {
+        for (ICard c : player.getHand()) {
             assertTrue(c1.equals(c) || c2.equals(c));
         }
     }
 
     @Test
     public void playCard() throws Exception {
-        List<Card> testHand = new LinkedList<>();
-        Card testCard = new SpecialCard(new SpecialCard.SpecialCardParameter(SpecialCard.CardType.WIZARD));
+        List<ICard> testHand = new LinkedList<>();
+        ICard testCard = new SpecialCard(new SpecialCard.SpecialCardParameter(SpecialCard.CardType.WIZARD));
         testHand.add(testCard);
 
         player.dealHand(testHand);

@@ -3,8 +3,8 @@ package de.htwg.se.wizard.control;
 import de.htwg.se.wizard.model.player.Player;
 import de.htwg.se.util.observer.Observable;
 
-import de.htwg.se.wizard.model.card.Card;
-import de.htwg.se.wizard.model.card.CardDeck;
+import de.htwg.se.wizard.model.card.ICard;
+import de.htwg.se.wizard.model.card.carddeck.CardDeck;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -27,7 +27,7 @@ public class WizardController extends Observable {
     private List<Player> players;
     private CardDeck deck;
 
-    private List<Card> playedCards;
+    private List<ICard> playedCards;
     private Map<Integer, Integer> points;
     private Map<Integer, Integer> predictions;
     private Map<Integer, Integer> tricks;
@@ -74,7 +74,7 @@ public class WizardController extends Observable {
         return this.status;
     }
 
-    public List<Card> getPlayedCards() {
+    public List<ICard> getPlayedCards() {
         return this.playedCards;
     }
 
@@ -125,7 +125,7 @@ public class WizardController extends Observable {
             return;
         }
 
-        Card played = players.get(curPlayer).playCard(card);
+        ICard played = players.get(curPlayer).playCard(card);
         this.playedCards.add(played);
         this.notifyObservers();
 /*        if (curPlayer == getLastPlayer()) {
@@ -144,12 +144,12 @@ public class WizardController extends Observable {
 
     private void dealCards() {
         for (Player player : this.players) {
-            List<Card> cards = this.deck.drawCard(cardsPerPlayer());
+            List<ICard> cards = this.deck.drawMultipleCards(cardsPerPlayer());
             player.dealHand(cards);
         }
     }
 
-    public List<Card> getCardsOfCurrentPlayer() {
+    public List<ICard> getCardsOfCurrentPlayer() {
         return players.get(curPlayer).getHand();
     }
 
