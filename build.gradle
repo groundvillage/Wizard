@@ -30,8 +30,8 @@ dependencies {
 }
 
 sourceSets {
-    main.java.srcDir "/src/main/java.de.htwg.se.wizard"
-    test.java.srcDir "/src/test/java.de.htwg.se.wizard"
+    main.java.srcDir "src/main"
+    test.java.srcDir "src/test"
 }
 
 jar {

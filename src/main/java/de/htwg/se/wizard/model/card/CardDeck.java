@@ -15,22 +15,24 @@ public class CardDeck {
     private List<Card> usingCards;
     private Random rmd = new Random();
 
-    public CardDeck(final int numberCards) {
-        basicCards = new Card[numberCards];
-        for (int i = 0; i < basicCards.length; i++) {
-            basicCards[i] = this.getRandomCard();
+    public CardDeck() {
+        List<Card> basicCardList = new ArrayList<>();
+
+        NormalCard.CardColor.values();
+        for (NormalCard.CardColor color: NormalCard.CardColor.values()) {
+            for (int i = 2; i <= 13; i++) {
+                basicCardList.add(new NormalCard(new NormalCard.NormalCardParameter(i, color)));
+            }
         }
+        for (SpecialCard.CardType cardType: SpecialCard.CardType.values()) {
+            for (int i = 0; i < 4; i++) {
+                basicCardList.add(new SpecialCard(new SpecialCard.SpecialCardParameter(cardType)));
+            }
+        }
+
+        basicCards = (Card[])basicCardList.toArray();
 
         reset();
-    }
-
-    private Card getRandomCard() {
-        int randomNumber = rmd.nextInt(100);
-        if (randomNumber > 80) {
-            return new SpecialCard();
-        } else {
-            return new NormalCard();
-        }
     }
 
     public void reset() {

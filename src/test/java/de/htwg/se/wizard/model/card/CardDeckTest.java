@@ -15,42 +15,27 @@ public class CardDeckTest {
 
     @Before
     public void setUp() throws Exception {
-        cardDeck = new CardDeck(1);
+        cardDeck = new CardDeck();
     }
 
     @Test
     public void testCardDeckConstruktor() throws Exception {
-        int testSize = 50;
 
-        cardDeck = new CardDeck(testSize);
-        Card randomCard;
-
-        boolean gotSpecialCard = false;
-        boolean gotNormalCard = false;
-
-        for (int i = 0; i < testSize; i++) {
-            randomCard = cardDeck.drawCard();
-            if ( randomCard instanceof SpecialCard) {
-                gotSpecialCard = true;
-                if (gotNormalCard) {
-                    break;
-                }
-            } else if ( randomCard instanceof NormalCard) {
-                gotNormalCard = true;
-                if (gotSpecialCard) {
-                    break;
-                }
-            }
-        }
-        assertTrue(gotSpecialCard);
-        assertTrue(gotNormalCard);    }
-
-    @Test
-    public void testGetRandomCard() throws Exception {
-        Card randomCard = cardDeck.drawCard();
-        assertEquals(null, cardDeck.drawCard());
-        cardDeck.reset();
-        assertEquals(randomCard, cardDeck.drawCard());
+        assertEquals(60, );
     }
 
+    @Test
+    public void testDrawCard() throws Exception {
+
+    }
+
+    @Test
+    public void testDrawMultipleCards() throws Exception {
+
+    }
+
+    @Test
+    public void testReset() throws Exception {
+
+    }
 }
