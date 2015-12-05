@@ -8,12 +8,12 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Jan on 05.12.2015.
  */
-public class DynamicICardDeckTest {
+public class DynamicCardDeckTest {
 
     private DynamicCardDeck cardDeck;
     private SpecialCard testCard;
