@@ -36,8 +36,8 @@ public class WizardController extends Observable {
         this.players = new LinkedList<>();
         this.playedCards = new LinkedList<>();
         this.points = new HashMap<>();
-        this.predictions = new HashMap();
-        this.tricks = new HashMap();
+        this.predictions = new HashMap<>();
+        this.tricks = new HashMap<>();
         this.curPlayer = 0;
         this.curRound = 1;
         this.status = gameStatus.PREDICTION;
