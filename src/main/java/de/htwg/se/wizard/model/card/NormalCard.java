@@ -22,16 +22,17 @@ public class NormalCard implements ICard {
         KING(13),
         ACE(14);
 
-
-        int getValue() {
-            return value;
-        }
-
         private int value;
 
         CardValue(int value){
             this.value = value;
         }
+
+        int getValue() {
+            return value;
+        }
+
+
     }
 
     public enum CardColor {
