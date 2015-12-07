@@ -48,7 +48,9 @@ public class WizardController extends Observable {
         return curPlayer;
     }
 
-    public void setNumberOfPlayers(int nr) { this.numberOfPlayers = nr; }
+    public void setNumberOfPlayers(int nr) {
+        this.numberOfPlayers = nr;
+    }
 
     public int getCurRound() {
         return curRound;
