@@ -33,7 +33,7 @@ public class TUI implements IObserver {
         List<ICard> playedCards = controller.getPlayedCards();
         int curPlayer = controller.getCurPlayer();
 
-        out.printf("ROUND %d %s\n", controller.getCurRound(), OUTPUTBORDER);
+        out.printf("ROUND %d %s%n", controller.getCurRound(), OUTPUTBORDER);
         for (ICard c : playedCards) {
             out.printf("%s ", c.toString());
         }
@@ -43,7 +43,7 @@ public class TUI implements IObserver {
         }
         out.println();
         out.println(OUTPUTBORDER);
-        out.printf("Player %d:\n", controller.getCurPlayer() + 1);
+        out.printf("Player %d:%n", controller.getCurPlayer() + 1);
         //Counter - only 6 cards per row
         int i = 0;
         for (ICard c : cardsCurPlayer) {
@@ -56,13 +56,13 @@ public class TUI implements IObserver {
         out.println();
 
         if (controller.getStatus() == gameStatus.PREDICTION) {
-            out.printf("Total: %d\n", controller.getScore(curPlayer));
+            out.printf("Total: %d%n", controller.getScore(curPlayer));
             out.println(OUTPUTBORDER);
             out.println("Please type in your prediction: (q to quit)");
         } else {
             out.printf("Prediction for this round: %d tricks\t", controller.getPrediction(curPlayer));
             out.printf("Tricks made: %d\t", controller.getTricks(curPlayer));
-            out.printf("Total: %d\n", controller.getScore(curPlayer));
+            out.printf("Total: %d%n", controller.getScore(curPlayer));
             out.println();
             out.println("Please type in the number of the card you want to play: (q to quit)");
         }
@@ -96,10 +96,10 @@ public class TUI implements IObserver {
 
     private void printScores() {
 
-        out.printf("RESULTS ROUND %d %s\n", controller.getCurRound(), OUTPUTBORDER);
+        out.printf("RESULTS ROUND %d %s%n", controller.getCurRound(), OUTPUTBORDER);
         for (int i=0; i < controller.getNumberOfPlayers(); i++) {
-            out.printf("Player %d:\n", i + 1);
-            out.printf("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d\n", controller.getPrediction(i),
+            out.printf("Player %d:%n", i + 1);
+            out.printf("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d%n", controller.getPrediction(i),
                     controller.getTricks(i), controller.getPoints(i), controller.getScore(i));
         }
     }
