@@ -71,28 +71,4 @@ public class NormalCard implements ICard {
 
         return sb.toString();
     }
-
-    public static class NormalCardParameter {
-
-        private int valueParameter;
-        private CardColor colorParameter;
-
-        public NormalCardParameter(final int value, final CardColor color) {
-            if (value >= MIN_CARD_VALUE && value <= MAX_CARD_VALUE) {
-                valueParameter = value;
-                colorParameter = color;
-            } else {
-                throw new IllegalArgumentException(String.format("value must be between %d and %d", MIN_CARD_VALUE, MAX_CARD_VALUE));
-            }
-        }
-
-        public int getValueParameter() {
-            return valueParameter;
-        }
-
-        public CardColor getColorParameter () {
-            return colorParameter;
-        }
-
-    }
 }

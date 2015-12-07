@@ -16,6 +16,7 @@ import static java.lang.System.out;
 public class TUI implements IObserver {
 
     private WizardController controller;
+    private static final String OUTPUTBORDER = "+++++++++++++++++++++++++++++++++++++++++++++++++";
 
     public TUI(WizardController controller) {
         this.controller = controller;
@@ -32,7 +33,7 @@ public class TUI implements IObserver {
         List<ICard> playedCards = controller.getPlayedCards();
         int curPlayer = controller.getCurPlayer();
 
-        out.printf("ROUND %d +++++++++++++++++++++++++++++++++++++++++\n", controller.getCurRound());
+        out.printf("ROUND %d %s\n", controller.getCurRound(), OUTPUTBORDER);
         for (ICard c : playedCards) {
             out.printf("%s ", c.toString());
         }
@@ -41,7 +42,7 @@ public class TUI implements IObserver {
             out.printf("[      ] ");
         }
         out.println();
-        out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+        out.println(OUTPUTBORDER);
         out.printf("Player %d:\n", controller.getCurPlayer() + 1);
         //Counter - only 6 cards per row
         int i = 0;
@@ -56,13 +57,13 @@ public class TUI implements IObserver {
 
         if (controller.getStatus() == gameStatus.PREDICTION) {
             out.printf("Total: %d\n", controller.getScore(curPlayer));
-            out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+            out.println(OUTPUTBORDER);
             out.println("Please type in your prediction: (q to quit)");
         } else {
             out.printf("Prediction for this round: %d tricks\t", controller.getPrediction(curPlayer));
             out.printf("Tricks made: %d\t", controller.getTricks(curPlayer));
             out.printf("Total: %d\n", controller.getScore(curPlayer));
-            out.println("+++++++++++++++++++++++++++++++++++++++++++++++++");
+            out.println();
             out.println("Please type in the number of the card you want to play: (q to quit)");
         }
         out.println();
@@ -95,7 +96,7 @@ public class TUI implements IObserver {
 
     private void printScores() {
 
-        out.printf("RESULTS ROUND %d +++++++++++++++++++++++++++++++++++++++++\n", controller.getCurRound());
+        out.printf("RESULTS ROUND %d %s\n", controller.getCurRound(), OUTPUTBORDER);
         for (int i=0; i < controller.getNumberOfPlayers(); i++) {
             out.printf("Player %d:\n", i + 1);
             out.printf("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d\n", controller.getPrediction(i),
