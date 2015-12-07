@@ -70,7 +70,7 @@ public class TUI implements IObserver {
     }
 
     public boolean processInputLine(String line) {
-        if (line.equalsIgnoreCase("q")) {
+        if ("q".equalsIgnoreCase(line)) {
             //quit
             return true;
         }
@@ -84,9 +84,8 @@ public class TUI implements IObserver {
         if (controller.getStatus() == gameStatus.PREDICTION) {
             controller.predict(input);
         } else {
-            boolean endOfRound = (controller.getCurPlayer() == controller.getLastPlayer());
             controller.playCard(input);
-            if (endOfRound) {
+            if (controller.getCurPlayer() == controller.getLastPlayer()) {
                 printScores();
             }
         }

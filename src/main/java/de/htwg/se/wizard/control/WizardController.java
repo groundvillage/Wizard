@@ -130,17 +130,17 @@ public class WizardController extends Observable {
         ICard played = players.get(curPlayer).playCard(card);
         this.playedCards.add(played);
         this.notifyObservers();
-/*        if (curPlayer == getLastPlayer()) {
-              sleep
-              calculate results --> liste points
-              reset playedCards
-              gamestatus = prediction
-              reset predictions
-              curRound++
-              firstplayer = nextPlayer()
-              update
-          }
-       */
+        //if (curPlayer == getLastPlayer()) {
+        //    sleep
+        //    calculate results --> liste points
+        //    reset playedCards
+        //   gamestatus = prediction
+        //    reset predictions
+        //    curRound++
+        //    firstplayer = nextPlayer()
+        //    update
+        //}
+
 
     }
 
