@@ -3,23 +3,25 @@ package de.htwg.se.util.observer;
 /**
  * Created by Tamara on 13.11.2015.
  */
+
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Observable  {
 
-    protected Vector<IObserver> subscribers = new Vector<IObserver>(2);
+    protected List<IObserver> subscribers = new LinkedList<>();
 
     public void addObserver(IObserver s) {
-        subscribers.addElement(s);
+        subscribers.add(s);
     }
 
     public void removeObserver(IObserver s) {
-        subscribers.removeElement(s);
+        subscribers.remove(s);
     }
 
     public void removeAllObservers() {
-        subscribers.removeAllElements();
+        subscribers.removeAll(subscribers);
     }
 
     public void notifyObservers() {
