@@ -21,7 +21,7 @@ public class Observable  {
     }
 
     public void removeAllObservers() {
-        subscribers.removeAll(subscribers);
+        subscribers.clear();
     }
 
     public void notifyObservers() {
