@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class WizardController extends Observable {
 
-    private gameStatus status;
+    private GameStatus status;
     private int curRound;
     private String statusMessage;
     private int curPlayer;
@@ -63,7 +63,7 @@ public class WizardController extends Observable {
         return statusMessage;
     }
 
-    public gameStatus getStatus() {
+    public GameStatus getStatus() {
         return this.status;
     }
 
@@ -87,13 +87,18 @@ public class WizardController extends Observable {
         return points.get(player);
     }
 
-    //Returns last player of current round
     public int getLastPlayer() {
-        if (curPlayer == 0) {
+        return getLastPlayer(this.firstPlayer);
+    }
+
+    //Returns last player of current round
+    protected int getLastPlayer(int firstPlayer) {
+        if (firstPlayer == 0) {
             return this.numberOfPlayers - 1;
         }
-        return curPlayer - 1;
+        return firstPlayer - 1;
     }
+
 
     public void addPlayer(String name) {
 
@@ -102,6 +107,10 @@ public class WizardController extends Observable {
             setupNewRound();
             dealCards();
         }
+    }
+
+    public List<ICard> getCardsOfCurrentPlayer() {
+        return players.get(curPlayer).getHand();
     }
 
     /*
@@ -125,7 +134,7 @@ public class WizardController extends Observable {
         curPlayer = nextPlayer();
         statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
         if (curPlayer == firstPlayer) {
-            this.status = gameStatus.MATCH;
+            this.status = GameStatus.MATCH;
         }
         notifyObservers();
 
@@ -166,16 +175,17 @@ public class WizardController extends Observable {
         }
     }
 
-    public List<ICard> getCardsOfCurrentPlayer() {
-        return players.get(curPlayer).getHand();
+    private int cardsPerPlayer() {
+        return cardsPerPlayer(curRound, 10);
     }
 
     //calculates, how many cards per player are dealt in this round
-    private int cardsPerPlayer() {
-        if (curRound <= 10) {
+    protected int cardsPerPlayer(int curRound, int peakRound) {
+        if (curRound <= peakRound) {
             return curRound;
         }
-        return 10 - (curRound - 10);
+        //after 10 rounds, cards are getting less again until 1 card in last round
+        return peakRound - (curRound - peakRound);
     }
 
     //Checks, if the number of tricks (Stiche) comes out -> invalid
@@ -206,6 +216,6 @@ public class WizardController extends Observable {
         }
         curPlayer = firstPlayer;
         this.playedCards = new LinkedList<>();
-        this.status = gameStatus.PREDICTION;
+        this.status = GameStatus.PREDICTION;
     }
 }

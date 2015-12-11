@@ -6,7 +6,7 @@ package de.htwg.se.wizard.view.tui;
 
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
-import de.htwg.se.wizard.control.gameStatus;
+import de.htwg.se.wizard.control.GameStatus;
 import de.htwg.se.wizard.model.card.ICard;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class TUI implements IObserver {
         }
         out.println();
 
-        if (controller.getStatus() == gameStatus.PREDICTION) {
+        if (controller.getStatus() == GameStatus.PREDICTION) {
             out.printf("Total: %d%n", controller.getScore(curPlayer));
             out.println(OUTPUTBORDER);
             out.println("Please type in your prediction: (q to quit)");
@@ -81,7 +81,7 @@ public class TUI implements IObserver {
             out.println("Input is not a number! Try again, moron.");
             return false;
         }
-        if (controller.getStatus() == gameStatus.PREDICTION) {
+        if (controller.getStatus() == GameStatus.PREDICTION) {
             controller.predict(input);
         } else {
             controller.playCard(input);
@@ -89,7 +89,6 @@ public class TUI implements IObserver {
                 printScores();
             }
         }
-        out.println(controller.getStatusMessage());
         return false;
     }
 

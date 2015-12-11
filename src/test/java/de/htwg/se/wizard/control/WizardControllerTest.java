@@ -1,7 +1,6 @@
 package de.htwg.se.wizard.control;
 
 import de.htwg.se.wizard.model.card.ICard;
-import de.htwg.se.wizard.model.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -59,7 +58,7 @@ public class WizardControllerTest {
     @Test
     public void testGetStatus() {
         setUpScenario();
-        assertEquals(gameStatus.PREDICTION, controller.getStatus());
+        assertEquals(GameStatus.PREDICTION, controller.getStatus());
     }
 
     @Test
@@ -67,7 +66,7 @@ public class WizardControllerTest {
         setUpScenario();
         controller.predict(1);
         controller.predict(1);
-        assertEquals(gameStatus.MATCH, controller.getStatus());
+        assertEquals(GameStatus.MATCH, controller.getStatus());
         ICard card = controller.getCardsOfCurrentPlayer().get(0);
         assertNotNull(card);
         controller.playCard(1);
@@ -99,56 +98,45 @@ public class WizardControllerTest {
         assertEquals(1, controller.getPrediction(0));
     }
 
-/*    @Test
-    public void testGetPoints() {
+    @Test
+    public void testCardsPerPlayer() {
+        assertEquals(1, controller.cardsPerPlayer(1, 10));
+        assertEquals(9, controller.cardsPerPlayer(11, 10));
+    }
 
-    }*/
+    @Test
+    public void testIsEven() {
+        setUpScenario();
+        controller.predict(1);
+        controller.predict(0);
+        String rated = "Invalid input! Predictions cannot come out even!";
+        assertEquals(rated, controller.getStatusMessage());
+    }
 
+    @Test
+    public void testGetCardsOfCurrentPlayer() {
+        setUpScenario();
+        assertNotNull(controller.getCardsOfCurrentPlayer());
+    }
 
+    @Test
+    public void testGetLastPlayer() {
+        controller.setNumberOfPlayers(2);
+        assertEquals(1, controller.getLastPlayer(0));
+        assertEquals(0, controller.getLastPlayer(1));
+    }
+
+    @Test
+    public void testNextPlayer() {
+        setUpScenario();
+        assertEquals(0, controller.getCurPlayer());
+        controller.predict(1);
+        assertEquals(1, controller.getCurPlayer());
+        controller.predict(1);
+        assertEquals(0, controller.getCurPlayer());
+    }
 
 /*
-
-    private void dealCards() {
-        for (Player player : this.players) {
-            List<ICard> cards = this.deck.drawMultipleCards(cardsPerPlayer());
-            player.dealHand(cards);
-        }
-    }
-
-    public List<ICard> getCardsOfCurrentPlayer() {
-        return players.get(curPlayer).getHand();
-    }
-
-    //calculates, how many cards per player are dealt in this round
-    private int cardsPerPlayer() {
-        if (curRound <= 10) {
-            return curRound;
-        }
-        return 10 - (curRound - 10);
-    }
-
-    //Checks, if the number of tricks (Stiche) comes out -> invalid
-    private boolean isEven(int lastPrediction) {
-        int sumPredictions = 0;
-        for (int i : predictions.keySet()) {
-            sumPredictions += predictions.get(i);
-        }
-        //predictions come out even, when sum equals cards per player
-        // -> number of tricks (Stiche) in this round
-        if (sumPredictions + lastPrediction == cardsPerPlayer()) {
-            return true;
-        }
-        return false;
-    }
-
-    //Returns last player of current round
-    public int getLastPlayer() {
-        if (curPlayer == 0) {
-            return players.size() - 1;
-        }
-        return curPlayer - 1;
-    }
-
     private int nextPlayer() {
         if (curPlayer == players.size() - 1 ) {
             return 0;
