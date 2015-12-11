@@ -11,6 +11,8 @@ import static java.lang.System.out;
  */
 public class Wizard {
 
+    private Wizard() {}
+
     static Scanner scanner;
     static int maxPlayers = 6;
 

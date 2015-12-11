@@ -147,16 +147,16 @@ public class WizardController extends Observable {
         curPlayer = nextPlayer();
 
         this.notifyObservers();
-        //if (curPlayer == getLastPlayer()) {
-        //    sleep
-        //    calculate results --> liste points
-        //    reset playedCards
-        //   gamestatus = prediction
-        //    setupNewRound
-        //    curRound++
-        //    firstplayer = nextPlayer()
-        //    update
-        //}
+/*        if (curPlayer == getLastPlayer()) {
+            sleep
+            calculate results --> liste points
+            reset playedCards
+           gamestatus = prediction
+            setupNewRound
+            curRound++
+            firstplayer = nextPlayer()
+            update
+        }*/
 
 
     }
@@ -188,7 +188,7 @@ public class WizardController extends Observable {
         }
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
-        return (sumPredictions + lastPrediction == cardsPerPlayer());
+        return sumPredictions + lastPrediction == cardsPerPlayer();
     }
 
 
