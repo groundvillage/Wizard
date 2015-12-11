@@ -103,7 +103,7 @@ public class TUI implements IObserver {
         }
     }
 
-    public int processInputLineNumberOfPlayers(int max, String line) {
+    public int processInputLineNumberOfPlayers(String line) {
         /* Number of players */
         if (line.matches("q")) {
             //quit

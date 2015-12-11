@@ -1,6 +1,5 @@
 package de.htwg.se.wizard.control;
 
-import de.htwg.se.wizard.model.card.carddeck.IBasicCardDeck;
 import de.htwg.se.wizard.model.player.Player;
 import de.htwg.se.util.observer.Observable;
 
@@ -189,10 +188,7 @@ public class WizardController extends Observable {
         }
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
-        if (sumPredictions + lastPrediction == cardsPerPlayer()) {
-            return true;
-        }
-        return false;
+        return (sumPredictions + lastPrediction == cardsPerPlayer());
     }
 
 

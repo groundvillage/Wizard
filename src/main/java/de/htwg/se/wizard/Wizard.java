@@ -13,7 +13,6 @@ public class Wizard {
 
     static Scanner scanner;
     static int maxPlayers = 6;
-    String line = "";
 
     public static void main(String[] args) {
         TUI tui = new TUI(new WizardController());
@@ -26,7 +25,7 @@ public class Wizard {
         out.println("Welcome to a new round of Wizard!");
         while (!quit) {
             out.println("How many are playing? (2-" + maxPlayers + ") or q to quit");
-            players = tui.processInputLineNumberOfPlayers(maxPlayers, scanner.next());
+            players = tui.processInputLineNumberOfPlayers(scanner.next());
             if (players == -1) {
                 quit = true;
             } else if (players >= 2 || players <= maxPlayers) {
