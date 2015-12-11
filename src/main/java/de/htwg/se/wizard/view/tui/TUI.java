@@ -6,7 +6,6 @@ package de.htwg.se.wizard.view.tui;
 
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
-import de.htwg.se.wizard.control.GameStatus;
 import de.htwg.se.wizard.model.card.ICard;
 
 import java.util.List;
