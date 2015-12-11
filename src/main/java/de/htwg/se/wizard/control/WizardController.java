@@ -117,11 +117,9 @@ public class WizardController extends Observable {
             return;
         }
 
-        if (curPlayer == this.numberOfPlayers - 1) {
-            if (isEven(prediction)) {
-                statusMessage = "Invalid input! Predictions cannot come out even!";
-                return;
-            }
+        if (curPlayer == this.numberOfPlayers - 1 && isEven(prediction)) {
+            statusMessage = "Invalid input! Predictions cannot come out even!";
+            return;
         }
         predictions.put(curPlayer, prediction);
         curPlayer = nextPlayer();

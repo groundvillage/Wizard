@@ -11,10 +11,11 @@ import static java.lang.System.out;
  */
 public class Wizard {
 
-    private Wizard() {}
-
     static Scanner scanner;
     static int maxPlayers = 6;
+
+    private Wizard() {
+    }
 
     public static void main(String[] args) {
         TUI tui = new TUI(new WizardController());
