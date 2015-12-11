@@ -27,7 +27,7 @@ public class SpecialICardTest {
 
     @Test
     public void testToString() throws Exception {
-        String originalString = "SpecialCard : WIZARD";
+        String originalString = "[ WIZARD ]";
         assertEquals(originalString, specialCard.toString());
     }
 
