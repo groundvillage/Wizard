@@ -5,7 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -136,12 +135,10 @@ public class WizardControllerTest {
         assertEquals(0, controller.getCurPlayer());
     }
 
-/*
-    private int nextPlayer() {
-        if (curPlayer == players.size() - 1 ) {
-            return 0;
-        }
-        return curPlayer + 1;
-    }*/
+    @Test
+    public void testGetPoints() {
+        setUpScenario();
+        assertEquals(0, controller.getPoints(0));
+    }
 
 }

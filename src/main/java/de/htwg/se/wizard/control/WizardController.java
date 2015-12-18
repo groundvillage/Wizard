@@ -213,6 +213,7 @@ public class WizardController extends Observable {
         this.points = new HashMap<>();
         for (int i = 0; i < this.numberOfPlayers; i++) {
             this.tricks.put(i, 0);
+            this.points.put(i, 0);
         }
         curPlayer = firstPlayer;
         this.playedCards = new LinkedList<>();
