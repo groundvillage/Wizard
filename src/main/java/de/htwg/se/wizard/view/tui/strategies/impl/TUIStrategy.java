@@ -1,7 +1,6 @@
 package de.htwg.se.wizard.view.tui.strategies.impl;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IGameState;
 import de.htwg.se.wizard.view.tui.TextUI;
 import de.htwg.se.wizard.view.tui.strategies.ITUIStrategy;
 

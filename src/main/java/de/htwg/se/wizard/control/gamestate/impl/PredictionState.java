@@ -13,8 +13,4 @@ public class PredictionState implements IState {
 
     }
 
-    @Override
-    public String getState() {
-        return null;
-    }
 }

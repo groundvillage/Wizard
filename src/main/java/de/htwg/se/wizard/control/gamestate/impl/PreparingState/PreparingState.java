@@ -2,14 +2,12 @@ package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.IState;
-import de.htwg.se.wizard.control.gamestate.impl.GameState;
-
-import java.util.List;
+import de.htwg.se.wizard.control.gamestate.impl.MainState;
 
 /**
  * Created by Jan on 30.12.2015.
  */
-public class PreparingState extends GameState {
+public class PreparingState extends MainState {
 
     private static final int MAX_COUNT = 6;
 

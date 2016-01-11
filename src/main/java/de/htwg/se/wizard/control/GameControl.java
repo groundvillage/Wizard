@@ -1,43 +1,30 @@
 package de.htwg.se.wizard.control;
 
 import de.htwg.se.util.observer.Observable;
-import de.htwg.se.wizard.control.gamestate.IGameState;
+import de.htwg.se.wizard.control.gamestate.IMainState;
 import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Jan on 30.12.2015.
- */
 public class GameControl extends Observable {
 
 
     private int numberOfPlayers;
     private List<Player> players;
-    private int firstPlayer = 0;
 
-    private IGameState state;
-
+    private IMainState state;
 
     public GameControl() {
 
-        System.out.println("GameControl");
         this.players = new LinkedList<>();
-
         this.state = new PreparingState(this);
     }
 
-
-    public void setGameState(IGameState state) {
+    public void setGameState(IMainState state) {
         this.state = state;
         notifyObservers();
-    }
-
-    public void startGame() {
-        System.out.println("Start game");
-        //this.state.handle();
     }
 
     public void quit() {
@@ -49,7 +36,7 @@ public class GameControl extends Observable {
         this.state.handleUserInput(userInput);
     }
 
-    public IGameState getGameState() {
+    public IMainState getGameState() {
         return this.state;
     }
 

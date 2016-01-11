@@ -191,9 +191,9 @@ public class WizardController extends Observable {
     //Checks, if the number of tricks (Stiche) comes out -> invalid
     private boolean isEven(int lastPrediction) {
         int sumPredictions = 0;
-        for (int i : predictions.keySet()) {
+        /*for (int i : predictions.keySet()) {
             sumPredictions += predictions.get(i);
-        }
+        }*/
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
         return sumPredictions + lastPrediction == cardsPerPlayer();
@@ -208,7 +208,7 @@ public class WizardController extends Observable {
     }
 
     private void setupNewRound() {
-        this.predictions = new HashMap<>();
+        //this.predictions = new HashMap<>();
         this.tricks = new HashMap<>();
         this.points = new HashMap<>();
         for (int i = 0; i < this.numberOfPlayers; i++) {

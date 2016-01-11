@@ -4,9 +4,6 @@ import de.htwg.se.wizard.control.gamestate.IMainState;
 import de.htwg.se.wizard.control.gamestate.IState;
 
 
-/**
- * Created by Jan on 10.01.2016.
- */
 public class PlayerNameSubState implements IState {
 
     private PreparingState gameState;
@@ -34,11 +31,6 @@ public class PlayerNameSubState implements IState {
         } else {
             this.gameState.handle();
         }
-    }
-
-    @Override
-    public String getState() {
-        return null;
     }
 
     @Override

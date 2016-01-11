@@ -7,11 +7,11 @@ import java.util.Map;
 /**
  * Created by Jan on 10.01.2016.
  */
-public class GameRound extends GameState {
+public class MainRound extends MainState {
 
     private Map<Integer, Integer> predictions;
 
-    public GameRound(GameControl controller) {
+    public MainRound(GameControl controller) {
         super(controller);
     }
 

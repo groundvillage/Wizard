@@ -5,11 +5,11 @@ package de.htwg.se.wizard.view.tui.strategies;
  */
 public interface ITUIStrategy {
 
-    public void progressUserInput(String line);
+    void progressUserInput(String line);
 
-    public void update();
+    void update();
 
-    public void execute();
+    void execute();
 
 
 }
