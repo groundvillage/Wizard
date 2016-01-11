@@ -29,7 +29,7 @@ public class WizardController extends Observable {
 
     private List<ICard> playedCards;
     private Map<Integer, Integer> points;
-    private Map<Integer, Integer> predictions;
+    //private Map<Integer, Integer> predictions;
     private Map<Integer, Integer> tricks;
 
     public WizardController() {
@@ -79,9 +79,9 @@ public class WizardController extends Observable {
         return tricks.get(player);
     }
 
-    public int getPrediction(int player) {
+    /*public int getPrediction(int player) {
         return predictions.get(player);
-    }
+    }*/
 
     public int getPoints(int player) {
         return points.get(player);
@@ -130,7 +130,7 @@ public class WizardController extends Observable {
             statusMessage = "Invalid input! Predictions cannot come out even!";
             return;
         }
-        predictions.put(curPlayer, prediction);
+        //predictions.put(curPlayer, prediction);
         curPlayer = nextPlayer();
         statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
         if (curPlayer == firstPlayer) {

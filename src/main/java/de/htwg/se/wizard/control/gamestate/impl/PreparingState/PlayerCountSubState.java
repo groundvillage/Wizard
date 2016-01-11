@@ -1,29 +1,23 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
-import de.htwg.se.wizard.control.gamestate.IGameState;
-import de.htwg.se.wizard.control.gamestate.ISubState;
-import de.htwg.se.wizard.control.gamestate.impl.SubState;
+import de.htwg.se.wizard.control.gamestate.IState;
+import de.htwg.se.wizard.control.gamestate.IMainState;
 
 /**
  * Created by Jan on 10.01.2016.
  */
-public class PlayerCountSubState extends SubState {
+public class PlayerCountSubState implements IState{
 
     private PreparingState gameState;
     private int maxCount;
 
-    public PlayerCountSubState(IGameState gameState, int maxCount) {
+    public PlayerCountSubState(IMainState gameState, int maxCount) {
         this.gameState = (PreparingState) gameState;
         this.maxCount = maxCount;
     }
 
     public int getMaxCount() {
         return this.maxCount;
-    }
-
-    @Override
-    public void handle() {
-throw new UnsupportedOperationException();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.ISubState;
+import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.impl.GameState;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public class PreparingState extends GameState {
 
     private static final int MAX_COUNT = 6;
 
-    ISubState preparingState;
+    IState preparingState;
 
 
     public PreparingState(GameControl controller) {
@@ -42,7 +42,7 @@ public class PreparingState extends GameState {
         System.out.printf("PreparingState - SetNumberofPlayers: %d%n", controller.getNumberOfPlayers());
     }
 
-    public void setSubState(ISubState subState) {
+    public void setSubState(IState subState) {
         System.out.println("setSubState");
         this.preparingState = subState;
 
@@ -65,7 +65,7 @@ public class PreparingState extends GameState {
     }
 
 
-    public ISubState getSubState() {
+    public IState getSubState() {
         return this.preparingState;
     }
 
