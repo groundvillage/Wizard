@@ -6,7 +6,7 @@ import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
 import de.htwg.se.wizard.view.tui.TextUI;
 
 
-public class PreparingNameStrategy extends TUIStrategy implements Runnable{
+public class PreparingNameStrategy extends TUIStrategy{
 
 
     public PreparingNameStrategy(TextUI tui) {
@@ -20,6 +20,15 @@ public class PreparingNameStrategy extends TUIStrategy implements Runnable{
 
         System.out.printf("get player name %d:%n", ((PlayerNameSubState)subState).getCurrentPlayer());
 
+    }
+
+    @Override
+    public void progressUserInput(String line) {
+        if (line.matches("")) {
+            //TODO Pattern für Namen Überprüfen
+        } else {
+            super.progressUserInput(line);
+        }
     }
 
     @Override

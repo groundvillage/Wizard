@@ -7,8 +7,6 @@ public interface ITUIStrategy {
 
     void progressUserInput(String line);
 
-    void update();
-
     void execute();
 
 

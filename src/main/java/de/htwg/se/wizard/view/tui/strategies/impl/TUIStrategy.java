@@ -9,35 +9,14 @@ import java.util.Scanner;
 /**
  * Created by Jan on 01.01.2016.
  */
-public abstract class TUIStrategy implements ITUIStrategy, Runnable {
+public abstract class TUIStrategy implements ITUIStrategy {
 
     protected GameControl controller;
     protected TextUI tui;
-    protected Scanner scanner;
 
     public TUIStrategy(TextUI tui) {
         this.tui = tui;
         controller = tui.getGameControl();
-    }
-
-    @Override
-    public void run() {
-        System.out.println("run: " + this.toString());
-        this.execute();
-    }
-
-
-    @Override
-    public void execute() {
-        this.scanner = new Scanner(System.in);
-        //this.tui.handleUserInput(scanner.next());
-    }
-
-    @Override
-    public void update() {
-        if (this.scanner != null) {
-            this.scanner.close();
-        }
     }
 
     @Override
