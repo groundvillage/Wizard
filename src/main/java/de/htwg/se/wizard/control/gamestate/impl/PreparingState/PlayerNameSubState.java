@@ -1,18 +1,19 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
-import de.htwg.se.wizard.control.gamestate.IGameState;
-import de.htwg.se.wizard.control.gamestate.impl.SubState;
+import de.htwg.se.wizard.control.gamestate.IMainState;
+import de.htwg.se.wizard.control.gamestate.IState;
+
 
 /**
  * Created by Jan on 10.01.2016.
  */
-public class PlayerNameSubState extends SubState {
+public class PlayerNameSubState implements IState {
 
     private PreparingState gameState;
     private int currentPlayer = 0;
     private String[] nameList;
 
-    public PlayerNameSubState(IGameState gameState) {
+    public PlayerNameSubState(IMainState gameState) {
         this.gameState = (PreparingState) gameState;
 
         nameList = new String[this.gameState.getCountOfPlayer()];
@@ -20,11 +21,6 @@ public class PlayerNameSubState extends SubState {
 
     public int getCurrentPlayer() {
         return this.currentPlayer;
-    }
-
-    @Override
-    public void handle() {
-        throw new UnsupportedOperationException();
     }
 
     @Override

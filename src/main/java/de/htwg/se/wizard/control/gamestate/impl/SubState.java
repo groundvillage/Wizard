@@ -14,10 +14,18 @@ public class SubState implements ISubState {
         this.gameState = gameState;
     }*/
 
+    @Override
+    public void handle() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public void handleUserInput(String userInput) {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String getState() {
+        return null;
+    }
 }
