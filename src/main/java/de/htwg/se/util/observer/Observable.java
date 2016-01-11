@@ -28,12 +28,7 @@ public class Observable  {
         for ( Iterator<IObserver> iter = subscribers.iterator(); iter.hasNext();) {
             IObserver observer = iter.next();
 
-            try {
-                observer.update();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            observer.update();
         }
     }
 }

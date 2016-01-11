@@ -5,6 +5,6 @@ package de.htwg.se.util.observer;
  */
 
 public interface IObserver {
-    public void update() throws InterruptedException;
+    public void update();
 
 }
