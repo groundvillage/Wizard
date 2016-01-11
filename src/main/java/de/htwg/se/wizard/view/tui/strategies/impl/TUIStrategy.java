@@ -23,7 +23,22 @@ public abstract class TUIStrategy implements ITUIStrategy, Runnable {
 
     @Override
     public void run() {
+        System.out.println("run: " + this.toString());
+        this.execute();
+    }
 
+
+    @Override
+    public void execute() {
+        this.scanner = new Scanner(System.in);
+        //this.tui.handleUserInput(scanner.next());
+    }
+
+    @Override
+    public void update() {
+        if (this.scanner != null) {
+            this.scanner.close();
+        }
     }
 
     @Override

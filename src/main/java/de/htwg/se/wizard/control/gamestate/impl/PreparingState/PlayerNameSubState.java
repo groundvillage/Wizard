@@ -47,7 +47,7 @@ public class PlayerNameSubState extends SubState {
 
     @Override
     public String toString() {
-        return "PREPARING-PLAYERNAME";
+        return "PREPARING_NAME";
     }
 
 }

@@ -5,11 +5,8 @@ package de.htwg.se.wizard.control.gamestate;
  */
 public interface ISubState {
 
-    void handle();
 
     void handleUserInput(String userInput);
-
-    String getState();
 
     String toString();
 

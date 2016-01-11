@@ -22,11 +22,6 @@ public class PlayerCountSubState extends SubState {
     }
 
     @Override
-    public void handle() {
-throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void handleUserInput(String userInput) {
         this.gameState.setNumberOfPlayers(Integer.parseInt(userInput));
 
@@ -36,11 +31,7 @@ throw new UnsupportedOperationException();
 
     @Override
     public String toString() {
-        return "PREPARING-PLAYERCOUNT";
+        return "PREPARING_COUNT";
     }
 
-    @Override
-    public String getState() {
-        return null;
-    }
 }

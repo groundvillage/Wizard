@@ -5,15 +5,11 @@ import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.view.tui.strategies.StrategyFactory;
 import de.htwg.se.wizard.view.tui.strategies.impl.TUIStrategy;
 
-import java.util.Scanner;
-
-
 public class TextUI extends Thread implements IObserver {
 
 
     private GameControl controller;
     private TUIStrategy strategy;
-    private Thread strategyThread;
 
 
     public TextUI(GameControl controller) {
@@ -21,13 +17,10 @@ public class TextUI extends Thread implements IObserver {
         this.controller = controller;
         controller.addObserver(this);
 
-        System.out.println("TextUI Construktor");
-
         strategy = StrategyFactory.createStrategy(controller.getGameState().toString(), this);
     }
 
     public void handleUserInput(String userInput) {
-        System.out.println("UserInput TUI: " + userInput);
         controller.handle(userInput);
     }
 
@@ -38,27 +31,15 @@ public class TextUI extends Thread implements IObserver {
     @Override
     public void update() {
 
-        System.out.println("TextUI update");
-        String gamestate = controller.getGameState().toString();
-
-        if (! gamestate.equals(strategy.toString())) {
-            strategy = StrategyFactory.createStrategy(gamestate, this);
-        }
-        //strategy.update();
-        this.strategy.update();
-        System.out.println("join");
-
-        this.strategyThread = new Thread(strategy);
-        this.strategyThread.start();
-    }
-
-    public void updateStrategy() {
-
-        //Factrory to get right strategy
-
         String gameStateName = controller.getGameState().toString();
 
-        strategy = StrategyFactory.createStrategy(gameStateName, this);
+
+        if (! gameStateName.equals(strategy.toString())) {
+            this.strategy.update();
+            this.strategy = StrategyFactory.createStrategy(gameStateName, this);
+        }
+
+        this.strategy.execute();
 
     }
 

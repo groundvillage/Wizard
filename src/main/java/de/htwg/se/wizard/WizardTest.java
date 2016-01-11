@@ -29,7 +29,10 @@ public class WizardTest {
 
         gc.startGame();
 
-
+        Scanner scanner = new Scanner(System.in);
+        while (! false) {
+            tui.handleUserInput(scanner.next());
+        }
     }
 
 

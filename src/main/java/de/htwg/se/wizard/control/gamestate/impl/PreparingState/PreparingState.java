@@ -36,10 +36,9 @@ public class PreparingState extends GameState {
         this.preparingState.handleUserInput(userInput);
     }
 
+
     public void setNumberOfPlayers(int numberOfPlayers) {
         controller.setNumberOfPlayers(numberOfPlayers);
-
-        System.out.printf("PreparingState - SetNumberofPlayers: %d%n", controller.getNumberOfPlayers());
     }
 
     public void setSubState(ISubState subState) {
@@ -48,20 +47,19 @@ public class PreparingState extends GameState {
 
         this.controller.updateObserver();
 
-
     }
 
     public int getCountOfPlayer() {
         return this.controller.getNumberOfPlayers();
     }
 
-    public void setNameOfPlayers(String[] NamesOfPlayers){
+    public void setNameOfPlayers(String[] namesOfPlayers){
         System.out.println("Names");
-        for (String name : NamesOfPlayers) {
+        for (String name : namesOfPlayers) {
             System.out.println(name);
         }
-        //this.controller.setGameState();
         System.out.println("SetGameState");
+        this.controller.setNameOfPlayers(namesOfPlayers);
     }
 
 
@@ -70,13 +68,8 @@ public class PreparingState extends GameState {
     }
 
     @Override
-    public String getState() {
-        return null;
-    }
-
-    @Override
     public String toString() {
-        return "PREPARING";
+        return this.preparingState.toString();
     }
 
 }
