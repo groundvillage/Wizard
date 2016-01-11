@@ -62,6 +62,15 @@ public class NormalCard implements ICard {
 
 
     @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof NormalCard)) {
+            throw new ClassCastException("Can't compare, cause Object isn't a NormalCard");
+        }
+        return this.value.getValue() - ((NormalCard) o).getValue().getValue();
+
+    }
+
+    @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder("NormalCard: ");
@@ -71,4 +80,5 @@ public class NormalCard implements ICard {
 
         return sb.toString();
     }
+
 }

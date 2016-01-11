@@ -1,15 +1,27 @@
 package de.htwg.se.wizard.model.card;
 
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Jan on 23.10.2015.
  */
-public class SpecialCard implements ICard {
+public class SpecialCard implements ICard{
 
     public enum CardType {
-        WIZARD,
-        FOOL
+        FOOL(1),
+        WIZARD(2);
+
+        private CardType(int value) {
+            this.value = value;
+        }
+
+        private final int value;
+
+        public int getValue() {
+            return value;
+        }
+
     }
     private CardType type;
 
@@ -52,6 +64,21 @@ public class SpecialCard implements ICard {
             return typeParameter;
         }
 
+    }
+
+    public int compareTo(Object o) {
+
+        if (o instanceof SpecialCard) {
+
+            return this.type.getValue() - ((SpecialCard) o).getType().getValue();
+
+        } else {
+            if (this.type == CardType.FOOL) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }
     }
 
     @Override

@@ -2,6 +2,8 @@ package de.htwg.se.wizard;
 
 import de.htwg.se.wizard.control.WizardController;
 import de.htwg.se.wizard.view.tui.TUI;
+//import org.apache.logging.log4j.;
+
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -16,6 +18,9 @@ public class Wizard {
     String line = "";
 
     public static void main(String[] args) {
+
+        //PropertyConfigurator.configure("log4j.properties");
+
         TUI tui = new TUI(new WizardController());
         // continue until the user decides to quit
         boolean quit = false;
@@ -45,6 +50,8 @@ public class Wizard {
         while (!quit) {
             tui.processInputLine(scanner.next());
         }
+        out.print("Ende");
+        System.exit(1);
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Jan on 05.12.2015.
  */
-public class StandartWizardCardDeck implements IBasicCardDeck {
+public class StandartWizardCardDeck<T> implements IBasicCardDeck {
 
 
     private final List<ICard> basicCards;
