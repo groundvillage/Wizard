@@ -73,10 +73,11 @@ public class NormalCard implements ICard {
     @Override
     public String toString() {
 
-        StringBuilder sb = new StringBuilder("NormalCard: ");
+        StringBuilder sb = new StringBuilder("[ ");
         sb.append(this.color);
         sb.append(" - ");
         sb.append(this.value);
+        sb.append(" ]");
 
         return sb.toString();
     }

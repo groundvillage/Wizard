@@ -2,9 +2,8 @@ package de.htwg.se.wizard;
 
 import de.htwg.se.wizard.control.WizardController;
 import de.htwg.se.wizard.view.tui.TUI;
-//import org.apache.logging.log4j.;
-
 import java.util.Scanner;
+import org.apache.log4j.PropertyConfigurator;
 
 import static java.lang.System.out;
 
@@ -15,11 +14,13 @@ public class Wizard {
 
     static Scanner scanner;
     static int maxPlayers = 6;
-    String line = "";
+
+    private Wizard() {
+    }
 
     public static void main(String[] args) {
 
-        //PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4j.properties");
 
         TUI tui = new TUI(new WizardController());
         // continue until the user decides to quit
@@ -31,7 +32,7 @@ public class Wizard {
         out.println("Welcome to a new round of Wizard!");
         while (!quit) {
             out.println("How many are playing? (2-" + maxPlayers + ") or q to quit");
-            players = tui.processInputLineNumberOfPlayers(maxPlayers, scanner.next());
+            players = tui.processInputLineNumberOfPlayers(scanner.next());
             if (players == -1) {
                 quit = true;
             } else if (players >= 2 || players <= maxPlayers) {
@@ -50,8 +51,6 @@ public class Wizard {
         while (!quit) {
             tui.processInputLine(scanner.next());
         }
-        out.print("Ende");
-        System.exit(1);
     }
 
 }

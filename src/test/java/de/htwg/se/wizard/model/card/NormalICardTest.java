@@ -33,7 +33,7 @@ public class NormalICardTest {
 
     @Test
     public void testToString() throws Exception {
-        String originalString = "NormalCard: HEART - ACE";
+        String originalString = "[ HEART - ACE ]";
         assertEquals(originalString, normalCard.toString());
     }
 }

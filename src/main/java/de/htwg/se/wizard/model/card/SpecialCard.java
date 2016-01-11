@@ -83,8 +83,9 @@ public class SpecialCard implements ICard{
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("SpecialCard : ");
+        StringBuilder sb = new StringBuilder("[ ");
         sb.append(this.getType());
+        sb.append(" ]");
 
         return sb.toString();
     }

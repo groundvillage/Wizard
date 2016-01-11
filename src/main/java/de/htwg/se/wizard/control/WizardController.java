@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class WizardController extends Observable {
 
-    private gameStatus status;
+    private GameStatus status;
     private int curRound;
     private String statusMessage;
     private int curPlayer;
@@ -34,16 +34,15 @@ public class WizardController extends Observable {
 
     public WizardController() {
         this.players = new LinkedList<>();
-        this.playedCards = new LinkedList<>();
-        this.points = new HashMap<>();
-        this.predictions = new HashMap<>();
-        this.tricks = new HashMap<>();
-        this.curPlayer = 0;
         this.curRound = 1;
-        this.status = gameStatus.PREDICTION;
         this.firstPlayer = 0;
+        this.deck = new CardDeck();
     }
 
+    /*
+     * GETTERS AND SETTERS
+     ******************************************************************************************************************
+     */
     public int getCurPlayer() {
         return curPlayer;
     }
@@ -57,22 +56,14 @@ public class WizardController extends Observable {
     }
 
     public int getNumberOfPlayers() {
-        return this.players.size();
-    }
-
-    public void addPlayer(String name) {
-
-        this.players.add(new Player(name));
-        if (players.size() == numberOfPlayers) {
-            dealCards();
-        }
+        return this.numberOfPlayers;
     }
 
     public String getStatusMessage() {
         return statusMessage;
     }
 
-    public gameStatus getStatus() {
+    public GameStatus getStatus() {
         return this.status;
     }
 
@@ -96,6 +87,37 @@ public class WizardController extends Observable {
         return points.get(player);
     }
 
+    public int getLastPlayer() {
+        return getLastPlayer(this.firstPlayer);
+    }
+
+    //Returns last player of current round
+    protected int getLastPlayer(int firstPlayer) {
+        if (firstPlayer == 0) {
+            return this.numberOfPlayers - 1;
+        }
+        return firstPlayer - 1;
+    }
+
+
+    public void addPlayer(String name) {
+
+        this.players.add(new Player(name));
+        if (players.size() == numberOfPlayers) {
+            setupNewRound();
+            dealCards();
+        }
+    }
+
+    public List<ICard> getCardsOfCurrentPlayer() {
+        return players.get(curPlayer).getHand();
+    }
+
+    /*
+     * LOGIC
+     ******************************************************************************************************************
+     */
+
     // return value indicates, if prediction is valid or not
     public void predict(int prediction) {
         //Prediction cannot be greater than number of cards
@@ -104,42 +126,44 @@ public class WizardController extends Observable {
             return;
         }
 
-        if (curPlayer == players.size() - 1) {
-            if (isEven(prediction)) {
-                statusMessage = "Invalid input! Predictions cannot come out even!";
-                return;
-            }
-            predictions.put(curPlayer, prediction);
-            curPlayer = nextPlayer();
-            statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
-            if (curPlayer == firstPlayer) {
-                this.status = gameStatus.MATCH;
-            }
-            notifyObservers();
+        if (curPlayer == this.numberOfPlayers - 1 && isEven(prediction)) {
+            statusMessage = "Invalid input! Predictions cannot come out even!";
+            return;
         }
+        predictions.put(curPlayer, prediction);
+        curPlayer = nextPlayer();
+        statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
+        if (curPlayer == firstPlayer) {
+            this.status = GameStatus.MATCH;
+        }
+        notifyObservers();
+
     }
 
     public void playCard(int card) {
-        int handOfPlayer = players.get(curPlayer).getHand().size();
 
+        int handOfPlayer = getCardsOfCurrentPlayer().size();
         if (card < 1 || card > handOfPlayer) {
             statusMessage = "Invalid input! Number doesn't match a card. Moron.";
             return;
         }
 
-        ICard played = players.get(curPlayer).playCard(card);
+        // card - 1 weil anwenderfreundliche Anzeige der Karten (Karte 0 ist im UI Karte 1)
+        ICard played = players.get(curPlayer).playCard(card - 1);
         this.playedCards.add(played);
+        curPlayer = nextPlayer();
+
         this.notifyObservers();
-        //if (curPlayer == getLastPlayer()) {
-        //    sleep
-        //    calculate results --> liste points
-        //    reset playedCards
-        //   gamestatus = prediction
-        //    reset predictions
-        //    curRound++
-        //    firstplayer = nextPlayer()
-        //    update
-        //}
+/*        if (curPlayer == getLastPlayer()) {
+            sleep
+            calculate results --> liste points
+            reset playedCards
+           gamestatus = prediction
+            setupNewRound
+            curRound++
+            firstplayer = nextPlayer()
+            update
+        }*/
 
 
     }
@@ -151,16 +175,17 @@ public class WizardController extends Observable {
         }
     }
 
-    public List<ICard> getCardsOfCurrentPlayer() {
-        return players.get(curPlayer).getHand();
+    private int cardsPerPlayer() {
+        return cardsPerPlayer(curRound, 10);
     }
 
     //calculates, how many cards per player are dealt in this round
-    private int cardsPerPlayer() {
-        if (curRound <= 10) {
+    protected int cardsPerPlayer(int curRound, int peakRound) {
+        if (curRound <= peakRound) {
             return curRound;
         }
-        return 10 - (curRound - 10);
+        //after 10 rounds, cards are getting less again until 1 card in last round
+        return peakRound - (curRound - peakRound);
     }
 
     //Checks, if the number of tricks (Stiche) comes out -> invalid
@@ -171,24 +196,27 @@ public class WizardController extends Observable {
         }
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
-        if (sumPredictions + lastPrediction == cardsPerPlayer()) {
-            return true;
-        }
-        return false;
+        return sumPredictions + lastPrediction == cardsPerPlayer();
     }
 
-    //Returns last player of current round
-    public int getLastPlayer() {
-        if (curPlayer == 0) {
-            return players.size() - 1;
-        }
-        return curPlayer - 1;
-    }
 
     private int nextPlayer() {
-        if (curPlayer == players.size() - 1 ) {
+        if (curPlayer == this.numberOfPlayers - 1 ) {
             return 0;
         }
         return curPlayer + 1;
+    }
+
+    private void setupNewRound() {
+        this.predictions = new HashMap<>();
+        this.tricks = new HashMap<>();
+        this.points = new HashMap<>();
+        for (int i = 0; i < this.numberOfPlayers; i++) {
+            this.tricks.put(i, 0);
+            this.points.put(i, 0);
+        }
+        curPlayer = firstPlayer;
+        this.playedCards = new LinkedList<>();
+        this.status = GameStatus.PREDICTION;
     }
 }
