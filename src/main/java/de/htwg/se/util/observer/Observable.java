@@ -27,7 +27,13 @@ public class Observable  {
     public void notifyObservers() {
         for ( Iterator<IObserver> iter = subscribers.iterator(); iter.hasNext();) {
             IObserver observer = iter.next();
-            observer.update();
+
+            try {
+                observer.update();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

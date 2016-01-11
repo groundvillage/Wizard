@@ -13,6 +13,7 @@ public class TextUI extends Thread implements IObserver {
 
     private GameControl controller;
     private TUIStrategy strategy;
+    private Thread strategyThread;
 
 
     public TextUI(GameControl controller) {
@@ -43,8 +44,12 @@ public class TextUI extends Thread implements IObserver {
         if (! gamestate.equals(strategy.toString())) {
             strategy = StrategyFactory.createStrategy(gamestate, this);
         }
-        strategy.update();
-        new Thread(strategy).start();
+        //strategy.update();
+        this.strategy.update();
+        System.out.println("join");
+
+        this.strategyThread = new Thread(strategy);
+        this.strategyThread.start();
     }
 
     public void updateStrategy() {
