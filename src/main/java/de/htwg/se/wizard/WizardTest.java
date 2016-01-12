@@ -11,12 +11,9 @@ import java.util.Scanner;
  */
 public class WizardTest {
 
-    static Scanner scanner;
-    static int maxPlayers = 6;
-
-
-
     public static void main(String[] args) {
+
+        boolean quit = false;
 
         GameControl gc = new GameControl();
 
@@ -28,10 +25,12 @@ public class WizardTest {
         tui.update();
 
         Scanner scanner = new Scanner(System.in);
-        while (! false) {
+        while (! quit) {
             tui.handleUserInput(scanner.next());
         }
+
     }
+
 
 
 

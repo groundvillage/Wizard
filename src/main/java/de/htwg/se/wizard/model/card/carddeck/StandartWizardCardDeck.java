@@ -7,10 +7,8 @@ import de.htwg.se.wizard.model.card.SpecialCard;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Jan on 05.12.2015.
- */
-public class StandartWizardCardDeck<T> implements IBasicCardDeck {
+
+public class StandartWizardCardDeck implements IBasicCardDeck {
 
 
     private final List<ICard> basicCards;

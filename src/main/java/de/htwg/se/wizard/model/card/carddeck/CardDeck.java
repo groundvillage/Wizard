@@ -8,9 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Jan on 25.10.2015.
- */
+
 public class CardDeck {
 
     private final IBasicCardDeck basicCards;

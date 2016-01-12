@@ -6,9 +6,7 @@ import de.htwg.se.wizard.view.tui.strategies.ITUIStrategy;
 
 import java.util.Scanner;
 
-/**
- * Created by Jan on 01.01.2016.
- */
+
 public abstract class TUIStrategy implements ITUIStrategy {
 
     protected GameControl controller;

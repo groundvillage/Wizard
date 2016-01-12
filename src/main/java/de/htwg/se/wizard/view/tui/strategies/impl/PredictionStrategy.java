@@ -2,20 +2,22 @@ package de.htwg.se.wizard.view.tui.strategies.impl;
 
 import de.htwg.se.wizard.view.tui.TextUI;
 
-public class DealCardStrategy extends TUIStrategy{
+/**
+ * Created by Jan on 12.01.2016.
+ */
+public class PredictionStrategy extends TUIStrategy {
 
-
-    public DealCardStrategy(TextUI tui) {
+    public PredictionStrategy(TextUI tui) {
         super(tui);
     }
 
     @Override
     public void execute() {
-        System.out.println("Cards will be dealed");
+
     }
 
     @Override
     public String toString() {
-       return "DEAL-CARDS";
+        return "PREDICTION";
     }
 }

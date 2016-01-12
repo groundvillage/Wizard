@@ -1,7 +1,8 @@
 package de.htwg.se.wizard.control;
 
 import de.htwg.se.util.observer.Observable;
-import de.htwg.se.wizard.control.gamestate.IMainState;
+import de.htwg.se.wizard.control.gamestate.IState;
+import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
 import de.htwg.se.wizard.model.player.Player;
 
@@ -14,7 +15,7 @@ public class GameControl extends Observable {
     private int numberOfPlayers;
     private List<Player> players;
 
-    private IMainState state;
+    private IState state;
 
     public GameControl() {
 
@@ -22,8 +23,9 @@ public class GameControl extends Observable {
         this.state = new PreparingState(this);
     }
 
-    public void setGameState(IMainState state) {
+    public void setGameState(IState state) {
         this.state = state;
+        System.out.println("GameControl - GameState: " + this.state.toString());
         notifyObservers();
     }
 
@@ -33,14 +35,19 @@ public class GameControl extends Observable {
 
 
     public void handle(String userInput) {
-        this.state.handleUserInput(userInput);
+        if (this.state instanceof IUserInputState) {
+            ((IUserInputState)this.state).handleUserInput(userInput);
+        } else {
+            System.out.println("Sollte wohl nicht sein");
+        }
     }
 
-    public IMainState getGameState() {
+    public IState getGameState() {
         return this.state;
     }
 
     public void updateObserver() {
+        System.out.println("Observer update");
         notifyObservers();
     }
 
@@ -48,6 +55,10 @@ public class GameControl extends Observable {
         for (String name : names) {
             this.players.add(new Player(name));
         }
+    }
+
+    public List<Player> getPlayer() {
+        return this.players;
     }
 
     public void setNumberOfPlayers(int numberOfPlayers) {

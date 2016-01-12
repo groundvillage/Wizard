@@ -1,15 +1,18 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
-import de.htwg.se.wizard.control.gamestate.IState;
-import de.htwg.se.wizard.control.gamestate.IMainState;
+import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.*;
+import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
+import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
 
 
-public class PlayerCountSubState implements IState{
+public class PlayerCountState extends UserInputState implements IUserInputState{
 
     private PreparingState gameState;
     private int maxCount;
 
-    public PlayerCountSubState(IMainState gameState, int maxCount) {
+    public PlayerCountState(GameControl controller, StateWithSubState gameState, int maxCount) {
+        super(controller, gameState);
         this.gameState = (PreparingState) gameState;
         this.maxCount = maxCount;
     }
@@ -22,7 +25,7 @@ public class PlayerCountSubState implements IState{
     public void handleUserInput(String userInput) {
         this.gameState.setNumberOfPlayers(Integer.parseInt(userInput));
 
-        this.gameState.setSubState(new PlayerNameSubState(this.gameState));
+        this.gameState.setSubState(new PlayerNameState(this.controller, this.gameState));
 
     }
 

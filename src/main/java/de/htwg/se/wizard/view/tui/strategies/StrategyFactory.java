@@ -1,9 +1,7 @@
 package de.htwg.se.wizard.view.tui.strategies;
 
 import de.htwg.se.wizard.view.tui.TextUI;
-import de.htwg.se.wizard.view.tui.strategies.impl.PreparingCountStrategy;
-import de.htwg.se.wizard.view.tui.strategies.impl.PreparingNameStrategy;
-import de.htwg.se.wizard.view.tui.strategies.impl.TUIStrategy;
+import de.htwg.se.wizard.view.tui.strategies.impl.*;
 
 public class StrategyFactory {
 
@@ -15,6 +13,18 @@ public class StrategyFactory {
                 break;
             case "PREPARING_NAME":
                 strategy = new PreparingNameStrategy(tui);
+                break;
+            case "DEAL_CARDS":
+                strategy = new DealCardStrategy(tui);
+                break;
+            case "PLAY_CARDS":
+                strategy = new PlayCardsStrategy(tui);
+                break;
+            case "MATCH_ANALYZING":
+                strategy = new MatchAnalyzingStrategy(tui);
+                break;
+            case "PREDICTION":
+                strategy = new PredictionStrategy(tui);
                 break;
             default:
                 throw new IllegalArgumentException("No matched Strategy");

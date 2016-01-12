@@ -1,16 +1,19 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
-import de.htwg.se.wizard.control.gamestate.IMainState;
-import de.htwg.se.wizard.control.gamestate.IState;
+import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.*;
+import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
+import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
 
 
-public class PlayerNameSubState implements IState {
+public class PlayerNameState extends UserInputState implements IUserInputState {
 
     private PreparingState gameState;
     private int currentPlayer = 0;
     private String[] nameList;
 
-    public PlayerNameSubState(IMainState gameState) {
+    public PlayerNameState(GameControl controller, StateWithSubState gameState) {
+        super(controller, gameState);
         this.gameState = (PreparingState) gameState;
 
         nameList = new String[this.gameState.getCountOfPlayer()];
@@ -22,14 +25,13 @@ public class PlayerNameSubState implements IState {
 
     @Override
     public void handleUserInput(String userInput) {
-        System.out.println(userInput);
 
         nameList[currentPlayer] = userInput;
         currentPlayer++;
         if (currentPlayer >= this.nameList.length) {
             this.gameState.setNameOfPlayers(nameList);
         } else {
-            this.gameState.handle();
+            this.controller.updateObserver();
         }
     }
 

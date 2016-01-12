@@ -1,7 +1,7 @@
 package de.htwg.se.wizard.view.tui.strategies.impl;
 
 import de.htwg.se.wizard.control.gamestate.IState;
-import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PlayerNameSubState;
+import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PlayerNameState;
 import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
 import de.htwg.se.wizard.view.tui.TextUI;
 
@@ -18,7 +18,7 @@ public class PreparingNameStrategy extends TUIStrategy{
 
         IState subState = ((PreparingState) this.controller.getGameState()).getSubState();
 
-        System.out.printf("get player name %d:%n", ((PlayerNameSubState)subState).getCurrentPlayer());
+        System.out.printf("get player name %d:%n", ((PlayerNameState)subState).getCurrentPlayer());
 
     }
 

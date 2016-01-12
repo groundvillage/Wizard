@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class WizardController extends Observable {
 
-    private GameStatus status;
+    //private GameStatus status;
     private int curRound;
     private String statusMessage;
     private int curPlayer;
@@ -63,9 +63,9 @@ public class WizardController extends Observable {
         return statusMessage;
     }
 
-    public GameStatus getStatus() {
+    /*public GameStatus getStatus() {
         return this.status;
-    }
+    }*/
 
     public List<ICard> getPlayedCards() {
         return this.playedCards;
@@ -134,7 +134,7 @@ public class WizardController extends Observable {
         curPlayer = nextPlayer();
         statusMessage = "Player " + curPlayer + " predicted " + prediction + " tricks.";
         if (curPlayer == firstPlayer) {
-            this.status = GameStatus.MATCH;
+            //this.status = GameStatus.MATCH;
         }
         notifyObservers();
 
@@ -217,6 +217,6 @@ public class WizardController extends Observable {
         }
         curPlayer = firstPlayer;
         this.playedCards = new LinkedList<>();
-        this.status = GameStatus.PREDICTION;
+        //this.status = GameStatus.PREDICTION;
     }
 }

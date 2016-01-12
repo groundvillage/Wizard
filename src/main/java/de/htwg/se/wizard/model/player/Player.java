@@ -3,9 +3,7 @@ package de.htwg.se.wizard.model.player;
 import de.htwg.se.wizard.model.card.ICard;
 import java.util.List;
 import java.util.LinkedList;
-/**
- * Created by Jan on 23.10.2015.
- */
+
 public class Player {
 
     private String name;

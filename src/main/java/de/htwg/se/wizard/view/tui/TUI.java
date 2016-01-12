@@ -6,7 +6,7 @@ package de.htwg.se.wizard.view.tui;
 
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
-import de.htwg.se.wizard.control.GameStatus;
+//import de.htwg.se.wizard.control.GameStatus;
 import de.htwg.se.wizard.model.card.ICard;
 import org.apache.log4j.Logger;
 
@@ -58,18 +58,18 @@ public class TUI implements IObserver {
         }
         logger.info(NEWLINE);
 
-        if (controller.getStatus() == GameStatus.PREDICTION) {
+        /*if (controller.getStatus() == GameStatus.PREDICTION) {
             logger.info(String.format("Total: %d%n", controller.getScore(curPlayer)));
             logger.info(OUTPUTBORDER);
             logger.info(String.format("Please type in your prediction: (q to quit)"));
         } else {
-            logger.info(String.format("Prediction for this round: %d tricks\t", controller.getPrediction(curPlayer)));
+            //logger.info(String.format("Prediction for this round: %d tricks\t", controller.getPrediction(curPlayer)));
             logger.info(String.format("Tricks made: %d\t", controller.getTricks(curPlayer)));
             logger.info(String.format("Total: %d%n", controller.getScore(curPlayer)));
             logger.info(NEWLINE);
             logger.info(String.format("Please type in the number of the card you want to play: (q to quit)"));
         }
-        logger.info(NEWLINE);
+        logger.info(NEWLINE);*/
     }
 
     public boolean processInputLine(String line) {
@@ -84,14 +84,14 @@ public class TUI implements IObserver {
             logger.info("Input is not a number! Try again, moron.");
             return false;
         }
-        if (controller.getStatus() == GameStatus.PREDICTION) {
+        /*if (controller.getStatus() == GameStatus.PREDICTION) {
             controller.predict(input);
         } else {
             controller.playCard(input);
             if (controller.getCurPlayer() == controller.getLastPlayer()) {
                 printScores();
             }
-        }
+        }*/
         return false;
     }
 
@@ -100,8 +100,8 @@ public class TUI implements IObserver {
         logger.info(String.format("RESULTS ROUND %d %s%n", controller.getCurRound(), OUTPUTBORDER));
         for (int i=0; i < controller.getNumberOfPlayers(); i++) {
             logger.info(String.format("Player %d:%n", i + 1));
-            logger.info(String.format("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d%n", controller.getPrediction(i),
-                   controller.getTricks(i), controller.getPoints(i), controller.getScore(i)));
+            //logger.info(String.format("Predicted: %d\tMade: %d\tPoints: %d\tTotal: %d%n", controller.getPrediction(i),
+                   //controller.getTricks(i), controller.getPoints(i), controller.getScore(i)));
         }
     }
 

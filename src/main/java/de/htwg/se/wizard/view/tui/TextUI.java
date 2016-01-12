@@ -7,10 +7,8 @@ import de.htwg.se.wizard.view.tui.strategies.impl.TUIStrategy;
 
 public class TextUI extends Thread implements IObserver {
 
-
     private GameControl controller;
     private TUIStrategy strategy;
-
 
     public TextUI(GameControl controller) {
 
@@ -33,9 +31,9 @@ public class TextUI extends Thread implements IObserver {
 
         String gameStateName = controller.getGameState().toString();
 
-
+        System.out.println("current State: " + gameStateName);
         if (! gameStateName.equals(strategy.toString())) {
-            this.strategy.update();
+            System.out.println("Ändere deine Strategie");
             this.strategy = StrategyFactory.createStrategy(gameStateName, this);
         }
 
