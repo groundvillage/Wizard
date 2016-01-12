@@ -7,9 +7,9 @@ import de.htwg.se.wizard.control.gamestate.IUserInputState;
 /**
  * Created by Jan on 12.01.2016.
  */
-public abstract class UserInputSupState extends SubState implements IUserInputState {
+public abstract class UserInputSubState extends SubState implements IUserInputState {
 
-    public UserInputSupState(GameControl controller, IStateWithSubState mainState) {
+    public UserInputSubState(GameControl controller, IStateWithSubState mainState) {
         super(controller, mainState);
     }
 }

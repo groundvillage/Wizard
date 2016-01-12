@@ -1,16 +1,15 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IActionState;
+import de.htwg.se.wizard.control.gamestate.impl.ActionSubState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
-import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.List;
 
 
-public class DealCardState extends UserInputState implements IActionState {
+public class DealCardState extends ActionSubState {
 
     private MainRound gameState;
 
@@ -40,4 +39,5 @@ public class DealCardState extends UserInputState implements IActionState {
     public String toString() {
         return "DEAL_CARDS";
     }
+
 }
