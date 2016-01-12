@@ -11,4 +11,9 @@ public abstract class State implements IState{
     public State(GameControl controller) {
          this.controller = controller;
     }
+
+    @Override
+    public IState getState() {
+        return this;
+    }
 }

@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.control;
 
 import de.htwg.se.util.observer.Observable;
+import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
@@ -26,6 +27,10 @@ public class GameControl extends Observable {
     public void setGameState(IState state) {
         this.state = state;
         System.out.println("GameControl - GameState: " + this.state.toString());
+
+        if (this.state.getState() instanceof IActionState) {
+            ((IActionState)this.state.getState()).action();
+        }
         notifyObservers();
     }
 

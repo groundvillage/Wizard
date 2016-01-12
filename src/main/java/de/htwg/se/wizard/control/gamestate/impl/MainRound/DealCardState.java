@@ -21,13 +21,14 @@ public class DealCardState extends ActionSubState {
 
     @Override
     public void action() {
+        System.out.println("DealCard action");
         GameControl controller = this.gameState.getController();
         List<Player> players = controller.getPlayer();
 
         for (Player player : players) {
-            List<ICard> cards = this.gameState.getCardDeck().drawMultipleCards(this.gameState.getRoundCounter());
+            List<ICard> cards = this.gameState.getCardDeck().drawMultipleCards(this.gameState.getCurrentRound());
             player.dealHand(cards);
-            System.out.printf("%s got %d Cards%n", player.getName(), this.gameState.getRoundCounter());
+            System.out.printf("%s got %d Cards%n", player.getName(), this.gameState.getCurrentRound());
         }
 
         this.gameState.setSubState(new PredictionState(this.controller, this.gameState));

@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.ICard;
@@ -25,6 +26,12 @@ public class MainRound extends StateWithSubState implements IUserInputState {
         this.firstPlayer = 0;
         this.currentRound = 1;
         this.deck = new CardDeck();
+        this.setState();
+        //this.subState = new DealCardState(this.controller, this);
+
+    }
+
+    public void setState() {
         this.subState = new DealCardState(this.controller, this);
     }
 

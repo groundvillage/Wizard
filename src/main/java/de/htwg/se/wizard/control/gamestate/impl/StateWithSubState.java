@@ -36,6 +36,11 @@ public abstract class StateWithSubState extends State implements IStateWithSubSt
     }
 
     @Override
+    public IState getState() {
+        return this.subState.getState();
+    }
+
+    @Override
     public String toString() {
         return subState.toString();
     }
