@@ -5,11 +5,12 @@ import de.htwg.se.wizard.control.gamestate.*;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.MatchState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
+import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 
 /**
  * Created by Tamara on 11.01.2016.
  */
-public class PredictionState extends UserInputState implements IUserInputState{
+public class PredictionState extends UserInputSubState {
 
 
     private MainRound gameState;

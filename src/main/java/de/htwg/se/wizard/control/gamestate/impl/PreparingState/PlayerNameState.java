@@ -1,12 +1,11 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.*;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
-import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
+import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 
 
-public class PlayerNameState extends UserInputState implements IUserInputState {
+public class PlayerNameState extends UserInputSubState {
 
     private PreparingState gameState;
     private int currentPlayer = 0;
