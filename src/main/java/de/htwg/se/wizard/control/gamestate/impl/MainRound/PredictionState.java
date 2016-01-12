@@ -30,25 +30,30 @@ public class PredictionState extends UserInputSubState {
     public void setPrediction(int prediction) {
         if (isValid(prediction)) {
             gameState.setPrediction(curPlayer, prediction);
+            trickSum += prediction;
             nextPlayer();
         } else {
-
+            logger.error("Invalid prediction! Valid predictions: " + getValidPredictions().toString());
         }
     }
 
     private void nextPlayer() {
         if (this.curPlayer == gameState.getLastPlayer()) {
             this.gameState.setSubState(new MatchState(this.gameState));
+            return;
         }
+        this.curPlayer += 1;
     }
 
     public List<Integer> getValidPredictions() {
         int maxTricks = gameState.cardsPerPlayer();
-        List<Integer> predictionRange = IntStream.range(0, maxTricks).boxed().collect(Collectors.toList());
+        List<Integer> predictionRange = IntStream.range(0, maxTricks + 1).boxed().collect(Collectors.toList());
         if (curPlayer != gameState.getLastPlayer()) {
+            logger.info(predictionRange);
             return predictionRange;
         }
         predictionRange.remove(maxTricks - trickSum);
+        logger.info(predictionRange);
         return predictionRange;
     }
 

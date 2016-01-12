@@ -13,7 +13,6 @@ public class MatchState extends StateWithSubState {
 
     private MainRound gameState;
     private IState subMatchState;
-    private NormalCard.CardColor trump;
 
     private Map<Player, ICard> playedCards;
 

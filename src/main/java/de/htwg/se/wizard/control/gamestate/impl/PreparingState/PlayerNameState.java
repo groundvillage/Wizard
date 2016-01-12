@@ -28,7 +28,7 @@ public class PlayerNameState extends UserInputSubState {
         nameList[currentPlayer] = userInput;
         currentPlayer++;
         if (currentPlayer >= this.nameList.length) {
-            this.gameState.setNameOfPlayers(nameList);
+            this.controller.addPlayers(nameList);
         } else {
             this.controller.updateObserver();
         }

@@ -17,42 +17,21 @@ import java.util.Map;
  */
 public class WizardController extends Observable {
 
-    //private GameStatus status;
-    private int curRound;
     private String statusMessage;
-    private int curPlayer;
-    private int firstPlayer;
     private int numberOfPlayers;
 
     private List<Player> players;
-    private CardDeck deck;
-
-    private List<ICard> playedCards;
-    private Map<Integer, Integer> points;
-    //private Map<Integer, Integer> predictions;
-    private Map<Integer, Integer> tricks;
 
     public WizardController() {
         this.players = new LinkedList<>();
-        this.curRound = 1;
-        this.firstPlayer = 0;
-        this.deck = new CardDeck();
     }
 
     /*
      * GETTERS AND SETTERS
      ******************************************************************************************************************
      */
-    public int getCurPlayer() {
-        return curPlayer;
-    }
-
     public void setNumberOfPlayers(int nr) {
         this.numberOfPlayers = nr;
-    }
-
-    public int getCurRound() {
-        return curRound;
     }
 
     public int getNumberOfPlayers() {
@@ -63,42 +42,9 @@ public class WizardController extends Observable {
         return statusMessage;
     }
 
-    /*public GameStatus getStatus() {
-        return this.status;
-    }*/
-
-    public List<ICard> getPlayedCards() {
-        return this.playedCards;
-    }
-
     public int getScore(int player) {
         return players.get(player).getScore();
     }
-
-    public int getTricks(int player) {
-        return tricks.get(player);
-    }
-
-    /*public int getPrediction(int player) {
-        return predictions.get(player);
-    }*/
-
-    public int getPoints(int player) {
-        return points.get(player);
-    }
-
-    public int getLastPlayer() {
-        return getLastPlayer(this.firstPlayer);
-    }
-
-    //Returns last player of current round
-    protected int getLastPlayer(int firstPlayer) {
-        if (firstPlayer == 0) {
-            return this.numberOfPlayers - 1;
-        }
-        return firstPlayer - 1;
-    }
-
 
     public void addPlayer(String name) {
 

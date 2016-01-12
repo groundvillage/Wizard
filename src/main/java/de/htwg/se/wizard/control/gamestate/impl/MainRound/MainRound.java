@@ -4,18 +4,22 @@ import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
+import de.htwg.se.wizard.model.card.NormalCard;
 import de.htwg.se.wizard.model.card.carddeck.CardDeck;
+import org.apache.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MainRound extends StateWithSubState implements IUserInputState {
 
-    static final int MAXROUND = 19;
-    static final int PEAKROUND = 10;
+    private final int MAXROUND = 19;
+    private final int PEAKROUND = 10;
 
     private Map<Integer, Integer> predictions;
     private Map<Integer, Integer> points;
     private Map<Integer, Integer> tricks;
+    private NormalCard.CardColor trump;
 
     private int firstPlayer;
     private int currentRound;
@@ -27,9 +31,24 @@ public class MainRound extends StateWithSubState implements IUserInputState {
         this.firstPlayer = 0;
         this.currentRound = 1;
         this.deck = new CardDeck();
+        this.predictions = new HashMap<>();
+        this.points = new HashMap<>();
+        this.tricks = new HashMap<>();
         this.setState();
         //this.subState = new DealCardState(this.controller, this);
 
+    }
+
+    public void setTrump(NormalCard.CardColor trump) {
+        this.trump = trump;
+    }
+
+    public NormalCard.CardColor getTrump() {
+        return trump;
+    }
+
+    public  int getPeakround() {
+        return this.PEAKROUND;
     }
 
     public void setState() {

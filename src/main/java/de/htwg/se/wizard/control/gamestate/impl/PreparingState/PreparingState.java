@@ -24,7 +24,7 @@ public class PreparingState extends StateWithSubState {
     }
 
     public void setNameOfPlayers(String[] namesOfPlayers){
-        this.controller.setNameOfPlayers(namesOfPlayers);
+        this.controller.addPlayers(namesOfPlayers);
 
         this.controller.setGameState(new MainRound(this.controller));
     }
