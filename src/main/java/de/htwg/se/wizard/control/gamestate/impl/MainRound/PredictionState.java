@@ -1,10 +1,8 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.*;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.MatchState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
-import de.htwg.se.wizard.control.gamestate.impl.UserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 
 /**

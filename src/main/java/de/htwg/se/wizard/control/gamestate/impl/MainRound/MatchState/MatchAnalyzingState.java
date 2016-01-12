@@ -21,4 +21,5 @@ public class MatchAnalyzingState extends ActionSubState {
     public String toString() {
         return "MATCH_ANALYZING";
     }
+
 }
