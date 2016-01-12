@@ -1,9 +1,8 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
-import de.htwg.se.wizard.control.gamestate.impl.State;
+import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.player.Player;
 
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class PlayCardState extends State {
+public class PlayCardState extends UserInputSubState {
 
     private MainRound gameState;
 
@@ -19,10 +18,10 @@ public class PlayCardState extends State {
     private Map<Player, ICard> playedCards;
 
     public PlayCardState(GameControl controller, MainRound gameState) {
-        super(controller);
+        super(controller, gameState);
         this.gameState = gameState;
 
-        currentPlayer = this.gameState.getCurrentPlayer();
+        currentPlayer = this.gameState.getFirstPlayer();
 
         System.out.println("PlayCards");
         this.controller.updateObserver();
@@ -30,9 +29,9 @@ public class PlayCardState extends State {
 
     public ICard[] getPlayableCards() {
 
-        ICard[] playableCards = new ICard[this.gameState.getRoundCounter()];
+        ICard[] playableCards = new ICard[this.gameState.getCurrentRound()];
         List<ICard> hand = this.gameState.getController().getPlayer().get(this.currentPlayer).getHand();
-        for (int i = 0; i < this.gameState.getRoundCounter(); i++) {
+        for (int i = 0; i < this.gameState.getCurrentRound(); i++) {
             playableCards[i] = hand.get(i);
         }
 
@@ -47,4 +46,5 @@ public class PlayCardState extends State {
     public String toString() {
         return "PLAY_CARDS";
     }
+
 }
