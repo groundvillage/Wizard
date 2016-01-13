@@ -1,21 +1,26 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class PlayerNameState extends UserInputSubState {
 
     private PreparingState gameState;
     private int currentPlayer = 0;
-    private String[] nameList;
+    private List<String> nameList;
 
     public PlayerNameState(GameControl controller, StateWithSubState gameState) {
         super(controller, gameState);
         this.gameState = (PreparingState) gameState;
 
-        nameList = new String[this.gameState.getCountOfPlayer()];
+        //nameList = new String[this.gameState.getCountOfPlayer()];
+        nameList = new LinkedList<>();
     }
 
     public int getCurrentPlayer() {
@@ -25,10 +30,15 @@ public class PlayerNameState extends UserInputSubState {
     @Override
     public void handleUserInput(String userInput) {
 
-        nameList[currentPlayer] = userInput;
-        currentPlayer++;
-        if (currentPlayer >= this.nameList.length) {
+        if (! nameList.contains(userInput)) {
+            nameList.add(userInput);
+            currentPlayer++;
+        } else {
+            System.out.println("bereits vorhanden");
+        }
+        if (currentPlayer >= this.controller.getNumberOfPlayers()) {
             this.controller.addPlayers(nameList);
+            this.controller.setGameState(new MainRound(this.controller));
         } else {
             this.controller.updateObserver();
         }

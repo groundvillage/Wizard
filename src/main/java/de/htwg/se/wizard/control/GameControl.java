@@ -57,7 +57,7 @@ public class GameControl extends Observable {
         notifyObservers();
     }
 
-    public void addPlayers(String[] names) {
+    public void addPlayers(List<String> names) {
         for (String name : names) {
             this.players.add(new Player(name));
         }

@@ -24,7 +24,7 @@ public class PlayerCountState extends UserInputSubState {
 
     @Override
     public void handleUserInput(String userInput) {
-        this.gameState.setNumberOfPlayers(Integer.parseInt(userInput));
+        this.controller.setNumberOfPlayers(Integer.parseInt(userInput));
 
         this.gameState.setSubState(new PlayerNameState(this.controller, this.gameState));
 

@@ -15,20 +15,6 @@ public class PreparingState extends StateWithSubState {
         this.subState = new PlayerCountState(this.controller, this, MAX_COUNT);
     }
 
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        controller.setNumberOfPlayers(numberOfPlayers);
-    }
-
-    public int getCountOfPlayer() {
-        return this.controller.getNumberOfPlayers();
-    }
-
-    public void setNameOfPlayers(String[] namesOfPlayers){
-        this.controller.addPlayers(namesOfPlayers);
-
-        this.controller.setGameState(new MainRound(this.controller));
-    }
-
 }
 
 

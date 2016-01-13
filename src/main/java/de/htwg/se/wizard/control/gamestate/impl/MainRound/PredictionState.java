@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**
- * Created by Tamara on 11.01.2016.
- */
+
 public class PredictionState extends UserInputSubState {
 
     private Logger logger = Logger.getLogger("de.htwg.se.wizard.control.gamestate.impl.MainRound.PredictionState");
