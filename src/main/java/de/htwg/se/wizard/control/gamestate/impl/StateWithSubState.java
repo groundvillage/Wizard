@@ -24,6 +24,8 @@ public abstract class StateWithSubState extends State implements IStateWithSubSt
         controller.notifyObservers();
     }
 
+    //public void getFirstPlayer
+
     public IState getSubState() {
         return subState;
     }

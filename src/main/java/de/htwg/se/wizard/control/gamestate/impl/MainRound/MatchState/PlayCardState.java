@@ -5,7 +5,6 @@ import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.NormalCard;
-import de.htwg.se.wizard.model.card.SpecialCard;
 import de.htwg.se.wizard.model.player.Player;
 import org.apache.log4j.Logger;
 
@@ -16,47 +15,105 @@ import java.util.Map;
 public class PlayCardState extends UserInputSubState {
 
     private Logger logger = Logger.getLogger("de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.PlayCardState");
-    private MainRound gameState;
-    private int currentPlayer;
-    private NormalCard.CardColor suitToFollow;
+    private MainRound mainState;
+    private MatchState matchState;
 
-    public PlayCardState(GameControl controller, MainRound gameState) {
+    private Player currentPlayer;
+    private ICard[] playableCards;
+    //private NormalCard.CardColor suitToFollow;
+
+    public PlayCardState(GameControl controller, MainRound gameState, MatchState matchState) {
         super(controller, gameState);
-        this.gameState = gameState;
-        this.suitToFollow = null;
-        this.currentPlayer = this.gameState.getFirstPlayer();
+        this.mainState = gameState;
+        this.matchState = matchState;
+        //this.suitToFollow = null;
+        this.setCurrentPlayer(this.mainState.getFirstPlayer());
 
         System.out.println("PlayCards");
         this.controller.updateObserver();
     }
 
     public void handleUserInput(String userInput) {
-        int cardIdx = Integer.parseInt(userInput);
-        List<ICard> hand = this.controller.getHandOfPlayer(currentPlayer);
-        if (cardIdx == 0 || cardIdx > hand.size()) {
-            logger.error("Invalid input! Valid cards: " + hand.toString());
+        int cardId = Integer.parseInt(userInput);
+        if (cardId < 0 || cardId > this.currentPlayer.getHand().size()) {
+            logger.error("Invalid input! Valid cards: " + this.currentPlayer.getHand().toString());
             return;
         }
-        ICard card = hand.get(cardIdx);
+        ICard card = this.currentPlayer.getHand().get(cardId);
         setSuitToFollowIfNecessary(card);
+        this.matchState.addPlayedCards(this.currentPlayer, card);
+
+
+
+        if (this.controller.getPlayer().indexOf(currentPlayer) != this.mainState.getFirstPlayer()) {
+            this.matchState.setSubState(new MatchAnalyzingState(this.controller, this.mainState, this.matchState));
+            return;
+        }
+        this.setCurrentPlayer(nextPlayerId(currentPlayer));
+        this.controller.notifyObservers();
         //TODO: check if valid card!
     }
 
-    private void setSuitToFollowIfNecessary(ICard card) {
-        if (suitToFollow == null && !(card instanceof SpecialCard)) {
-            suitToFollow = ((NormalCard) card).getColor();
+    public Map<Player, ICard> getAllCurrentPlayedCards() {
+        return this.matchState.getPlayedCards();
+    }
+
+    private int nextPlayerId(Player player) {
+        int currentPlayerId = this.controller.getPlayer().indexOf(player);
+
+        if (currentPlayerId == this.controller.getNumberOfPlayers()) {
+            currentPlayerId = 0;
         }
+        return ++currentPlayerId;
+    }
+
+    private void setCurrentPlayer(int playerId) {
+        this.currentPlayer = this.controller.getPlayer().get(playerId);
+        //this.playableCards = new ICard[this.mainState.getCurrentRound()];
+
+        this.playableCards = getPlayableCardsFromPlayer(this.currentPlayer);
+
+    }
+
+    private ICard[] getPlayableCardsFromPlayer(Player player) {
+        ICard[] playableCards = new ICard[this.mainState.getCurrentRound()];
+        List<ICard> hand = player.getHand();
+
+        for (int i = 0; i < hand.size(); i++) {
+            playableCards[i] = hand.get(i);
+            if (this.matchState.getPrimeryCardColor() == null) {
+                playableCards[i] = hand.get(i);
+            } else {
+                ICard card = hand.get(i);
+                if (card instanceof NormalCard && (((NormalCard) card).getColor() == this.matchState.getPrimeryCardColor())) {
+                    if (((NormalCard) card).getColor() == this.matchState.getPrimeryCardColor()) {
+                        playableCards[i] = card;
+                    }
+                } else {
+                    playableCards[i] = card;
+                }
+            }
+        }
+
+        return playableCards;
+    }
+
+    private void setSuitToFollowIfNecessary(ICard card) {
+        if (this.matchState.getPrimeryCardColor() == null && card instanceof NormalCard) {
+            //suitToFollow = ((NormalCard) card).getColor();
+            if (! this.matchState.wizardIsPlayed()) {
+                this.matchState.setPrimeryCardColor(((NormalCard) card).getColor());
+            }
+        }
+    }
+
+    public Player getCurrentPlayer() {
+        return this.currentPlayer;
     }
 
     public ICard[] getPlayableCards() {
 
-        ICard[] playableCards = new ICard[this.gameState.getCurrentRound()];
-        List<ICard> hand = this.controller.getHandOfPlayer(currentPlayer);
-        for (int i = 0; i < this.gameState.getCurrentRound(); i++) {
-            playableCards[i] = hand.get(i);
-        }
-
-        return playableCards;
+        return this.playableCards;
     }
 
     @Override

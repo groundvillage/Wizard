@@ -1,8 +1,5 @@
 package de.htwg.se.wizard.model.card;
 
-/**
- * Created by Jan on 23.10.2015.
- */
 public class NormalCard implements ICard {
     public static final int MAX_CARD_VALUE = 13;
     public static final int MIN_CARD_VALUE = 2;
@@ -31,7 +28,6 @@ public class NormalCard implements ICard {
         int getValue() {
             return value;
         }
-
 
     }
 

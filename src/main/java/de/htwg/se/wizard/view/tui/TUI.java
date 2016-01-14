@@ -7,14 +7,10 @@ package de.htwg.se.wizard.view.tui;
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
 //import de.htwg.se.wizard.control.GameStatus;
-import de.htwg.se.wizard.model.card.ICard;
 import org.apache.log4j.Logger;
 
-import java.util.List;
-
-import static java.lang.System.out;
-
 public class TUI implements IObserver {
+
 
     private WizardController controller;
     private static final String OUTPUTBORDER = "+++++++++++++++++++++++++++++++++++++++++++++++++";
@@ -26,6 +22,11 @@ public class TUI implements IObserver {
         controller.addObserver(this);
     }
 
+    @Override
+    public void update() {
+
+    }
+/*
     @Override
     public void update() {
         printTUI();
@@ -69,8 +70,8 @@ public class TUI implements IObserver {
             logger.info(NEWLINE);
             logger.info(String.format("Please type in the number of the card you want to play: (q to quit)"));
         }
-        logger.info(NEWLINE);*/
-    }
+        logger.info(NEWLINE);
+    //}
 
     public boolean processInputLine(String line) {
         if ("q".equalsIgnoreCase(line)) {
@@ -91,7 +92,7 @@ public class TUI implements IObserver {
             if (controller.getCurPlayer() == controller.getLastPlayer()) {
                 printScores();
             }
-        }*/
+        }
         return false;
     }
 
@@ -106,7 +107,7 @@ public class TUI implements IObserver {
     }
 
     public int processInputLineNumberOfPlayers(String line) {
-        /* Number of players */
+        /* Number of players
         if (line.matches("q")) {
             //quit
             return - 1;
@@ -130,4 +131,5 @@ public class TUI implements IObserver {
 
         return false;
     }
+    */
 }

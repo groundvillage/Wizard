@@ -5,11 +5,11 @@ import de.htwg.se.wizard.control.gamestate.ISubState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 
 
-public abstract class UserInputState implements IUserInputState {
+public abstract class UserInputState extends State implements IUserInputState {
 
 
 
-    public UserInputState(GameControl controller, StateWithSubState mainState) {
-
+    public UserInputState(GameControl controller) {
+        super(controller);
     }
 }

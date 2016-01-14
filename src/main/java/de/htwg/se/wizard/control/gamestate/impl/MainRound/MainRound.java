@@ -1,12 +1,11 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.NormalCard;
 import de.htwg.se.wizard.model.card.carddeck.CardDeck;
-import org.apache.log4j.Logger;
+import de.htwg.se.wizard.model.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +17,7 @@ public class MainRound extends StateWithSubState implements IUserInputState {
 
     private Map<Integer, Integer> predictions;
     private Map<Integer, Integer> points;
+    private Map<Player, Integer> playerScore;
     private Map<Integer, Integer> tricks;
     private NormalCard.CardColor trump;
 
@@ -32,11 +32,15 @@ public class MainRound extends StateWithSubState implements IUserInputState {
         this.currentRound = 1;
         this.deck = new CardDeck();
         this.predictions = new HashMap<>();
+        this.playerScore = new HashMap<>();
         this.points = new HashMap<>();
         this.tricks = new HashMap<>();
         this.setState();
         //this.subState = new DealCardState(this.controller, this);
 
+        for (Player player : this.controller.getPlayer()) {
+            this.playerScore.put(player, 0);
+        }
     }
 
     public void setTrump(NormalCard.CardColor trump) {
@@ -53,6 +57,14 @@ public class MainRound extends StateWithSubState implements IUserInputState {
 
     public void setState() {
         this.subState = new DealCardState(this.controller, this);
+    }
+
+    public void increaseMatchScore(Player player) {
+        System.out.println("Player: "+ player);
+
+        int score = this.playerScore.get(player);
+        System.out.println(score);
+        this.playerScore.replace(player, ++score);
     }
 
     public CardDeck getCardDeck() {
@@ -79,7 +91,7 @@ public class MainRound extends StateWithSubState implements IUserInputState {
         return PEAKROUND - (currentRound - PEAKROUND);
     }
 
-    protected int getLastPlayer() {
+    public int getLastPlayer() {
         if (this.getFirstPlayer() == 0) {
             return this.controller.getNumberOfPlayers() - 1;
         }
@@ -95,10 +107,5 @@ public class MainRound extends StateWithSubState implements IUserInputState {
             this.firstPlayer = 0;
         }
         this.firstPlayer += 1;
-    }
-
-    @Override
-    public String toString() {
-        return this.subState.toString();
     }
 }

@@ -1,7 +1,6 @@
 package de.htwg.se.wizard.model.card;
 
 
-import de.htwg.se.wizard.model.card.NormalCard.CardColor;
 /**
  * Created by Jan on 27.12.2015.
  */

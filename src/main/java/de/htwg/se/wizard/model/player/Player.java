@@ -41,4 +41,10 @@ public class Player {
         this.hand.remove(number);
         return tmp;
     }
+
+    /*public ICard playCard(ICard card) {
+        ICard tmp = this.hand.get(this.hand.indexOf(card));
+        this.hand.remove(tmp);
+        return tmp;
+    }*/
 }

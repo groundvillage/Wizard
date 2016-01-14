@@ -14,6 +14,4 @@ public abstract class SubState  extends State implements ISubState{
 
         this.mainState = mainState;
     }
-
-
 }

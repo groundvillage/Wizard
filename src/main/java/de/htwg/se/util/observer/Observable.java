@@ -1,9 +1,5 @@
 package de.htwg.se.util.observer;
 
-/**
- * Created by Tamara on 13.11.2015.
- */
-
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;

@@ -3,13 +3,13 @@ package de.htwg.se.wizard.control;
 import de.htwg.se.wizard.model.player.Player;
 import de.htwg.se.util.observer.Observable;
 
-import de.htwg.se.wizard.model.card.ICard;
-import de.htwg.se.wizard.model.card.carddeck.CardDeck;
+//import de.htwg.se.wizard.model.card.ICard;
+//import de.htwg.se.wizard.model.card.carddeck.CardDeck;
 
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+//import java.util.Map;
 
 
 /**
@@ -17,20 +17,20 @@ import java.util.Map;
  */
 public class WizardController extends Observable {
 
-    private String statusMessage;
-    private int numberOfPlayers;
+    //private String statusMessage;
+    //private int numberOfPlayers;
 
-    private List<Player> players;
+    //private List<Player> players;
 
     public WizardController() {
-        this.players = new LinkedList<>();
+        //this.players = new LinkedList<>();
     }
 
     /*
      * GETTERS AND SETTERS
      ******************************************************************************************************************
      */
-    public void setNumberOfPlayers(int nr) {
+    /*public void setNumberOfPlayers(int nr) {
         this.numberOfPlayers = nr;
     }
 
@@ -46,18 +46,18 @@ public class WizardController extends Observable {
         return players.get(player).getScore();
     }
 
-    public void addPlayer(String name) {
+    /*public void addPlayer(String name) {
 
         this.players.add(new Player(name));
         if (players.size() == numberOfPlayers) {
             setupNewRound();
             dealCards();
         }
-    }
+    }*/
 
-    public List<ICard> getCardsOfCurrentPlayer() {
-        return players.get(curPlayer).getHand();
-    }
+    /*public List<ICard> getCardsOfCurrentPlayer() {
+        //return players.get(curPlayer).getHand();
+    }*/
 
     /*
      * LOGIC
@@ -65,14 +65,15 @@ public class WizardController extends Observable {
      */
 
     // return value indicates, if prediction is valid or not
-    public void predict(int prediction) {
+
+    /*public void predict(int prediction) {
         //Prediction cannot be greater than number of cards
         if (prediction > cardsPerPlayer()) {
             statusMessage = "Invalid input! Prediction cannot be higher than the number of possible tricks. Moron.";
             return;
         }
 
-        if (curPlayer == this.numberOfPlayers - 1 && isEven(prediction)) {
+        /*if (curPlayer == this.numberOfPlayers - 1 && isEven(prediction)) {
             statusMessage = "Invalid input! Predictions cannot come out even!";
             return;
         }
@@ -84,11 +85,11 @@ public class WizardController extends Observable {
         }
         notifyObservers();
 
-    }
+    }*/
 
-    public void playCard(int card) {
+   // public void playCard(int card) {
 
-        int handOfPlayer = getCardsOfCurrentPlayer().size();
+        /*int handOfPlayer = getCardsOfCurrentPlayer().size();
         if (card < 1 || card > handOfPlayer) {
             statusMessage = "Invalid input! Number doesn't match a card. Moron.";
             return;
@@ -112,34 +113,34 @@ public class WizardController extends Observable {
         }*/
 
 
-    }
+   // }
 
-    private void dealCards() {
+    /*private void dealCards() {
         for (Player player : this.players) {
-            List<ICard> cards = this.deck.drawMultipleCards(cardsPerPlayer());
+            //List<ICard> cards = this.deck.drawMultipleCards(cardsPerPlayer());
             player.dealHand(cards);
         }
     }
 
     private int cardsPerPlayer() {
         return cardsPerPlayer(curRound, 10);
-    }
+    }*/
 
     //calculates, how many cards per player are dealt in this round
-    protected int cardsPerPlayer(int curRound, int peakRound) {
+    /*protected int cardsPerPlayer(int curRound, int peakRound) {
         if (curRound <= peakRound) {
             return curRound;
         }
         //after 10 rounds, cards are getting less again until 1 card in last round
         return peakRound - (curRound - peakRound);
-    }
+    }*/
 
     //Checks, if the number of tricks (Stiche) comes out -> invalid
-    private boolean isEven(int lastPrediction) {
-        int sumPredictions = 0;
+    //private boolean isEven(int lastPrediction) {
+        //int sumPredictions = 0;
         /*for (int i : predictions.keySet()) {
             sumPredictions += predictions.get(i);
-        }*/
+        }
         //predictions come out even, when sum equals cards per player
         // -> number of tricks (Stiche) in this round
         return sumPredictions + lastPrediction == cardsPerPlayer();
@@ -164,5 +165,6 @@ public class WizardController extends Observable {
         curPlayer = firstPlayer;
         this.playedCards = new LinkedList<>();
         //this.status = GameStatus.PREDICTION;
-    }
+    }*/
+
 }

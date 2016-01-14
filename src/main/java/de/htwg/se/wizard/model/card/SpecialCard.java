@@ -1,7 +1,6 @@
 package de.htwg.se.wizard.model.card;
 
 import java.util.Random;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Jan on 23.10.2015.
