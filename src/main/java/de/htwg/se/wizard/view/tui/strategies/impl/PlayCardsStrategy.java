@@ -23,6 +23,7 @@ public class PlayCardsStrategy extends TUIStrategy{
         PlayCardState subState = ((PlayCardState)(matchState.getSubState()));
 
 
+        System.out.println("------------------------------------------------");
         System.out.printf("Trump: %s%n", mainState.getTrump());
 
         if (matchState.getPrimeryCardColor() != null) {
@@ -31,10 +32,16 @@ public class PlayCardsStrategy extends TUIStrategy{
             System.out.println("PriorColor: already not define");
         }
 
-        System.out.printf("Current Played Cards:");
-        for (Player player : subState.getAllCurrentPlayedCards().keySet()) {
-            System.out.printf("%s/t: %s%n", player.getName(), subState.getAllCurrentPlayedCards().get(player));
+        System.out.println("Current Played Cards:");
+        if (subState.getAllCurrentPlayedCards().keySet().isEmpty()) {
+            System.out.println("already no cards played");
+        } else {
+            for (Player player : subState.getAllCurrentPlayedCards().keySet()) {
+                System.out.printf("%s\t: %s%n", player.getName(), subState.getAllCurrentPlayedCards().get(player));
+            }
         }
+
+        System.out.println("");
         System.out.printf("Player: %s can play following cards:%n", subState.getCurrentPlayer().getName());
         ICard[] playableCards = subState.getPlayableCards();
         for (int i = 0; i < playableCards.length; i++) {

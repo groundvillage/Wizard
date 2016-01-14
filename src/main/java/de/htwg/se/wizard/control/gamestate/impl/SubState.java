@@ -7,7 +7,7 @@ import de.htwg.se.wizard.control.gamestate.ISubState;
 
 public abstract class SubState  extends State implements ISubState{
 
-    IStateWithSubState mainState;
+    protected IStateWithSubState mainState;
 
     public SubState(GameControl controller, IStateWithSubState mainState) {
         super(controller);

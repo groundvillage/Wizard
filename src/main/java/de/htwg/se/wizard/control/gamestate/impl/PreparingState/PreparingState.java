@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.control.gamestate.impl.PreparingState;
 
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.MatchState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
 
@@ -15,6 +16,12 @@ public class PreparingState extends StateWithSubState {
         this.subState = new PlayerCountState(this.controller, this, MAX_COUNT);
     }
 
+    @Override
+    public void setNextState() {
+        this.controller.setGameState(new MainRound(this.controller));
+
+        this.controller.notifyObservers();
+    }
 }
 
 

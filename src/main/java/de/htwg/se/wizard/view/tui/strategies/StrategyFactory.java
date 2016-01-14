@@ -26,6 +26,12 @@ public class StrategyFactory {
             case "PREDICTION":
                 strategy = new PredictionStrategy(tui);
                 break;
+            case "EVALUATION":
+                strategy = new EvaluationStrategy(tui);
+                break;
+            case "GAMEEND":
+                strategy = new GameEndStrategy(tui);
+                break;
             default:
                 throw new IllegalArgumentException("No matched Strategy");
         }

@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState;
 
 
+import de.htwg.se.wizard.control.gamestate.impl.MainRound.EvaluationState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
 import de.htwg.se.wizard.model.card.ICard;
@@ -18,8 +19,6 @@ public class MatchState extends StateWithSubState {
     private Map<Player, ICard> playedCards;
     private NormalCard.CardColor primeryCardColor;
 
-    private Map<Player, Integer> matchScore;
-
     private int matchRound = 0;
 
     public MatchState(MainRound gameState) {
@@ -27,16 +26,9 @@ public class MatchState extends StateWithSubState {
         this.gameState = gameState;
 
         this.playedCards = new LinkedHashMap<>();
-        this.matchScore = new LinkedHashMap<>();
 
         this.subState = new PlayCardState(this.controller, this.gameState, this);
         this.controller.notifyObservers();
-    }
-
-    public void increaseMatchScore(Player player) {
-        int score = this.matchScore.get(player);
-        System.out.println(score);
-        this.matchScore.replace(player, ++score);
     }
 
     public void increaseMatchRound() {
@@ -84,5 +76,10 @@ public class MatchState extends StateWithSubState {
 
     public NormalCard.CardColor getPrimeryCardColor() {
         return this.primeryCardColor;
+    }
+
+    @Override
+    public void setNextState() {
+        this.gameState.setSubState(new EvaluationState(this.controller, this.gameState));
     }
 }

@@ -107,7 +107,7 @@ public class MatchAnalyzingState extends ActionSubState {
 
 
         if (this.controller.getPlayer().get(this.mainState.getFirstPlayer()).getHand().isEmpty()) {
-            this.mainState.setSubState(new EvaluationState(this.controller, this.mainState));
+            this.matchState.setNextState();
         } else {
             System.out.println("Cards noch übrig");
             setupForNextMatch();

@@ -38,7 +38,7 @@ public class PlayerNameState extends UserInputSubState {
         }
         if (currentPlayer >= this.controller.getNumberOfPlayers()) {
             this.controller.addPlayers(nameList);
-            this.controller.setGameState(new MainRound(this.controller));
+            this.gameState.setNextState();
         } else {
             this.controller.updateObserver();
         }

@@ -4,7 +4,7 @@ import de.htwg.se.wizard.model.card.ICard;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Player {
+public class Player{
 
     private String name;
     private List<ICard> hand;

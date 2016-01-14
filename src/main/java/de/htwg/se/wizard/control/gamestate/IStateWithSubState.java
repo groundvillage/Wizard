@@ -7,4 +7,6 @@ public interface IStateWithSubState extends IState {
 
     IState getSubState();
 
+    void setNextState();
+
 }
