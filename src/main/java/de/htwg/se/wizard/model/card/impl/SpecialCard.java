@@ -1,11 +1,13 @@
-package de.htwg.se.wizard.model.card;
+package de.htwg.se.wizard.model.card.impl;
+
+import de.htwg.se.wizard.model.card.ICard;
 
 import java.util.Random;
 
 /**
  * Created by Jan on 23.10.2015.
  */
-public class SpecialCard implements ICard{
+public class SpecialCard implements ICard {
 
     public enum CardType {
         FOOL(1),

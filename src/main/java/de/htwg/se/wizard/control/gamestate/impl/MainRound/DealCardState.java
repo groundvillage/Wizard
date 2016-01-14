@@ -4,7 +4,7 @@ import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.impl.ActionSubState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.ICard;
-import de.htwg.se.wizard.model.card.NormalCard;
+import de.htwg.se.wizard.model.card.impl.NormalCard;
 import de.htwg.se.wizard.model.player.Player;
 import org.apache.log4j.Logger;
 

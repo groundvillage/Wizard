@@ -1,4 +1,4 @@
-package de.htwg.se.wizard.model.card.carddeck;
+package de.htwg.se.wizard.model.carddeck;
 
 import de.htwg.se.wizard.model.card.ICard;
 

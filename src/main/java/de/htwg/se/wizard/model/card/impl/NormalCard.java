@@ -1,4 +1,6 @@
-package de.htwg.se.wizard.model.card;
+package de.htwg.se.wizard.model.card.impl;
+
+import de.htwg.se.wizard.model.card.ICard;
 
 public class NormalCard implements ICard {
     public static final int MAX_CARD_VALUE = 13;

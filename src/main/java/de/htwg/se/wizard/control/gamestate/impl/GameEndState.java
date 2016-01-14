@@ -29,6 +29,7 @@ public class GameEndState extends ActionState {
         int i = 1;
         for (Player player : playerRanking) {
             System.out.printf("%d . : %s\t - %d%n", i, player.getName(), player.getScore());
+
             i++;
         }
     }

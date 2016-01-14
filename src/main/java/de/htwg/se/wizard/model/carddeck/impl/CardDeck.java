@@ -1,7 +1,8 @@
-package de.htwg.se.wizard.model.card.carddeck;
+package de.htwg.se.wizard.model.carddeck.impl;
 
 
 import de.htwg.se.wizard.model.card.ICard;
+import de.htwg.se.wizard.model.carddeck.IBasicCardDeck;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -5,8 +5,8 @@ import de.htwg.se.wizard.control.gamestate.impl.MainRound.EvaluationState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
 import de.htwg.se.wizard.model.card.ICard;
-import de.htwg.se.wizard.model.card.NormalCard;
-import de.htwg.se.wizard.model.card.SpecialCard;
+import de.htwg.se.wizard.model.card.impl.NormalCard;
+import de.htwg.se.wizard.model.card.impl.SpecialCard;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.LinkedHashMap;

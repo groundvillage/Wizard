@@ -4,7 +4,7 @@ import de.htwg.se.wizard.model.player.Player;
 import de.htwg.se.util.observer.Observable;
 
 //import de.htwg.se.wizard.model.card.ICard;
-//import de.htwg.se.wizard.model.card.carddeck.CardDeck;
+//import de.htwg.se.wizard.model.carddeck.impl.CardDeck;
 
 //import java.util.HashMap;
 import java.util.LinkedList;

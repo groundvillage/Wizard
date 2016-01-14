@@ -1,11 +1,10 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.GameEndState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
-import de.htwg.se.wizard.model.card.NormalCard;
-import de.htwg.se.wizard.model.card.carddeck.CardDeck;
+import de.htwg.se.wizard.model.card.impl.NormalCard;
+import de.htwg.se.wizard.model.carddeck.impl.CardDeck;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.HashMap;
