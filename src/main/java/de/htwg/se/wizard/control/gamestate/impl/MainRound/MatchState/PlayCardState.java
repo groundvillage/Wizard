@@ -39,7 +39,7 @@ public class PlayCardState extends UserInputSubState {
             logger.error("Invalid input! Valid cards: " + this.currentPlayer.getHand().toString());
             return;
         }
-        ICard card = this.currentPlayer.getHand().get(cardId);
+        ICard card = this.currentPlayer.playCard(cardId);
         setSuitToFollowIfNecessary(card);
         this.matchState.addPlayedCards(this.currentPlayer, card);
 
