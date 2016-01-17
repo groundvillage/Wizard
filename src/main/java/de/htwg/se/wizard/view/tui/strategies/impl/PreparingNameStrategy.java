@@ -27,6 +27,15 @@ public class PreparingNameStrategy extends TUIStrategy{
     }
 
     @Override
+    public void progressUserInput(String line) {
+        if (line.matches("")) {
+            //TODO Pattern für Namen Überprüfen
+        } else {
+            super.progressUserInput(line);
+        }
+    }
+
+    @Override
     public String toString() {
         return "PREPARING_NAME";
     }
