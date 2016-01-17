@@ -5,9 +5,13 @@ import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PlayerCountState;
 import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PreparingState;
 import de.htwg.se.wizard.view.tui.TextUI;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 public class PreparingCountStrategy extends TUIStrategy {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     public PreparingCountStrategy(TextUI tui) {
         super(tui);
     }
@@ -16,7 +20,7 @@ public class PreparingCountStrategy extends TUIStrategy {
     public void execute() {
         IState subState = ((PreparingState) this.controller.getGameState()).getSubState();
 
-        System.out.printf("How many are playing? (2-%d) or q to quit%n", ((PlayerCountState) subState).getMaxCount());
+        LOGGER.info("How many are playing? (%d-%d) or q to quit%n", ((PlayerCountState) subState).getMinCount(), ((PlayerCountState) subState).getMaxCount());
     }
 
     @Override

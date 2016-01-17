@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class PlayCardState extends UserInputSubState {
 
-    private Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
     private MainRound mainState;
     private MatchState matchState;
 
@@ -37,7 +37,7 @@ public class PlayCardState extends UserInputSubState {
     public void handleUserInput(String userInput) {
         int cardId = Integer.parseInt(userInput);
         if (cardId < 0 || cardId > this.currentPlayer.getHand().size()) {
-            logger.error("Invalid input! Valid cards: " + this.currentPlayer.getHand().toString());
+            LOGGER.error("Invalid input! Valid cards: " + this.currentPlayer.getHand().toString());
             return;
         }
         ICard card = this.currentPlayer.playCard(cardId);
@@ -76,7 +76,6 @@ public class PlayCardState extends UserInputSubState {
 
     private List<ICard> getPlayableCardsFromPlayer(Player player) {
         List<ICard> playerPlayableCards = new LinkedList<>();
-        ICard[] playableCardsFromPlayer = new ICard[this.mainState.getCurrentRound()];
         List<ICard> hand = player.getHand();
 
         for (int i = 0; i < hand.size(); i++) {

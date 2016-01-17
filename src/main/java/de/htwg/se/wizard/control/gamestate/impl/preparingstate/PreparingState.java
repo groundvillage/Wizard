@@ -12,7 +12,7 @@ public class PreparingState extends StateWithSubState {
     public PreparingState(GameControl controller) {
         super(controller);
 
-        this.subState = new PlayerCountState(this.controller, this, MAX_COUNT);
+        this.subState = new PlayerCountState(this.controller, this, this.MIN_COUNT, this.MAX_COUNT);
     }
 
     @Override

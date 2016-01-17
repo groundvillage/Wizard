@@ -10,14 +10,21 @@ public class PlayerCountState extends UserInputSubState {
     private PreparingState gameState;
     private int maxCount;
 
-    public PlayerCountState(GameControl controller, StateWithSubState gameState, int maxCount) {
+    private int minCount;
+
+    public PlayerCountState(GameControl controller, StateWithSubState gameState, int minCount, int maxCount) {
         super(controller, gameState);
         this.gameState = (PreparingState) gameState;
         this.maxCount = maxCount;
+        this.minCount = minCount;
     }
 
     public int getMaxCount() {
         return this.maxCount;
+    }
+
+    public int getMinCount() {
+        return minCount;
     }
 
     @Override
