@@ -5,6 +5,10 @@ import de.htwg.se.wizard.view.tui.strategies.impl.*;
 
 public class StrategyFactory {
 
+    private StrategyFactory() {
+
+    }
+
     public static TUIStrategy createStrategy(String strategyName, TextUI tui) {
         TUIStrategy strategy;
         switch (strategyName) {
