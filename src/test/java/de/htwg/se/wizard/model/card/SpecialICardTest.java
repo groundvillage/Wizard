@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.model.card;
 
-import de.htwg.se.wizard.model.card.SpecialCard.CardType;
+import de.htwg.se.wizard.model.card.impl.SpecialCard;
+import de.htwg.se.wizard.model.card.impl.SpecialCard.CardType;
 import org.junit.Before;
 import org.junit.Test;
 

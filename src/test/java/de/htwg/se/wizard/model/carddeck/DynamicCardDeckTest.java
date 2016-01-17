@@ -1,7 +1,8 @@
-package de.htwg.se.wizard.model.card.carddeck;
+package de.htwg.se.wizard.model.carddeck;
 
 import de.htwg.se.wizard.model.card.ICard;
-import de.htwg.se.wizard.model.card.SpecialCard;
+import de.htwg.se.wizard.model.card.impl.SpecialCard;
+import de.htwg.se.wizard.model.carddeck.impl.DynamicCardDeck;
 import org.junit.Before;
 import org.junit.Test;
 
