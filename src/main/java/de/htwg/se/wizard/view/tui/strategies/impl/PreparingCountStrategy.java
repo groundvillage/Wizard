@@ -25,12 +25,8 @@ public class PreparingCountStrategy extends TUIStrategy {
 
     @Override
     public void progressUserInput(String line) {
-        if (line.matches("")) {
-            //TODO Pattern für NumberOfPlayer einsetzen.
-        } else {
-            super.progressUserInput(line);
-        }
 
+        super.progressUserInput(line);
     }
 
     @Override

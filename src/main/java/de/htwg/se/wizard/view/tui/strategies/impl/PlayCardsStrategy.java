@@ -46,7 +46,7 @@ public class PlayCardsStrategy extends TUIStrategy{
             }
         }
 
-        LOGGER.info(String.format("\nPlayer: %s can play following cards:%n", subState.getCurrentPlayer().getName()));
+        LOGGER.info(String.format("%nPlayer: %s can play following cards:%n", subState.getCurrentPlayer().getName()));
         List<ICard> playableCards = subState.getPlayableCards();
         for (int i = 0; i < playableCards.size(); i++) {
             LOGGER.info(String.format("[%d]: %s", i, playableCards.get(i).toString()));
