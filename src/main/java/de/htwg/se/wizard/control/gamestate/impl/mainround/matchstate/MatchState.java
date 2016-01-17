@@ -1,9 +1,9 @@
-package de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState;
+package de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate;
 
 
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.EvaluationState;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.EvaluationState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.MainRound;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.impl.NormalCard;
 import de.htwg.se.wizard.model.card.impl.SpecialCard;
@@ -49,10 +49,8 @@ public class MatchState extends StateWithSubState {
 
     public boolean wizardIsPlayed() {
         for (ICard card : this.playedCards.values()) {
-            if (card instanceof SpecialCard) {
-                if (((SpecialCard) card).getType() == SpecialCard.CardType.WIZARD) {
-                    return true;
-                }
+            if (card instanceof SpecialCard && ((SpecialCard) card).getType() == SpecialCard.CardType.WIZARD) {
+                return true;
             }
         }
         return false;

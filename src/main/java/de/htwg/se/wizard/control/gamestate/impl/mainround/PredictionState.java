@@ -1,7 +1,7 @@
-package de.htwg.se.wizard.control.gamestate.impl.MainRound;
+package de.htwg.se.wizard.control.gamestate.impl.mainround;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.MatchState;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate.MatchState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 
 public class PredictionState extends UserInputSubState {
 
-    private Logger LOGGER = LogManager.getLogger(PredictionState.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(PredictionState.class.getName());
     private MainRound gameState;
     private int curPlayer;
     private int trickSum;
