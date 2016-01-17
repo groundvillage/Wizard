@@ -13,7 +13,7 @@ public class MatchAnalyzingStrategy extends TUIStrategy {
 
     @Override
     public void execute() {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override

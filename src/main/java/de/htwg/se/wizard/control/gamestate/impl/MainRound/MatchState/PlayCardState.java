@@ -1,7 +1,7 @@
-package de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState;
+package de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.MainRound;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.impl.NormalCard;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class PlayCardState extends UserInputSubState {
 
-    private Logger logger = LogManager.getLogger("de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.PlayCardState");
+    private Logger logger = LogManager.getLogger("de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate.PlayCardState");
     private MainRound mainState;
     private MatchState matchState;
 

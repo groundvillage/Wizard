@@ -4,6 +4,4 @@ public interface IState {
 
     IState getState();
 
-    String toString();
-
 }

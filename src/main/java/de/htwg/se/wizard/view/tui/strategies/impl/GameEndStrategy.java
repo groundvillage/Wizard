@@ -14,7 +14,6 @@ public class GameEndStrategy extends TUIStrategy{
     @Override
     public void execute() {
         System.out.println("GameZuEnde");
-        System.exit(1);
     }
 
     @Override

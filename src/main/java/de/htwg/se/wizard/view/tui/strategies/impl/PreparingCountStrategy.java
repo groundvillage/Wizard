@@ -1,8 +1,8 @@
 package de.htwg.se.wizard.view.tui.strategies.impl;
 
 import de.htwg.se.wizard.control.gamestate.IState;
-import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PlayerCountState;
-import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
+import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PlayerCountState;
+import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PreparingState;
 import de.htwg.se.wizard.view.tui.TextUI;
 
 

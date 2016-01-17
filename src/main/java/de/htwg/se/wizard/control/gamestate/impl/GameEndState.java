@@ -21,7 +21,6 @@ public class GameEndState extends ActionState {
 
         playerRanking.sort((o1, o2) -> o2.getScore() - o1.getScore());
 
-        System.out.println("And The winner is!!!!!");
         int i = 1;
         for (Player player : playerRanking) {
             System.out.printf("%d . : %s\t - %d%n", i, player.getName(), player.getScore());

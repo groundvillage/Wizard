@@ -13,11 +13,12 @@ public class SpecialCard implements ICard {
         FOOL(1),
         WIZARD(2);
 
+        private final int value;
+
         private CardType(int value) {
             this.value = value;
         }
 
-        private final int value;
 
         public int getValue() {
             return value;
@@ -30,6 +31,20 @@ public class SpecialCard implements ICard {
         SpecialCardParameter cardParameter = this.getRandomCardParameter();
 
         type = cardParameter.getTypeParameter();
+    }
+
+    public static class SpecialCardParameter {
+
+        private CardType typeParameter;
+
+        public SpecialCardParameter(final CardType type) {
+            typeParameter = type;
+        }
+
+        public CardType getTypeParameter() {
+            return typeParameter;
+        }
+
     }
 
 
@@ -48,25 +63,14 @@ public class SpecialCard implements ICard {
         return typeValeus[randomTypeNumber];
     }
 
+
+
     private SpecialCardParameter getRandomCardParameter() {
 
         return new SpecialCardParameter(this.getRandomType());
     }
 
-    public static class SpecialCardParameter {
-
-        private CardType typeParameter;
-
-        public SpecialCardParameter(final CardType type) {
-            typeParameter = type;
-        }
-
-        public CardType getTypeParameter() {
-            return typeParameter;
-        }
-
-    }
-
+    @Override
     public int compareTo(Object o) {
 
         if (o instanceof SpecialCard) {

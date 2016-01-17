@@ -1,8 +1,6 @@
-package de.htwg.se.wizard.control.gamestate.impl.MainRound;
+package de.htwg.se.wizard.control.gamestate.impl.mainround;
 
 import de.htwg.se.wizard.control.GameControl;
-import de.htwg.se.wizard.control.gamestate.IActionState;
-import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.impl.GameEndState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.impl.NormalCard;

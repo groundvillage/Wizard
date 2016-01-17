@@ -4,7 +4,7 @@ import de.htwg.se.util.observer.Observable;
 import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
-import de.htwg.se.wizard.control.gamestate.impl.PreparingState.PreparingState;
+import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PreparingState;
 //import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.player.Player;
 
@@ -34,11 +34,6 @@ public class GameControl extends Observable {
         }
         notifyObservers();
     }
-
-    public void quit() {
-        System.exit(1);
-    }
-
 
     public void handle(String userInput) {
         if (this.state instanceof IUserInputState) {

@@ -3,12 +3,13 @@ package de.htwg.se.wizard.view.tui.strategies.impl;
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.view.tui.TextUI;
 import de.htwg.se.wizard.view.tui.strategies.ITUIStrategy;
-
-import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public abstract class TUIStrategy implements ITUIStrategy {
 
+    private static final Logger LOGGER = LogManager.getLogger();
     protected GameControl controller;
     protected TextUI tui;
 
@@ -20,7 +21,7 @@ public abstract class TUIStrategy implements ITUIStrategy {
     @Override
     public void progressUserInput(String line) {
         if (line.matches("q")) {
-            tui.getGameControl().quit();
+            LOGGER.debug("Game should shutdown");
         }
     }
 }

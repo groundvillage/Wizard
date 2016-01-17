@@ -1,9 +1,9 @@
-package de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState;
+package de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate;
 
 
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.impl.ActionSubState;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.MainRound;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.impl.NormalCard;
 import de.htwg.se.wizard.model.card.impl.SpecialCard;
@@ -42,7 +42,6 @@ public class MatchAnalyzingState extends ActionSubState {
         do {
 
             Player player = this.controller.getPlayer().get(playerId);
-            System.out.println("Check cards from Player: " + player.getName());
             playerId++;
             if (playerId > this.controller.getNumberOfPlayers()) {
                 playerId = 0;
@@ -51,50 +50,39 @@ public class MatchAnalyzingState extends ActionSubState {
             ICard card = playedCards.get(player);
             if ( card instanceof SpecialCard ) {
                 if (((SpecialCard) card).getType() == SpecialCard.CardType.WIZARD) {
-                    System.out.println("Wizard so win!!!");
                     matchWinner = player;
                     break;
                 } else if (firstFoo == null){
-                    System.out.println("first foo set");
                     firstFoo = player;
                 }
             } else {
                 NormalCard normalCard = (NormalCard) card;
                 if (matchWinner == null) {
-                    System.out.println("Set first matchWinner");
                     matchWinner = player;
 
                 } else {
                     NormalCard bestCard = (NormalCard) playedCards.get(matchWinner);
-                    if (bestCard.getColor() == this.mainState.getTrump()) {
-                        if (normalCard.getColor() == this.mainState.getTrump()) {
-                            if (normalCard.compareTo(bestCard) > 0) {
-                                matchWinner = player;
-                                System.out.println("Trump compare win");
-                                continue;
-                            }
-                        }
+                    if (bestCard.getColor() == this.mainState.getTrump() && normalCard.getColor() == this.mainState.getTrump() && normalCard.compareTo(bestCard) > 0) {
+                        matchWinner = player;
+                        continue;
+
+
                     } else {
                         if (normalCard.getColor() == this.mainState.getTrump()) {
                             matchWinner = player;
 
-                            System.out.println("checkcard was trump and bestcard not");
-                        } else if (normalCard.getColor() == this.matchState.getPrimeryCardColor() ){
-                            if (normalCard.compareTo(bestCard) > 0) {
-                                System.out.println("both primery cards so compare");
-                                matchWinner = player;
-                                continue;
-                            }
+                        } else if (normalCard.getColor() == this.matchState.getPrimeryCardColor() && normalCard.compareTo(bestCard) > 0){
+                            matchWinner = player;
+                            continue;
+
                         }
                     }
-                    System.out.println("checkcard is irrelevant");
                 }
             }
 
         } while (playerId == this.mainState.getLastPlayer());
 
         if (matchWinner == null) {
-            System.out.println("First Foo should win!!");
             this.mainState.increaseWinningScore(firstFoo);
             System.out.printf("----------------------------Winner is: %s with %s%n", matchWinner.getName(), playedCards.get(matchWinner).toString());
 
@@ -108,20 +96,10 @@ public class MatchAnalyzingState extends ActionSubState {
         if (this.controller.getPlayer().get(this.mainState.getFirstPlayer()).getHand().isEmpty()) {
             this.matchState.setNextState();
         } else {
-            System.out.println("Cards noch übrig");
             setupForNextMatch();
 
             this.matchState.setSubState(new PlayCardState(this.controller, this.mainState, this.matchState));
         }
-
-
-        //this.controller.notifyObservers();
-
-        /*try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            System.out.println("Wollte nicht schlafen");
-        }*/
     }
 
     @Override

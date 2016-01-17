@@ -18,14 +18,12 @@ public abstract class StateWithSubState extends State implements IStateWithSubSt
     public void setSubState(IState subState) {
         this.subState = subState;
         if (subState instanceof IActionState) {
-            System.out.println("start action");
             ((IActionState) subState).action();
         }
         controller.notifyObservers();
     }
 
-    //public void getFirstPlayer
-
+    @Override
     public IState getSubState() {
         return subState;
     }

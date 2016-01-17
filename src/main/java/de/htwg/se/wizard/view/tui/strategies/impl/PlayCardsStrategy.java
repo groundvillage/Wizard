@@ -1,8 +1,8 @@
 package de.htwg.se.wizard.view.tui.strategies.impl;
 
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MainRound;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.MatchState;
-import de.htwg.se.wizard.control.gamestate.impl.MainRound.MatchState.PlayCardState;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.MainRound;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate.MatchState;
+import de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate.PlayCardState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.player.Player;
 import de.htwg.se.wizard.view.tui.TextUI;
