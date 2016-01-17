@@ -12,13 +12,11 @@ import java.util.Map;
 
 public class MainRound extends StateWithSubState {
 
-    private final int MAXROUND = 19;
-    private final int PEAKROUND = 10;
+    private static final int MAXROUND = 19;
+    private static final int PEAKROUND = 10;
 
     private Map<Integer, Integer> predictions;
-    //private Map<Integer, Integer> points;
     private Map<Player, Integer> wins;
-    //private Map<Integer, Integer> tricks;
     private NormalCard.CardColor trump;
 
     private int firstPlayer;
@@ -34,10 +32,7 @@ public class MainRound extends StateWithSubState {
         this.deck = new CardDeck();
         this.predictions = new HashMap<>();
         this.wins = new HashMap<>();
-        //this.points = new HashMap<>();
-        //this.tricks = new HashMap<>();
         this.setState();
-        //this.subState = new DealCardState(this.controller, this);
 
         for (Player player : this.controller.getPlayer()) {
             this.wins.put(player, 0);
@@ -61,10 +56,8 @@ public class MainRound extends StateWithSubState {
     }
 
     public void increaseWinningScore(Player player) {
-        System.out.println("Player: "+ player);
 
         int score = this.wins.get(player);
-        System.out.println(score);
         this.wins.replace(player, ++score);
     }
 
@@ -92,7 +85,6 @@ public class MainRound extends StateWithSubState {
         if (currentRound <= PEAKROUND) {
             return currentRound;
         }
-        //after 10 rounds, cards are getting less again until 1 card in last round
         return PEAKROUND - (currentRound - PEAKROUND);
     }
 

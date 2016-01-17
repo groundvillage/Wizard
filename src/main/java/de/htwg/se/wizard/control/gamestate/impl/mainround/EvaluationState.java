@@ -18,7 +18,6 @@ public class EvaluationState extends ActionSubState {
 
     @Override
     public void action() {
-        System.out.println("Evaluation");
         int i = 0;
 
         for (Player player : this.controller.getPlayer()) {

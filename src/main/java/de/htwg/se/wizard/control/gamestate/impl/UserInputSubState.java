@@ -12,4 +12,9 @@ public abstract class UserInputSubState extends SubState implements IUserInputSt
     public UserInputSubState(GameControl controller, IStateWithSubState mainState) {
         super(controller, mainState);
     }
+
+    @Override
+    public String getErrorMessage() {
+        return "";
+    }
 }

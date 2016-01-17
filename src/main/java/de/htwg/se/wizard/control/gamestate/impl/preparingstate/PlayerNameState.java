@@ -18,7 +18,6 @@ public class PlayerNameState extends UserInputSubState {
         super(controller, gameState);
         this.gameState = (PreparingState) gameState;
 
-        //nameList = new String[this.gameState.getCountOfPlayer()];
         nameList = new LinkedList<>();
     }
 
@@ -32,15 +31,13 @@ public class PlayerNameState extends UserInputSubState {
         if (! nameList.contains(userInput)) {
             nameList.add(userInput);
             currentPlayer++;
-        } else {
-            System.out.println("bereits vorhanden");
+            if (currentPlayer >= this.controller.getNumberOfPlayers()) {
+                this.controller.addPlayers(nameList);
+                this.gameState.setNextState();
+            }
         }
-        if (currentPlayer >= this.controller.getNumberOfPlayers()) {
-            this.controller.addPlayers(nameList);
-            this.gameState.setNextState();
-        } else {
-            this.controller.updateObserver();
-        }
+
+        this.controller.updateObserver();
     }
 
     @Override

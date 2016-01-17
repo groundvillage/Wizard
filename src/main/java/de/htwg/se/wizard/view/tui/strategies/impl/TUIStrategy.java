@@ -23,5 +23,6 @@ public abstract class TUIStrategy implements ITUIStrategy {
         if (line.matches("q")) {
             LOGGER.debug("Game should shutdown");
         }
+        this.controller.handle(line);
     }
 }

@@ -87,7 +87,7 @@ public class PlayCardState extends UserInputSubState {
             }
         }
 
-        if (playerPlayableCards.size() == 0) {
+        if (playerPlayableCards.isEmpty()) {
             for (ICard card : player.getHand()) {
                 playerPlayableCards.add(card);
             }

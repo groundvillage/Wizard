@@ -4,6 +4,6 @@ public interface IUserInputState extends IState, ISubState{
 
     void handleUserInput(String userInput);
 
-    //String getErrorMessage();
+    String getErrorMessage();
 
 }

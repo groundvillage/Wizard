@@ -5,7 +5,6 @@ import de.htwg.se.wizard.control.gamestate.IActionState;
 import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.IUserInputState;
 import de.htwg.se.wizard.control.gamestate.impl.preparingstate.PreparingState;
-//import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.LinkedList;
@@ -27,7 +26,6 @@ public class GameControl extends Observable {
 
     public void setGameState(IState state) {
         this.state = state;
-        System.out.println("GameControl - GameState: " + this.state.toString());
 
         if (this.state.getState() instanceof IActionState) {
             ((IActionState)this.state.getState()).action();
@@ -67,7 +65,4 @@ public class GameControl extends Observable {
         return this.numberOfPlayers;
     }
 
-    /*public List<ICard> getHandOfPlayer(int player) {
-        return players.get(player).getHand();
-    }*/
 }

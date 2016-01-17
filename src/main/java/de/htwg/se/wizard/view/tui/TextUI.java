@@ -4,8 +4,10 @@ import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.view.tui.strategies.StrategyFactory;
 import de.htwg.se.wizard.view.tui.strategies.impl.TUIStrategy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-public class TextUI extends Thread implements IObserver {
+public class TextUI implements IObserver {
 
     private GameControl controller;
     private TUIStrategy strategy;
@@ -31,9 +33,7 @@ public class TextUI extends Thread implements IObserver {
 
         String gameStateName = controller.getGameState().toString();
 
-        System.out.println("current State: " + gameStateName);
         if (! gameStateName.equals(strategy.toString())) {
-            System.out.println("Ändere deine Strategie");
             this.strategy = StrategyFactory.createStrategy(gameStateName, this);
         }
 
