@@ -5,7 +5,6 @@ import de.htwg.se.wizard.control.gamestate.IStateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.ActionSubState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.player.Player;
-import sun.applet.Main;
 
 
 public class EvaluationState extends ActionSubState {

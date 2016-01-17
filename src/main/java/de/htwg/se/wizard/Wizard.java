@@ -3,7 +3,7 @@ package de.htwg.se.wizard;
 import de.htwg.se.wizard.control.WizardController;
 import de.htwg.se.wizard.view.tui.TUI;
 import java.util.Scanner;
-import org.apache.log4j.PropertyConfigurator;
+//import org.apache.log4j.PropertyConfigurator;
 
 import static java.lang.System.out;
 
@@ -20,7 +20,7 @@ public class Wizard {
 
     public static void main(String[] args) {
 
-        PropertyConfigurator.configure("log4j2.xml");
+        //PropertyConfigurator.configure("log4j2.xml");
 
         TUI tui = new TUI(new WizardController());
         // continue until the user decides to quit
