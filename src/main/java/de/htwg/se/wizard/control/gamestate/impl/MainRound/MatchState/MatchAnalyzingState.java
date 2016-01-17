@@ -95,11 +95,11 @@ public class MatchAnalyzingState extends ActionSubState {
 
         if (matchWinner == null) {
             System.out.println("First Foo should win!!");
-            this.mainState.increaseMatchScore(firstFoo);
+            this.mainState.increaseWinningScore(firstFoo);
             System.out.printf("----------------------------Winner is: %s with %s%n", matchWinner.getName(), playedCards.get(matchWinner).toString());
 
         } else {
-            this.mainState.increaseMatchScore(matchWinner);
+            this.mainState.increaseWinningScore(matchWinner);
             System.out.printf("----------------------------Winner is: %s with %s%n", matchWinner.getName(), playedCards.get(matchWinner).toString());
 
         }

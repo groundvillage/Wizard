@@ -81,5 +81,6 @@ public class MatchState extends StateWithSubState {
     @Override
     public void setNextState() {
         this.gameState.setSubState(new EvaluationState(this.controller, this.gameState));
+
     }
 }

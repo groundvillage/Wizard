@@ -3,12 +3,8 @@ package de.htwg.se.wizard.control.gamestate.impl;
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.model.player.Player;
 
-import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by Jan on 14.01.2016.
- */
 public class GameEndState extends ActionState {
 
     List<Player> playerRanking;

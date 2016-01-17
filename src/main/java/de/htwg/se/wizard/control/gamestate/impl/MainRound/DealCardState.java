@@ -6,7 +6,8 @@ import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.ICard;
 import de.htwg.se.wizard.model.card.impl.NormalCard;
 import de.htwg.se.wizard.model.player.Player;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Random;
@@ -14,7 +15,7 @@ import java.util.Random;
 
 public class DealCardState extends ActionSubState {
 
-    private Logger logger = Logger.getLogger("de.htwg.se.wizard.control.gamestate.impl.MainRound.DealCardState");
+    private static final Logger LOGGER = LogManager.getLogger(DealCardState.class.getName());
     private MainRound gameState;
 
     public DealCardState(GameControl controller, StateWithSubState gameState) {
@@ -31,12 +32,14 @@ public class DealCardState extends ActionSubState {
         List<Player> players = controller.getPlayer();
 
         for (Player player : players) {
-            List<ICard> cards = this.gameState.getCardDeck().drawMultipleCards(this.gameState.getCurrentRound());
+            System.out.println("Deal count cards: " +  this.gameState.cardsPerPlayer());
+            List<ICard> cards = this.gameState.getCardDeck().drawMultipleCards(this.gameState.cardsPerPlayer());
             player.dealHand(cards);
             System.out.printf("%s got %d Cards%n", player.getName(), this.gameState.getCurrentRound());
         }
 
-        this.gameState.setSubState(new PredictionState(this.controller, this.gameState));
+        System.out.println("Type this.mainSatte: " + this.mainState);
+        this.gameState.setSubState(new PredictionState(this.controller, (StateWithSubState) this.mainState));
         this.controller.notifyObservers();
     }
 
@@ -49,7 +52,7 @@ public class DealCardState extends ActionSubState {
             int numberOfColors = cardColors.length;
             gameState.setTrump(cardColors[r.nextInt(numberOfColors)]);
         }
-        logger.info("Trump for this round is " + gameState.getTrump().toString());
+        LOGGER.info("Trump for this round is " + gameState.getTrump().toString());
     }
 
 

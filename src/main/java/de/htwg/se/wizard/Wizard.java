@@ -20,7 +20,7 @@ public class Wizard {
 
     public static void main(String[] args) {
 
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4j2.xml");
 
         TUI tui = new TUI(new WizardController());
         // continue until the user decides to quit

@@ -7,7 +7,7 @@ package de.htwg.se.wizard.view.tui;
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.WizardController;
 //import de.htwg.se.wizard.control.GameStatus;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 public class TUI implements IObserver {
 
@@ -15,7 +15,7 @@ public class TUI implements IObserver {
     private WizardController controller;
     private static final String OUTPUTBORDER = "+++++++++++++++++++++++++++++++++++++++++++++++++";
     private static final String NEWLINE = System.getProperty("line.separator");
-    private Logger logger = Logger.getLogger("de.htwg.se.wizard.view.tui");
+    //private Logger logger = Logger.getLogger("de.htwg.se.wizard.view.tui");
 
     public TUI(WizardController controller) {
         this.controller = controller;

@@ -1,6 +1,8 @@
 package de.htwg.se.wizard.control.gamestate.impl.MainRound;
 
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.control.gamestate.IActionState;
+import de.htwg.se.wizard.control.gamestate.IState;
 import de.htwg.se.wizard.control.gamestate.impl.GameEndState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.model.card.impl.NormalCard;
@@ -16,13 +18,14 @@ public class MainRound extends StateWithSubState {
     private final int PEAKROUND = 10;
 
     private Map<Integer, Integer> predictions;
-    private Map<Integer, Integer> points;
+    //private Map<Integer, Integer> points;
     private Map<Player, Integer> wins;
-    private Map<Integer, Integer> tricks;
+    //private Map<Integer, Integer> tricks;
     private NormalCard.CardColor trump;
 
     private int firstPlayer;
     private int currentRound;
+
     private CardDeck deck;
 
     public MainRound(GameControl controller) {
@@ -33,8 +36,8 @@ public class MainRound extends StateWithSubState {
         this.deck = new CardDeck();
         this.predictions = new HashMap<>();
         this.wins = new HashMap<>();
-        this.points = new HashMap<>();
-        this.tricks = new HashMap<>();
+        //this.points = new HashMap<>();
+        //this.tricks = new HashMap<>();
         this.setState();
         //this.subState = new DealCardState(this.controller, this);
 
@@ -59,7 +62,7 @@ public class MainRound extends StateWithSubState {
         this.subState = new DealCardState(this.controller, this);
     }
 
-    public void increaseMatchScore(Player player) {
+    public void increaseWinningScore(Player player) {
         System.out.println("Player: "+ player);
 
         int score = this.wins.get(player);
@@ -77,6 +80,10 @@ public class MainRound extends StateWithSubState {
 
     public int getCurrentRound() {
         return currentRound;
+    }
+
+    public boolean isFinalRound() {
+        return currentRound == MAXROUND;
     }
 
     public GameControl getController() {
@@ -107,10 +114,13 @@ public class MainRound extends StateWithSubState {
             this.firstPlayer = 0;
         }
         this.firstPlayer += 1;
+
+        this.currentRound++;
     }
 
     @Override
     public void setNextState() {
+
         this.controller.setGameState(new GameEndState(this.controller));
 
         this.controller.notifyObservers();
