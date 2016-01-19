@@ -9,9 +9,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-/**
- * Created by Jan on 05.12.2015.
- */
+
 public class StandartWizardICardDeckTest {
 
     StandartWizardCardDeck cardDeck;

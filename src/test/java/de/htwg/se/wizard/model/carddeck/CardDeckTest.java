@@ -48,9 +48,9 @@ public class CardDeckTest {
     public void testStandartWizardCardDeckConstructor() throws Exception {
         cardDeck = new CardDeck(1);
 
-        assertEquals(1, cardDeck.drawMultipleCards(1).size());
+        assertEquals(10, cardDeck.drawMultipleCards(10).size());
         cardDeck = new CardDeck(1);
-        cardDeck.drawMultipleCards(10);
+        cardDeck.drawMultipleCards(11);
     }
 
     @Test
