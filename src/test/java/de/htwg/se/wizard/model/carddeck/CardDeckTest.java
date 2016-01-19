@@ -46,11 +46,11 @@ public class CardDeckTest {
 
     @Test(expected=IllegalArgumentException.class)
     public void testStandartWizardCardDeckConstructor() throws Exception {
-        cardDeck = new CardDeck();
+        cardDeck = new CardDeck(1);
 
-        assertEquals(60, cardDeck.drawMultipleCards(60).size());
-        cardDeck = new CardDeck();
-        cardDeck.drawMultipleCards(61);
+        assertEquals(1, cardDeck.drawMultipleCards(1).size());
+        cardDeck = new CardDeck(1);
+        cardDeck.drawMultipleCards(10);
     }
 
     @Test

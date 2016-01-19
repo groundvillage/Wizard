@@ -18,12 +18,12 @@ public class StandartWizardICardDeckTest {
 
     @Before
     public void setUp() throws Exception {
-        cardDeck = new StandartWizardCardDeck();
+        cardDeck = new StandartWizardCardDeck(1);
     }
 
     @Test
     public void testGetDeck() throws Exception {
         List<ICard> cardList = cardDeck.getDeck();
-        assertEquals(60, cardList.size());
+        assertEquals(1, cardList.size());
     }
 }
