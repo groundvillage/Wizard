@@ -25,15 +25,17 @@ public class StandartWizardCardDeck implements IBasicCardDeck {
             }
         }
 
-        for (int i = 0; i < (52 - numberOfCards + 8); i++) {
-            int randomInt = new Random().nextInt(basicCardList.size());
-            basicCardList.remove(randomInt);
-        }
+
 
         for (SpecialCard.CardType cardType: SpecialCard.CardType.values()) {
             for (int i = 0; i < 4; i++) {
                 basicCardList.add(new SpecialCard(new SpecialCard.SpecialCardParameter(cardType)));
             }
+        }
+
+        for (int i = 0; i < (60 - numberOfCards); i++) {
+            int randomInt = new Random().nextInt(basicCardList.size());
+            basicCardList.remove(randomInt);
         }
 
         basicCards = basicCardList;
