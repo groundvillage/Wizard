@@ -14,13 +14,25 @@ import java.util.Map;
 public class MatchAnalyzingState extends ActionSubState {
 
     private MainRound mainState;
+
     private MatchState matchState;
+
+
+    Player matchWinner;
+    Player firstFoo;
+    Map<Player, ICard> playedCards;
 
     public MatchAnalyzingState(GameControl controller, MainRound gameState, MatchState matchState) {
         super(controller, gameState);
 
         this.mainState = gameState;
         this.matchState = matchState;
+
+        this.matchWinner = null;
+        this.firstFoo = null;
+
+        this.playedCards = this.matchState.getPlayedCards();
+
     }
 
 
@@ -29,23 +41,39 @@ public class MatchAnalyzingState extends ActionSubState {
         this.matchState.resetPrimeryCardColor();
     }
 
+    private boolean checketBetterByNormalCard(ICard card) {
+
+        NormalCard normalCard = (NormalCard) card;
+        if (matchWinner == null) {
+            return true;
+        }
+
+        NormalCard bestCard = (NormalCard) playedCards.get(matchWinner);
+        if (bestCard.getColor() == this.mainState.getTrump() && normalCard.getColor() == this.mainState.getTrump() && normalCard.compareTo(bestCard) > 0) {
+            return true;
+        }
+        if (normalCard.getColor() == this.mainState.getTrump()) {
+            return true;
+        }
+        if (normalCard.getColor() == this.matchState.getPrimeryCardColor() && normalCard.compareTo(bestCard) > 0){
+                    return true;
+        }
+        return false;
+    }
+
+    private void dealWinner() {
+        if (matchWinner == null) {
+            this.mainState.increaseWinningScore(firstFoo);
+
+        } else {
+            this.mainState.increaseWinningScore(matchWinner);
+        }
+    }
+
     @Override
     public void action() {
-        Map<Player, ICard> playedCards = this.matchState.getPlayedCards();
 
-        Player matchWinner = null;
-
-        Player firstFoo = null;
-
-        int playerId = this.mainState.getFirstPlayer();
-
-        do {
-
-            Player player = this.controller.getPlayer().get(playerId);
-            playerId++;
-            if (playerId > this.controller.getNumberOfPlayers()) {
-                playerId = 0;
-            }
+        for (Player player : this.mainState.getOrdertPlayerList()) {
 
             ICard card = playedCards.get(player);
             if ( card instanceof SpecialCard ) {
@@ -56,42 +84,14 @@ public class MatchAnalyzingState extends ActionSubState {
                     firstFoo = player;
                 }
             } else {
-                NormalCard normalCard = (NormalCard) card;
-                if (matchWinner == null) {
+                if (checketBetterByNormalCard(card)) {
                     matchWinner = player;
-
-                } else {
-                    NormalCard bestCard = (NormalCard) playedCards.get(matchWinner);
-                    if (bestCard.getColor() == this.mainState.getTrump() && normalCard.getColor() == this.mainState.getTrump() && normalCard.compareTo(bestCard) > 0) {
-                        matchWinner = player;
-                        continue;
-
-
-                    } else {
-                        if (normalCard.getColor() == this.mainState.getTrump()) {
-                            matchWinner = player;
-
-                        } else if (normalCard.getColor() == this.matchState.getPrimeryCardColor() && normalCard.compareTo(bestCard) > 0){
-                            matchWinner = player;
-                            continue;
-
-                        }
-                    }
                 }
             }
 
-        } while (playerId == this.mainState.getLastPlayer());
-
-        if (matchWinner == null) {
-            this.mainState.increaseWinningScore(firstFoo);
-            System.out.printf("----------------------------Winner is: %s with %s%n", matchWinner.getName(), playedCards.get(matchWinner).toString());
-
-        } else {
-            this.mainState.increaseWinningScore(matchWinner);
-            System.out.printf("----------------------------Winner is: %s with %s%n", matchWinner.getName(), playedCards.get(matchWinner).toString());
-
         }
 
+        dealWinner();
 
         if (this.controller.getPlayer().get(this.mainState.getFirstPlayer()).getHand().isEmpty()) {
             this.matchState.setNextState();

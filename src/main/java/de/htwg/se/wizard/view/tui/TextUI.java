@@ -2,10 +2,9 @@ package de.htwg.se.wizard.view.tui;
 
 import de.htwg.se.util.observer.IObserver;
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.model.wizardexceptions.PlayerNameException;
 import de.htwg.se.wizard.view.tui.strategies.StrategyFactory;
 import de.htwg.se.wizard.view.tui.strategies.impl.TUIStrategy;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class TextUI implements IObserver {
 
@@ -21,7 +20,11 @@ public class TextUI implements IObserver {
     }
 
     public void handleUserInput(String userInput) {
-        controller.handle(userInput);
+        try {
+            controller.handle(userInput);
+        } catch (PlayerNameException e) {
+            System.out.println(e);
+        }
     }
 
     public GameControl getGameControl() {

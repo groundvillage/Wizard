@@ -7,6 +7,7 @@ import de.htwg.se.wizard.model.carddeck.IBasicCardDeck;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 
 public class StandartWizardCardDeck implements IBasicCardDeck {
@@ -14,7 +15,7 @@ public class StandartWizardCardDeck implements IBasicCardDeck {
 
     private final List<ICard> basicCards;
 
-    public StandartWizardCardDeck() {
+    public StandartWizardCardDeck(int numberOfCards) {
         List<ICard> basicCardList = new LinkedList<>();
 
         NormalCard.CardColor.values();
@@ -23,6 +24,12 @@ public class StandartWizardCardDeck implements IBasicCardDeck {
                 basicCardList.add(new NormalCard(color, value));
             }
         }
+
+        for (int i = 0; i < (52 - numberOfCards + 8); i++) {
+            int randomInt = new Random().nextInt(basicCardList.size());
+            basicCardList.remove(randomInt);
+        }
+
         for (SpecialCard.CardType cardType: SpecialCard.CardType.values()) {
             for (int i = 0; i < 4; i++) {
                 basicCardList.add(new SpecialCard(new SpecialCard.SpecialCardParameter(cardType)));

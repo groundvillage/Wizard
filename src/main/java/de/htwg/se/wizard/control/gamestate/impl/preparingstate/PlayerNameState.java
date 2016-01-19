@@ -3,6 +3,7 @@ package de.htwg.se.wizard.control.gamestate.impl.preparingstate;
 import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
+import de.htwg.se.wizard.model.wizardexceptions.PlayerNameException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class PlayerNameState extends UserInputSubState {
                 this.controller.addPlayers(nameList);
                 this.gameState.setNextState();
             }
+        } else {
+            throw new PlayerNameException("Name already exist");
         }
 
         this.controller.updateObserver();

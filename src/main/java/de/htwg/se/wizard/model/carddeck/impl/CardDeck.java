@@ -16,8 +16,9 @@ public class CardDeck {
     private List<ICard> usingCards;
     private Random rmd = new Random();
 
-    public CardDeck() {
-        basicCards = new StandartWizardCardDeck();
+    public CardDeck(int countOfPlayer) {
+
+        basicCards = new StandartWizardCardDeck(countOfPlayer * 10);
         reset();
     }
 

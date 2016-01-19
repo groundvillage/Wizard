@@ -21,36 +21,38 @@ public class PlayCardState extends UserInputSubState {
     private MainRound mainState;
     private MatchState matchState;
 
-    private Player currentPlayer;
-    private List<ICard> playableCards;
+    private int currentPlayerId;
+    private List<Player> playerList;
 
     public PlayCardState(GameControl controller, MainRound gameState, MatchState matchState) {
         super(controller, gameState);
         this.mainState = gameState;
         this.matchState = matchState;
-        this.setCurrentPlayer(this.mainState.getFirstPlayer());
+        this.currentPlayerId = 0;
 
+
+        this.playerList = mainState.getOrdertPlayerList();
         this.controller.updateObserver();
     }
 
     @Override
     public void handleUserInput(String userInput) {
         int cardId = Integer.parseInt(userInput);
-        if (cardId < 0 || cardId > this.currentPlayer.getHand().size()) {
-            LOGGER.error("Invalid input! Valid cards: " + this.currentPlayer.getHand().toString());
+        Player currentPlayer = this.playerList.get(currentPlayerId);
+        if (cardId < 0 || cardId > this.playerList.get(currentPlayerId).getHand().size()) {
+            LOGGER.error("Invalid input! Valid cards: " + currentPlayer.getHand().toString());
             return;
         }
-        ICard card = this.currentPlayer.playCard(cardId);
+        ICard card = currentPlayer.playCard(cardId);
         setSuitToFollowIfNecessary(card);
-        this.matchState.addPlayedCards(this.currentPlayer, card);
+        this.matchState.addPlayedCards(currentPlayer, card);
 
 
 
-        if (this.controller.getPlayer().indexOf(currentPlayer) != this.mainState.getFirstPlayer()) {
+        if (++this.currentPlayerId == this.playerList.size()) {
             this.matchState.setSubState(new MatchAnalyzingState(this.controller, this.mainState, this.matchState));
             return;
         }
-        this.setCurrentPlayer(nextPlayerId(currentPlayer));
         this.controller.notifyObservers();
     }
 
@@ -58,23 +60,7 @@ public class PlayCardState extends UserInputSubState {
         return this.matchState.getPlayedCards();
     }
 
-    private int nextPlayerId(Player player) {
-        int currentPlayerId = this.controller.getPlayer().indexOf(player);
-
-        if (currentPlayerId == this.controller.getNumberOfPlayers()) {
-            currentPlayerId = 0;
-        }
-        return ++currentPlayerId;
-    }
-
-    private void setCurrentPlayer(int playerId) {
-        this.currentPlayer = this.controller.getPlayer().get(playerId);
-
-        this.playableCards = getPlayableCardsFromPlayer(this.currentPlayer);
-
-    }
-
-    private List<ICard> getPlayableCardsFromPlayer(Player player) {
+    public List<ICard> getPlayableCardsFromPlayer(Player player) {
         List<ICard> playerPlayableCards = new LinkedList<>();
         List<ICard> hand = player.getHand();
 
@@ -103,13 +89,9 @@ public class PlayCardState extends UserInputSubState {
     }
 
     public Player getCurrentPlayer() {
-        return this.currentPlayer;
+        return this.playerList.get(currentPlayerId);
     }
 
-    public List<ICard> getPlayableCards() {
-
-        return this.playableCards;
-    }
 
     @Override
     public String toString() {

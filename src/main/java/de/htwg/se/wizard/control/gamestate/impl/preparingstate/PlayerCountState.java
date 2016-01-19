@@ -9,7 +9,6 @@ public class PlayerCountState extends UserInputSubState {
 
     private PreparingState gameState;
     private int maxCount;
-
     private int minCount;
 
     public PlayerCountState(GameControl controller, StateWithSubState gameState, int minCount, int maxCount) {

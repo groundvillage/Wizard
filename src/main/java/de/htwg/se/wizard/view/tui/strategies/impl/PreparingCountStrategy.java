@@ -18,9 +18,9 @@ public class PreparingCountStrategy extends TUIStrategy {
 
     @Override
     public void execute() {
-        IState subState = ((PreparingState) this.controller.getGameState()).getSubState();
+        PlayerCountState subState = (PlayerCountState)((PreparingState) this.controller.getGameState()).getSubState();
 
-        LOGGER.info("How many are playing? (%d-%d) or q to quit%n", ((PlayerCountState) subState).getMinCount(), ((PlayerCountState) subState).getMaxCount());
+        LOGGER.info(String.format("How many are playing? (%d-%d) or q to quit%n", subState.getMinCount(), subState.getMaxCount()));
     }
 
     @Override

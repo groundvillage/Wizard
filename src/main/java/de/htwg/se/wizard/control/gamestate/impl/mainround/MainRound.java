@@ -8,6 +8,8 @@ import de.htwg.se.wizard.model.carddeck.impl.CardDeck;
 import de.htwg.se.wizard.model.player.Player;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class MainRound extends StateWithSubState {
@@ -15,7 +17,7 @@ public class MainRound extends StateWithSubState {
     private static final int MAXROUND = 19;
     private static final int PEAKROUND = 10;
 
-    private Map<Integer, Integer> predictions;
+    private Map<Player, Integer> predictions;
     private Map<Player, Integer> wins;
     private NormalCard.CardColor trump;
 
@@ -29,7 +31,7 @@ public class MainRound extends StateWithSubState {
 
         this.firstPlayer = 0;
         this.currentRound = 1;
-        this.deck = new CardDeck();
+        this.deck = new CardDeck(this.controller.getNumberOfPlayers());
         this.predictions = new HashMap<>();
         this.wins = new HashMap<>();
         this.setState();
@@ -89,21 +91,47 @@ public class MainRound extends StateWithSubState {
     }
 
     public int getLastPlayer() {
-        if (this.getFirstPlayer() == 0) {
+        if (firstPlayer == 0) {
             return this.controller.getNumberOfPlayers() - 1;
         }
         return firstPlayer - 1;
     }
 
-    public void setPrediction(int player, int prediction) {
+    public Map<Player, Integer> getWins() {
+        return wins;
+    }
+
+    public Map<Player, Integer> getPredictinons() {
+        return predictions;
+    }
+
+    public void setPrediction(Player player, int prediction) {
         this.predictions.put(player, prediction);
     }
 
+    public List<Player> getOrdertPlayerList() {
+        List<Player> players = this.controller.getPlayer();
+        List<Player> ordertPlayer = new LinkedList<>();
+
+        int playerId = firstPlayer;
+
+        do {
+            ordertPlayer.add(players.get(playerId));
+
+            if (++playerId == players.size()) {
+                playerId = 0;
+            }
+
+        } while (playerId == getLastPlayer());
+
+
+        return ordertPlayer;
+    }
+
     public void nextRound() {
-        if (this.firstPlayer == this.controller.getNumberOfPlayers() - 1) {
+        if (++this.firstPlayer == this.controller.getNumberOfPlayers()) {
             this.firstPlayer = 0;
         }
-        this.firstPlayer += 1;
 
         this.currentRound++;
     }

@@ -1,6 +1,7 @@
 package de.htwg.se.wizard.view.tui.strategies.impl;
 
 import de.htwg.se.wizard.control.GameControl;
+import de.htwg.se.wizard.model.wizardexceptions.PlayerNameException;
 import de.htwg.se.wizard.view.tui.TextUI;
 import de.htwg.se.wizard.view.tui.strategies.ITUIStrategy;
 import org.apache.logging.log4j.LogManager;
@@ -23,6 +24,10 @@ public abstract class TUIStrategy implements ITUIStrategy {
         if (line.matches("q")) {
             LOGGER.debug("Game should shutdown");
         }
-        this.controller.handle(line);
+        try {
+            this.controller.handle(line);
+        } catch (PlayerNameException e) {
+            LOGGER.error(e);
+        }
     }
 }

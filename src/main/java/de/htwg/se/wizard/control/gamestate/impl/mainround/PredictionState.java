@@ -4,6 +4,7 @@ import de.htwg.se.wizard.control.GameControl;
 import de.htwg.se.wizard.control.gamestate.impl.mainround.matchstate.MatchState;
 import de.htwg.se.wizard.control.gamestate.impl.StateWithSubState;
 import de.htwg.se.wizard.control.gamestate.impl.UserInputSubState;
+import de.htwg.se.wizard.model.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +29,8 @@ public class PredictionState extends UserInputSubState {
 
     public void setPrediction(int prediction) {
         if (isValid(prediction)) {
-            gameState.setPrediction(curPlayer, prediction);
+            Player player = this.controller.getPlayer().get(curPlayer);
+            gameState.setPrediction(player, prediction);
             trickSum += prediction;
             nextPlayer();
         } else {

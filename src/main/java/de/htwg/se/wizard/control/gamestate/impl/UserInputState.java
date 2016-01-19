@@ -10,9 +10,4 @@ public abstract class UserInputState extends State implements IUserInputState {
         super(controller);
     }
 
-    @Override
-    public String getErrorMessage() {
-        return "";
-    }
-
 }
