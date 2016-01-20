@@ -49,19 +49,29 @@ public class MatchAnalyzingState extends ActionSubState {
         }
 
         NormalCard bestCard = (NormalCard) playedCards.get(matchWinner);
-        if (normalCard.getColor() == this.mainState.getTrump()) {
+        /*if (normalCard.getColor() == this.mainState.getTrump()) {
             if (bestCard.getColor() == this.mainState.getTrump()) {
                 if (normalCard.compareTo(bestCard) > 0) {
                     return true;
-                } else {
-                    return false;
                 }
+                return false;
             }
             return true;
         }
 
         if (normalCard.getColor() == this.matchState.getPrimeryCardColor() && normalCard.compareTo(bestCard) > 0){
                     return true;
+        }*/
+
+        if (normalCard.getColor() == bestCard.getColor() && normalCard.compareTo(bestCard) > 0) {
+                return true;
+        }
+
+        if (bestCard.getColor() != this.mainState.getTrump()) {
+            if (bestCard.getColor() == this.mainState.getTrump() || bestCard.getColor() == this.matchState.getPrimeryCardColor()) {
+                return true;
+            }
+            return true;
         }
         return false;
     }
