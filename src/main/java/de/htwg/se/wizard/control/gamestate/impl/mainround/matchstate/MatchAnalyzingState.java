@@ -17,7 +17,6 @@ public class MatchAnalyzingState extends ActionSubState {
 
     private MatchState matchState;
 
-
     Player matchWinner;
     Player firstFoo;
     Map<Player, ICard> playedCards;
