@@ -49,19 +49,6 @@ public class MatchAnalyzingState extends ActionSubState {
         }
 
         NormalCard bestCard = (NormalCard) playedCards.get(matchWinner);
-        /*if (normalCard.getColor() == this.mainState.getTrump()) {
-            if (bestCard.getColor() == this.mainState.getTrump()) {
-                if (normalCard.compareTo(bestCard) > 0) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-
-        if (normalCard.getColor() == this.matchState.getPrimeryCardColor() && normalCard.compareTo(bestCard) > 0){
-                    return true;
-        }*/
 
         if (normalCard.getColor() == bestCard.getColor() && normalCard.compareTo(bestCard) > 0) {
                 return true;
@@ -74,19 +61,16 @@ public class MatchAnalyzingState extends ActionSubState {
     }
 
 
-    private boolean validCard(ICard card) {
-        NormalCard normalCard = (NormalCard) card;
-        return normalCard.getColor() == this.mainState.getTrump() || normalCard.getColor() == this.matchState.getPrimeryCardColor();
+    private boolean validCard(NormalCard card) {
+        return card.getColor() == this.mainState.getTrump() || card.getColor() == this.matchState.getPrimeryCardColor();
     }
 
     private void dealWinner() {
         if (matchWinner == null) {
             this.mainState.increaseWinningScore(firstFoo);
-            System.out.println("Winner: " + firstFoo.getName());
 
         } else {
             this.mainState.increaseWinningScore(matchWinner);
-            System.out.println("Winner: " + matchWinner.getName());
         }
     }
 
