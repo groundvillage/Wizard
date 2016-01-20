@@ -67,13 +67,16 @@ public class MatchAnalyzingState extends ActionSubState {
                 return true;
         }
 
-        if (bestCard.getColor() != this.mainState.getTrump()) {
-            if (bestCard.getColor() == this.mainState.getTrump() || bestCard.getColor() == this.matchState.getPrimeryCardColor()) {
+        if (bestCard.getColor() != this.mainState.getTrump() && validCard(normalCard)) {
                 return true;
-            }
-            return true;
         }
         return false;
+    }
+
+
+    private boolean validCard(ICard card) {
+        NormalCard normalCard = (NormalCard) card;
+        return normalCard.getColor() == this.mainState.getTrump() || normalCard.getColor() == this.matchState.getPrimeryCardColor();
     }
 
     private void dealWinner() {
